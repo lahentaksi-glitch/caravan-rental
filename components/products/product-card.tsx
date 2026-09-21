@@ -27,8 +27,8 @@ export function ProductCard({ product }: { product: RentalProduct }) {
     .filter((spec): spec is RentalSpec => Boolean(spec));
 
   return (
-    <Card className="group overflow-hidden rounded-[1.75rem] border-0 bg-white/90 shadow-[0_10px_28px_rgba(15,23,42,0.06)] ring-1 ring-slate-200/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(15,23,42,0.09)]">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-t-[1.75rem]">
+    <Card className="group h-full overflow-hidden rounded-2xl border border-gray-100 bg-white py-0 shadow-sm ring-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+      <div className="relative aspect-[16/10] overflow-hidden">
         <SafeImage
           src={product.heroImage}
           alt={product.name}
@@ -40,21 +40,21 @@ export function ProductCard({ product }: { product: RentalProduct }) {
           {categoryLabel}
         </Badge>
       </div>
-      <CardHeader>
+      <CardHeader className="px-6 pt-6">
         <CardTitle className="text-2xl font-extrabold tracking-tight">{product.name}</CardTitle>
         <CardDescription className="text-base leading-relaxed">{product.shortDescription}</CardDescription>
       </CardHeader>
-      <CardContent>
-        <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+      <CardContent className="px-6">
+        <ul className="grid grid-cols-2 gap-3">
           {featuredSpecs.map((spec) => {
             const Icon = specIconMap[spec.icon] ?? Gauge;
             return (
               <li
                 key={spec.label}
-                className="flex items-center gap-2.5 rounded-2xl bg-slate-50/80 px-3 py-2.5"
+                className="flex min-h-[4.25rem] items-center gap-3 rounded-xl border border-gray-100 bg-[#F9FAFB] px-3 py-3"
               >
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-accent shadow-[0_4px_10px_rgba(15,23,42,0.05)] ring-1 ring-slate-200/70">
-                  <Icon className="size-3.5" aria-hidden />
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white text-accent shadow-sm ring-1 ring-gray-100">
+                  <Icon className="size-4" aria-hidden />
                 </span>
                 <span className="min-w-0">
                   <span className="block text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
@@ -76,7 +76,7 @@ export function ProductCard({ product }: { product: RentalProduct }) {
           </span>
         </p>
       </CardContent>
-      <CardFooter className="flex flex-col gap-2 rounded-b-[1.75rem] border-t border-slate-100 bg-transparent sm:flex-row">
+      <CardFooter className="mt-auto flex flex-col gap-2 border-t border-gray-100 bg-white px-6 py-5 sm:flex-row">
         <Link
           href={`/tuotteet/${product.slug}#varaa`}
           className={bookNowClassName("w-full")}

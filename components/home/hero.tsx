@@ -6,14 +6,10 @@ import { bookNowClassName, bookNowOutlineClassName } from "@/lib/cta";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-100/80 via-background to-accent/10"
-        aria-hidden
-      />
-      <Container className="relative grid min-h-[min(82vh,52rem)] items-center gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14 lg:py-20">
-        <div className="order-1 max-w-xl">
-          <div className="mb-5 flex flex-wrap items-center gap-3">
+    <section className="relative overflow-hidden bg-white">
+      <Container className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:py-20 xl:gap-20 xl:py-24">
+        <div>
+          <div className="mb-6 flex flex-wrap items-center gap-3">
             <SafeImage
               src={site.logos.caravan}
               alt={site.name}
@@ -29,37 +25,34 @@ export function Hero() {
               className="h-9 w-auto object-contain"
             />
           </div>
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-            {site.name} · {site.partnerName}
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+            {site.partnerName} · Lahti
           </p>
-          <h1 className="bg-gradient-to-r from-primary via-[#16315e] to-accent bg-clip-text text-4xl font-extrabold leading-[1.08] tracking-tight text-transparent sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.05] tracking-tight text-primary sm:text-5xl lg:text-6xl xl:text-[4.25rem]">
             Vuokraa laadukas asuntovaunu tai elämyksellinen paljuvaunu
           </h1>
-          <p className="mt-4 text-sm font-medium tracking-wide text-primary/80 sm:text-base">
-            Helppoa laatua — nouto Lahdelta, huolletut laitteet, selkeä hinta.
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+            Premium Knaus Sport -asuntovaunu ja lämpimät paljuvaunut noudettavissa
+            Lahdesta. Selkeä hinta, huolletut laitteet ja varaus muutamassa minuutissa.
           </p>
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-slate-600 sm:text-lg">
-            Valitse vapaat päivät, lähetä varauspyyntö WhatsAppilla ja lähde
-            matkaan ilman turhaa säätöä.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <BookingCta
               label="Varaa asuntovaunu"
               target="caravan"
-              className={bookNowClassName()}
+              className={bookNowClassName("min-w-[12.5rem] justify-center")}
             />
             <BookingCta
-              label="Varaa paljuvaunu"
+              label="Varaa palju"
               target="hottub"
               className={bookNowOutlineClassName(
-                "border-primary/20 bg-white/80 text-primary hover:bg-white"
+                "min-w-[12.5rem] justify-center border-2 border-primary bg-white text-primary hover:bg-primary hover:text-primary-foreground"
               )}
             />
           </div>
         </div>
 
-        <div className="order-2 mx-auto w-full max-w-md lg:mx-0 lg:max-w-none lg:justify-self-end">
-          <div className="relative mx-auto aspect-[4/3] w-[min(100%,28rem)] overflow-hidden rounded-[1.75rem] border border-white/80 shadow-[0_28px_60px_-28px_rgba(20,40,80,0.55)] lg:w-[min(100%,32rem)]">
+        <div className="relative w-full">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_24px_50px_-18px_rgba(15,23,42,0.35)] sm:aspect-[5/4] lg:aspect-[4/3] lg:min-h-[28rem]">
             <SafeImage
               src="/images/caravan/exterior-side.jpg"
               alt="Knaus Sport 500 KD -asuntovaunu Lahdessa"
@@ -67,9 +60,13 @@ export function Hero() {
               priority
               quality={90}
               className="object-cover object-center"
-              sizes="(max-width: 1024px) 90vw, 32rem"
+              sizes="(max-width: 1024px) 100vw, 48vw"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-white/10" />
+            <div className="absolute bottom-4 left-4 sm:bottom-5 sm:left-5">
+              <span className="inline-flex items-center rounded-full bg-white/95 px-4 py-2 text-sm font-semibold text-primary shadow-md ring-1 ring-black/5">
+                Knaus Sport 500 KD · 7,2 m
+              </span>
+            </div>
           </div>
         </div>
       </Container>

@@ -22,18 +22,18 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <section className="border-b border-white/40 bg-white/40 py-6 backdrop-blur-md">
+      <section className="border-y border-gray-100 bg-[#F9FAFB] py-7">
         <Container>
           <TrustStrip />
         </Container>
       </section>
-      <section id="varaa" className="scroll-mt-24 py-16 sm:py-20">
+      <section id="varaa" className="scroll-mt-24 bg-white py-16 sm:py-20">
         <Container>
           <SectionHeading
             title="Valitse vuokrakohteesi"
             subtitle="Kaksi huippuluokan vaihtoehtoa — perhematkailuun tai rentoutumiseen luonnon keskellä."
           />
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-8 md:grid-cols-2">
             {rentalProducts.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
@@ -47,8 +47,8 @@ export default function HomePage() {
       </section>
       <WhyUs />
       <ReviewsSection reviews={reviews} />
-      <section className="bg-muted/30 py-16 sm:py-20">
-        <Container className="max-w-3xl">
+      <section className="bg-[#F9FAFB] py-16 sm:py-20">
+        <Container className="max-w-4xl">
           <SectionHeading title="Usein kysyttyä" />
           <FAQAccordion items={faqItems} />
         </Container>

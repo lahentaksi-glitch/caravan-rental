@@ -25,7 +25,7 @@ export function TrustStrip({ compact = false }: { compact?: boolean }) {
           </>
         );
         const className =
-          "flex items-center gap-2 rounded-xl border border-white/60 bg-white/70 px-3 py-2 text-xs font-medium text-foreground shadow-sm backdrop-blur-md sm:text-sm";
+          "flex items-center gap-2 rounded-xl border border-gray-100 bg-white px-3 py-2.5 text-xs font-medium text-foreground shadow-sm sm:text-sm";
         if ("href" in item && item.href) {
           return (
             <li key={item.label}>

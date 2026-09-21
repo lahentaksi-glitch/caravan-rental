@@ -10,7 +10,7 @@ import { bookNowClassName } from "@/lib/cta";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-border bg-muted/40">
+    <footer className="mt-auto border-t border-gray-100 bg-[#F9FAFB]">
       <Container className="py-12">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">

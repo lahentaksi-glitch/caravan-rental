@@ -31,7 +31,7 @@ const tiles = [
 
 export function WhyUs() {
   return (
-    <section className="bg-muted/30 py-16 sm:py-20">
+    <section className="bg-[#F9FAFB] py-16 sm:py-20">
       <Container>
         <SectionHeading
           title="Miksi vuokraat meiltä?"
@@ -41,13 +41,13 @@ export function WhyUs() {
           {tiles.map((tile) => (
             <article
               key={tile.title}
-              className="rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-20px_rgba(20,40,80,0.45)]"
+              className="rounded-2xl border border-gray-100 bg-white p-7 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8"
             >
-              <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-accent/15 text-accent">
-                <tile.icon className="size-5" aria-hidden />
+              <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-accent/12 text-accent">
+                <tile.icon className="size-6" aria-hidden />
               </div>
-              <h3 className="font-semibold text-foreground">{tile.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <h3 className="text-lg font-semibold text-foreground">{tile.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {tile.description}
               </p>
             </article>

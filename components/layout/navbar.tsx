@@ -30,7 +30,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/40 bg-background/65 shadow-sm backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md">
       <Container className="flex h-[4.25rem] items-center justify-between gap-3">
         <BrandMark compact />
 
@@ -40,8 +40,10 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "rounded-xl px-3 py-2 text-sm font-medium transition-all hover:bg-white/70 hover:shadow-sm",
-                pathname === link.href ? "text-primary" : "text-muted-foreground"
+                "rounded-xl px-3 py-2 text-sm font-medium transition-colors",
+                pathname === link.href
+                  ? "bg-[#F9FAFB] text-primary"
+                  : "text-muted-foreground hover:bg-[#F9FAFB] hover:text-primary"
               )}
             >
               {link.label}
