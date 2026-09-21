@@ -76,7 +76,7 @@ export function ProductCard({ product }: { product: RentalProduct }) {
           </span>
         </p>
       </CardContent>
-      <CardFooter className="mt-auto flex flex-col gap-2 border-t border-gray-100 bg-white px-6 py-5 sm:flex-row">
+      <CardFooter className="mt-auto flex flex-col gap-2 border-t border-gray-100 bg-white px-6 py-5">
         <Link
           href={`/tuotteet/${product.slug}#varaa`}
           className={bookNowClassName("w-full")}
@@ -85,7 +85,7 @@ export function ProductCard({ product }: { product: RentalProduct }) {
         </Link>
         <Link
           href={`/tuotteet/${product.slug}`}
-          className={bookNowOutlineClassName("w-full")}
+          className={bookNowOutlineClassName("w-full border-gray-200")}
         >
           Katso tiedot
         </Link>

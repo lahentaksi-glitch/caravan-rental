@@ -39,7 +39,14 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <Link href="/hinnasto" className={buttonVariants({ variant: "outline", size: "lg" })}>
+            <Link
+              href="/hinnasto"
+              className={buttonVariants({
+                variant: "outline",
+                size: "lg",
+                className: "h-12 rounded-xl border-gray-200 px-6",
+              })}
+            >
               Katso koko hinnasto
             </Link>
           </div>

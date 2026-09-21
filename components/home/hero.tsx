@@ -7,8 +7,8 @@ import { bookNowClassName, bookNowOutlineClassName } from "@/lib/cta";
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-white">
-      <Container className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:py-20 xl:gap-20 xl:py-24">
-        <div>
+      <Container className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:items-stretch lg:gap-16 lg:py-20 xl:gap-20 xl:py-24">
+        <div className="flex flex-col justify-center">
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <SafeImage
               src={site.logos.caravan}
@@ -51,8 +51,8 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative w-full">
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_24px_50px_-18px_rgba(15,23,42,0.35)] sm:aspect-[5/4] lg:aspect-[4/3] lg:min-h-[28rem]">
+        <div className="relative w-full lg:min-h-[32rem]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-[0_28px_60px_-20px_rgba(15,23,42,0.4)] sm:aspect-[5/4] lg:absolute lg:inset-0 lg:aspect-auto">
             <SafeImage
               src="/images/caravan/exterior-side.jpg"
               alt="Knaus Sport 500 KD -asuntovaunu Lahdessa"
