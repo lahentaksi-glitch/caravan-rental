@@ -70,14 +70,19 @@ export function ProductGallery({
         </span>
       </button>
 
-      <div className="grid grid-cols-4 gap-2.5 sm:grid-cols-6">
+      <div
+        className={cn(
+          "grid gap-2.5",
+          images.length <= 4 ? "grid-cols-4" : "grid-cols-4 sm:grid-cols-6"
+        )}
+      >
         {images.map((src, index) => (
           <button
             key={src}
             type="button"
             onClick={() => setActive(index)}
             className={cn(
-              "relative aspect-[4/3] overflow-hidden rounded-2xl border-2 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md",
+              "relative aspect-[4/3] overflow-hidden rounded-xl border-2 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md",
               index === active
                 ? "border-accent ring-2 ring-accent/25"
                 : "border-transparent opacity-80 hover:opacity-100"
