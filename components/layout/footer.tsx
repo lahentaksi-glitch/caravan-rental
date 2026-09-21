@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
@@ -19,12 +19,12 @@ export function Footer() {
             <p className="font-medium text-foreground">Sivut</p>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/tuotteet/knaus-sport-500-kd" className="hover:text-foreground">
+                <Link href="/tuotteet/knaus-sport-500-kd#varaa" className="hover:text-foreground">
                   Asuntovaunu
                 </Link>
               </li>
               <li>
-                <Link href="/tuotteet/paljuvaunu" className="hover:text-foreground">
+                <Link href="/tuotteet/paljuvaunu#varaa" className="hover:text-foreground">
                   Paljuvaunu
                 </Link>
               </li>
@@ -53,6 +53,17 @@ export function Footer() {
                 <Phone className="size-4 shrink-0" aria-hidden />
                 <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:text-foreground">
                   {site.phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <MessageCircle className="size-4 shrink-0" aria-hidden />
+                <a
+                  href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}
+                  className="hover:text-foreground"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WhatsApp
                 </a>
               </li>
               <li className="flex items-center gap-2">

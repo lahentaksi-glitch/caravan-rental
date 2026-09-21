@@ -29,7 +29,7 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
             <CarouselContent className="-ml-4">
               {reviews.map((review) => (
                 <CarouselItem key={review.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="h-full border-border/80 shadow-sm">
+                  <Card className="h-full rounded-2xl border-white/50 bg-white/70 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1">
                     <CardContent className="flex h-full flex-col p-6">
                       <div className="mb-3 flex gap-0.5 text-accent" aria-label={`${review.rating} tähteä`}>
                         {Array.from({ length: review.rating }).map((_, i) => (

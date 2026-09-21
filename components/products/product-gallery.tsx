@@ -34,7 +34,7 @@ export function ProductGallery({
     <div className="space-y-3">
       <button
         type="button"
-        className="group relative block w-full overflow-hidden rounded-2xl shadow-md"
+        className="group relative block w-full overflow-hidden rounded-3xl shadow-[0_20px_50px_-24px_rgba(20,40,80,0.5)] transition-transform duration-300 hover:-translate-y-0.5"
         onClick={() => setLightboxOpen(true)}
         aria-label="Avaa kuva suurena"
       >
@@ -61,7 +61,7 @@ export function ProductGallery({
             type="button"
             onClick={() => setActive(index)}
             className={cn(
-              "relative aspect-[4/3] overflow-hidden rounded-lg border-2 transition-all",
+              "relative aspect-[4/3] overflow-hidden rounded-xl border-2 transition-all duration-200 hover:scale-[1.03]",
               index === active ? "border-accent ring-2 ring-accent/30" : "border-transparent opacity-80 hover:opacity-100"
             )}
             aria-label={`Näytä kuva ${index + 1}`}

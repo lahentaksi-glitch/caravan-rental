@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { ContactForm } from "@/components/contact/contact-form";
 import { Container } from "@/components/ui/container";
@@ -23,7 +23,7 @@ export default function YhteystiedotPage() {
 
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
           <div className="space-y-6">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <div className="rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">
               <h2 className="font-semibold text-foreground">Asiakaspalvelu</h2>
               <ul className="mt-4 space-y-4 text-sm text-muted-foreground">
                 <li className="flex items-start gap-3">
@@ -46,10 +46,21 @@ export default function YhteystiedotPage() {
                     {site.email}
                   </a>
                 </li>
+                <li className="flex items-center gap-3">
+                  <MessageCircle className="size-4 shrink-0 text-accent" aria-hidden />
+                  <a
+                    href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}
+                    className="hover:text-foreground"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    WhatsApp
+                  </a>
+                </li>
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <div className="rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">
               <h2 className="flex items-center gap-2 font-semibold text-foreground">
                 <Clock className="size-4 text-accent" aria-hidden />
                 Aukioloajat
@@ -59,7 +70,7 @@ export default function YhteystiedotPage() {
               <p className="mt-3 text-xs text-muted-foreground">{site.hours.note}</p>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-border shadow-sm">
+            <div className="overflow-hidden rounded-2xl border border-white/50 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)]">
               <iframe
                 title="Kartta — Lahti"
                 src={site.mapEmbedUrl}

@@ -38,7 +38,7 @@ export function ProductSpecs({ specs }: { specs: RentalSpec[] }) {
         return (
           <li
             key={spec.label}
-            className="flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-sm"
+            className="flex items-start gap-3 rounded-2xl border border-white/50 bg-white/70 p-4 shadow-[0_12px_30px_-20px_rgba(20,40,80,0.4)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
           >
             <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-accent">
               <Icon className="size-5" aria-hidden />

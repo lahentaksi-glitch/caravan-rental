@@ -8,6 +8,7 @@ import { BookingForm } from "@/components/booking/booking-form";
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
 import { formatEuro } from "@/lib/pricing";
+import { cn } from "@/lib/utils";
 import type { RentalSlug } from "@/types/rental";
 
 const slugs: RentalSlug[] = ["knaus-sport-500-kd", "paljuvaunu"];
@@ -78,6 +79,26 @@ export default async function ProductPage({
                 <li key={h}>✓ {h}</li>
               ))}
             </ul>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#varaa"
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "h-12 rounded-xl bg-accent px-6 text-accent-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-accent/90"
+                )}
+              >
+                Varaa nyt
+              </a>
+              <a
+                href="#varaa"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "h-12 rounded-xl px-6 transition-transform hover:-translate-y-0.5"
+                )}
+              >
+                Katso saatavuus
+              </a>
+            </div>
           </div>
         </div>
 
@@ -86,19 +107,19 @@ export default async function ProductPage({
           <ProductSpecs specs={product.specs} />
         </section>
 
-        <section className="mt-16" id="varaa">
+        <section className="mt-16 scroll-mt-24" id="varaa">
           <BookingForm product={product} extras={extras} />
         </section>
 
         {other.length > 0 ? (
-          <section className="mt-16 rounded-2xl border border-border bg-muted/30 p-6 sm:p-8">
+          <section className="mt-16 rounded-2xl border border-white/50 bg-white/60 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl sm:p-8">
             <h2 className="text-lg font-semibold text-foreground">Kiinnostuitko myös tästä?</h2>
             <p className="mt-2 text-muted-foreground">{other[0].shortDescription}</p>
             <Link
-              href={`/tuotteet/${other[0].slug}`}
-              className={buttonVariants({ className: "mt-4" })}
+              href={`/tuotteet/${other[0].slug}#varaa`}
+              className={buttonVariants({ className: "mt-4 rounded-xl" })}
             >
-              Katso {other[0].name}
+              Katso saatavuus: {other[0].name}
             </Link>
           </section>
         ) : null}

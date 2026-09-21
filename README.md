@@ -35,7 +35,7 @@ npm start
 
 ## Sisällön muokkaus
 
-Tuotteet, lisäpalvelut ja FAQ: `data/rentals.ts`, `data/faq.ts`, `data/pricing.ts`, `data/site.ts`.
+Tuotteet, lisäpalvelut, FAQ ja varatut päivät: `data/rentals.ts`, `data/faq.ts`, `data/pricing.ts`, `data/site.ts`, `data/availability.ts`.
 
 ## Teknologiat
 

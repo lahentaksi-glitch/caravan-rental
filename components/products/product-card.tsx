@@ -19,16 +19,16 @@ export function ProductCard({ product }: { product: RentalProduct }) {
     product.category === "caravan" ? "Asuntovaunu" : "Paljuvaunu";
 
   return (
-    <Card className="overflow-hidden border-border/80 shadow-md transition-shadow hover:shadow-lg">
+    <Card className="group overflow-hidden rounded-3xl border-white/60 bg-white/75 shadow-[0_20px_50px_-28px_rgba(20,40,80,0.45)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_-24px_rgba(20,40,80,0.5)]">
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={product.heroImage}
           alt={product.name}
           fill
-          className="object-cover transition-transform duration-500 hover:scale-105"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
-        <Badge className="absolute left-4 top-4 bg-primary/90 text-primary-foreground">
+        <Badge className="absolute left-4 top-4 rounded-full bg-primary/90 px-3 py-1 text-primary-foreground shadow-md">
           {categoryLabel}
         </Badge>
       </div>
@@ -53,12 +53,24 @@ export function ProductCard({ product }: { product: RentalProduct }) {
           </span>
         </p>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-2 sm:flex-row">
         <Link
-          href={`/tuotteet/${product.slug}`}
-          className={cn(buttonVariants({ size: "lg" }), "w-full bg-primary hover:bg-primary/90")}
+          href={`/tuotteet/${product.slug}#varaa`}
+          className={cn(
+            buttonVariants({ size: "lg" }),
+            "h-11 w-full rounded-xl bg-accent text-accent-foreground hover:bg-accent/90"
+          )}
         >
-          Katso tiedot & varaa
+          Varaa nyt
+        </Link>
+        <Link
+          href={`/tuotteet/${product.slug}#varaa`}
+          className={cn(
+            buttonVariants({ variant: "outline", size: "lg" }),
+            "h-11 w-full rounded-xl"
+          )}
+        >
+          Katso saatavuus
         </Link>
       </CardFooter>
     </Card>

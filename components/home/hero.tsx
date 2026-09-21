@@ -1,12 +1,12 @@
 import Image from "next/image";
-import Link from "next/link";
+import { BookingCta } from "@/components/layout/booking-cta";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[70vh] overflow-hidden bg-primary text-primary-foreground">
+    <section className="relative min-h-[78vh] overflow-hidden bg-primary text-primary-foreground">
       <Image
         src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=2000&q=80"
         alt="Matkailuvaunu järven rannalla ilta-auringossa"
@@ -15,9 +15,9 @@ export function Hero() {
         className="object-cover"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
-      <Container className="relative flex min-h-[70vh] items-center py-16">
-        <div className="max-w-2xl">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/75 to-primary/25" />
+      <Container className="relative flex min-h-[78vh] items-center py-16">
+        <div className="max-w-2xl rounded-3xl border border-white/20 bg-white/10 p-6 shadow-[0_30px_80px_-32px_rgba(0,0,0,0.6)] backdrop-blur-xl sm:p-10">
           <p className="mb-3 text-sm font-medium uppercase tracking-wider text-accent">
             Lahden seutu · Vuokraus
           </p>
@@ -30,24 +30,22 @@ export function Hero() {
             lähialueelle.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Link
-              href="/tuotteet/knaus-sport-500-kd"
+            <BookingCta
+              label="Varaa nyt"
+              target="caravan"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "bg-accent text-accent-foreground hover:bg-accent/90"
+                "h-12 rounded-xl bg-accent px-6 text-base text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent/90"
               )}
-            >
-              Varaa nyt
-            </Link>
-            <Link
-              href="/tuotteet/paljuvaunu"
+            />
+            <BookingCta
+              label="Katso saatavuus"
+              target="hottub"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20"
+                "h-12 rounded-xl border-primary-foreground/30 bg-primary-foreground/10 px-6 text-base text-primary-foreground transition-transform hover:-translate-y-0.5 hover:bg-primary-foreground/20"
               )}
-            >
-              Katso saatavuus
-            </Link>
+            />
           </div>
         </div>
       </Container>

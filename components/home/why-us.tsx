@@ -41,7 +41,7 @@ export function WhyUs() {
           {tiles.map((tile) => (
             <article
               key={tile.title}
-              className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+              className="rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-20px_rgba(20,40,80,0.45)]"
             >
               <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-accent/15 text-accent">
                 <tile.icon className="size-5" aria-hidden />

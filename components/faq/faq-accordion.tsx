@@ -16,7 +16,7 @@ export function FAQAccordion({ items }: { items: FaqItem[] }) {
   }
 
   return (
-    <Accordion className="w-full rounded-2xl border border-border bg-card px-4 shadow-sm sm:px-6">
+    <Accordion className="w-full rounded-2xl border border-white/50 bg-white/70 px-4 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl sm:px-6">
       {items.map((item) => (
         <AccordionItem key={item.id} value={item.id}>
           <AccordionTrigger className="text-left text-base font-medium">

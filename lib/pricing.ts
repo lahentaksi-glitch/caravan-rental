@@ -1,13 +1,14 @@
 import type { RentalProduct } from "@/types/rental";
+import { parseISODate } from "@/lib/dates";
 
 export function countNights(from: string, to: string): number {
   if (!from || !to) return 0;
-  const start = new Date(from);
-  const end = new Date(to);
-  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return 0;
+  const start = parseISODate(from);
+  const end = parseISODate(to);
   const diff = end.getTime() - start.getTime();
-  if (diff <= 0) return 0;
-  return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  if (diff < 0) return 0;
+  const nights = Math.round(diff / (1000 * 60 * 60 * 24));
+  return nights === 0 ? 1 : nights;
 }
 
 export function calculateRentalSubtotal(

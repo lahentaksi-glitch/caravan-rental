@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <section className="py-16 sm:py-20">
+      <section id="varaa" className="scroll-mt-24 py-16 sm:py-20">
         <Container>
           <SectionHeading
             title="Valitse vuokrakohteesi"

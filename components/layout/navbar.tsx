@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, Mountain } from "lucide-react";
 import { site } from "@/data/site";
+import { BookingCta } from "@/components/layout/booking-cta";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -27,10 +28,10 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/40 bg-background/65 shadow-sm backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
-          <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
+          <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md transition-transform hover:scale-105">
             <Mountain className="size-5" aria-hidden />
           </span>
           <span className="hidden leading-tight sm:block">
@@ -47,10 +48,8 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted",
-                pathname === link.href || pathname.startsWith(link.href + "/")
-                  ? "text-primary"
-                  : "text-muted-foreground"
+                "rounded-xl px-3 py-2 text-sm font-medium transition-all hover:bg-white/70 hover:shadow-sm",
+                pathname === link.href ? "text-primary" : "text-muted-foreground"
               )}
             >
               {link.label}
@@ -59,19 +58,17 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            href="/tuotteet/knaus-sport-500-kd"
+          <BookingCta
+            label="Varaa nyt"
             className={cn(
               buttonVariants({ size: "default" }),
-              "hidden bg-accent text-accent-foreground hover:bg-accent/90 sm:inline-flex"
+              "hidden h-10 rounded-xl bg-accent px-4 text-accent-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-accent/90 sm:inline-flex"
             )}
-          >
-            Varaa nyt
-          </Link>
+          />
 
           <Sheet>
             <SheetTrigger
-              className={cn(buttonVariants({ variant: "outline", size: "icon" }), "lg:hidden")}
+              className={cn(buttonVariants({ variant: "outline", size: "icon" }), "rounded-xl lg:hidden")}
               aria-label="Avaa valikko"
             >
               <Menu className="size-5" />
@@ -86,22 +83,20 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "rounded-lg px-3 py-3 text-base font-medium hover:bg-muted",
+                      "rounded-xl px-3 py-3 text-base font-medium hover:bg-muted",
                       pathname === link.href ? "text-primary" : "text-foreground"
                     )}
                   >
                     {link.label}
                   </Link>
                 ))}
-                <Link
-                  href="/tuotteet/paljuvaunu"
+                <BookingCta
+                  label="Katso saatavuus"
                   className={cn(
                     buttonVariants({ size: "default" }),
-                    "mt-4 bg-accent text-accent-foreground hover:bg-accent/90"
+                    "mt-4 h-11 rounded-xl bg-accent text-accent-foreground hover:bg-accent/90"
                   )}
-                >
-                  Katso saatavuus
-                </Link>
+                />
               </nav>
             </SheetContent>
           </Sheet>

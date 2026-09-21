@@ -52,7 +52,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-border bg-card p-6 shadow-sm">
+    <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">
       <div className="space-y-2">
         <Label htmlFor="contact-name">Nimi</Label>
         <Input id="contact-name" value={name} onChange={(e) => setName(e.target.value)} required />

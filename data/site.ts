@@ -4,6 +4,7 @@ export const site = {
   description:
     "Vuokraa huollettu asuntovaunu tai elämyksellinen paljuvaunu — helppo nouto, täysi varustelu ja joustavat ajat.",
   phone: "+358 40 123 4567",
+  whatsapp: "+358401234567",
   email: "varaus@lahdenvaunupalju.fi",
   address: {
     street: "Vuokraamontie 12",
