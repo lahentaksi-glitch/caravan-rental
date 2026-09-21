@@ -31,25 +31,20 @@ const tiles = [
 
 export function WhyUs() {
   return (
-    <section className="bg-[#F9FAFB] py-16 sm:py-20">
+    <section className="bg-white py-16 sm:py-20">
       <Container>
         <SectionHeading
           title="Miksi vuokraat meiltä?"
-          subtitle="Paikallinen, luotettava kumppani — kesäreissuista mökkimiljöihin."
+          subtitle="Paikallinen, luotettava ja kotoisa — kesäreissuista mökkimiljöihin."
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {tiles.map((tile) => (
-            <article
-              key={tile.title}
-              className="rounded-2xl border border-gray-100 bg-white p-7 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8"
-            >
-              <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-accent/12 text-accent">
-                <tile.icon className="size-6" aria-hidden />
+            <article key={tile.title} className="rounded-2xl bg-[#F9FAFB] p-6 sm:p-7">
+              <div className="mb-4 flex size-11 items-center justify-center rounded-full bg-orange-50 text-accent">
+                <tile.icon className="size-5" aria-hidden />
               </div>
-              <h3 className="text-lg font-semibold text-foreground">{tile.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {tile.description}
-              </p>
+              <h3 className="font-semibold text-zinc-900">{tile.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-500">{tile.description}</p>
             </article>
           ))}
         </div>

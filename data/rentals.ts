@@ -91,7 +91,7 @@ export const rentalProducts: RentalProduct[] = [
     category: "hot-tub",
     name: "Paljuvaunu",
     shortDescription:
-      "Lämpimät löylyt sinne, missä sinäkin olet. Puulämmitteinen paljuvaunu kulkee helposti mukana ja on valmis viikonlopun elämyksiin.",
+      "Paljuvuokraus Lahti — 6–8 hengelle, tehokas puuliesi ja helppo veto B-kortilla.",
     description:
       "Vie lämpö ja rentous mukaan minne ikinä menetkin. Paljuvaunumme on helppo vetää B-ajokortilla ja valmis käyttöön nopeasti. Tehokas puuliesi lämmittää veden tehokkaasti. Sopii mökkireissuille, juhliin ja rentoutumishetkiin luonnon keskellä — järven rannalla tai pihamaalla.",
     heroImage: "/images/palju/lakeside-wide.jpg",

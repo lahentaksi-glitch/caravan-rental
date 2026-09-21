@@ -23,7 +23,7 @@ export function ReviewQuote({
   return (
     <figure
       className={cn(
-        "flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-7 shadow-md sm:p-8",
+        "flex h-full flex-col rounded-2xl bg-white p-6 sm:p-7",
         className
       )}
     >

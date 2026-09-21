@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { faqItems } from "@/data/faq";
+import { reviews } from "@/data/reviews";
 import { pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/hero";
 import { CatalogSection } from "@/components/home/catalog-section";
 import { BookingTeaser } from "@/components/home/booking-teaser";
+import { WhyUs } from "@/components/home/why-us";
+import { ReviewsSection } from "@/components/home/reviews-section";
+import { FAQAccordion } from "@/components/faq/faq-accordion";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
@@ -14,6 +21,14 @@ export default function HomePage() {
       <Hero />
       <CatalogSection />
       <BookingTeaser />
+      <WhyUs />
+      <ReviewsSection reviews={reviews} />
+      <section className="bg-white py-16 sm:py-20">
+        <Container className="max-w-3xl">
+          <SectionHeading title="Usein kysyttyä" />
+          <FAQAccordion items={faqItems} />
+        </Container>
+      </section>
     </>
   );
 }
