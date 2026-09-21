@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import {
-  caravanPricingTable,
-  hotTubPricingTable,
-  rentalTerms,
-} from "@/data/pricing";
+import { caravanPricingTable, rentalTerms } from "@/data/pricing";
+import { PaljuPriceBoard } from "@/components/products/palju-price-board";
 import { ConversionCta } from "@/components/layout/conversion-cta";
 import { TrustStrip } from "@/components/trust/trust-strip";
 import { Container } from "@/components/ui/container";
@@ -58,19 +55,19 @@ export default function HinnastoPage() {
           align="left"
           className="max-w-3xl"
           title="Hinnasto"
-          subtitle="Läpinäkyvät hinnat kausi- ja sesonkiajoille. Kausi = kesäkuu–elokuu; sesongin ulkopuoli = muut kuukaudet."
+          subtitle="Paljuvaunun hinnat arkipäiville, viikonlopulle ja juhlapyhille. Asuntovaunussa erillinen kausihinnoittelu."
         />
         <div className="mb-10">
           <TrustStrip />
         </div>
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid items-start gap-8 lg:grid-cols-2">
+          <PaljuPriceBoard />
           <PricingTable title="Matkailuvaunu Knaus Sport 500 KD" rows={caravanPricingTable} />
-          <PricingTable title="Paljuvaunu" rows={hotTubPricingTable} />
         </div>
 
         <section className="mt-14">
           <h2 className="text-2xl font-semibold text-foreground">Vuokrausehdot (lyhyesti)</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {rentalTerms.map((term) => (
               <article
                 key={term.title}

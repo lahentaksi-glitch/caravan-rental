@@ -40,6 +40,12 @@ export function ProductCard({ product }: { product: RentalProduct }) {
             alkaen <span className="font-semibold text-accent">{formatEuro(product.nightlyRate)}</span>
             <span className="font-normal text-zinc-400"> / vrk</span>
           </p>
+          {product.category === "hot-tub" ? (
+            <p className="mt-1 text-sm text-zinc-500">
+              Viikonloppu (pe–su){" "}
+              <span className="font-semibold text-accent">{formatEuro(product.weekendRate)}</span>
+            </p>
+          ) : null}
           <Link
             href={`/tuotteet/${product.slug}#varaa`}
             className={bookNowClassName("mt-5 w-full justify-center rounded-full")}

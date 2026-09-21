@@ -5,9 +5,11 @@ import { ArrowRight } from "lucide-react";
 import { faqItems } from "@/data/faq";
 import { FAQAccordion } from "@/components/faq/faq-accordion";
 import { getExtrasForProduct, getProductBySlug, rentalProducts } from "@/data/rentals";
+import { PaljuPriceBoard } from "@/components/products/palju-price-board";
 import { ProductEquipment } from "@/components/products/product-equipment";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductSpecs } from "@/components/products/product-specs";
+import { hotTubRates, hotTubTrust } from "@/data/pricing";
 import { BookingForm } from "@/components/booking/booking-form";
 import { Container } from "@/components/ui/container";
 import { formatEuro } from "@/lib/pricing";
@@ -84,6 +86,16 @@ export default async function ProductPage({
                 </span>
                 <span className="text-sm text-zinc-400">/ vrk · alkaen</span>
               </p>
+              {product.category === "hot-tub" ? (
+                <p className="mt-2 text-sm text-zinc-500">
+                  Viikonloppu (pe–su){" "}
+                  <span className="font-semibold text-accent">{formatEuro(product.weekendRate)}</span>
+                  {" · "}ma–to pätkä{" "}
+                  <span className="font-semibold text-accent">
+                    {formatEuro(hotTubRates.weekdayStretch)}
+                  </span>
+                </p>
+              ) : null}
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <a href="#varaa" className={bookNowClassName("justify-center gap-2")}>
                   Varaamaan
@@ -94,6 +106,11 @@ export default async function ProductPage({
                 </a>
               </div>
               <p className="mt-6 text-sm text-zinc-400">{chips.join("  ·  ")}</p>
+              {product.category === "hot-tub" ? (
+                <p className="mt-4 rounded-xl bg-orange-50 px-3 py-2 text-sm leading-relaxed text-zinc-700">
+                  {hotTubTrust.cleanliness}
+                </p>
+              ) : null}
             </div>
           </div>
         </Container>
@@ -118,6 +135,14 @@ export default async function ProductPage({
           </div>
         </Container>
       </section>
+
+      {product.category === "hot-tub" ? (
+        <section id="hinnasto" className="scroll-mt-24 bg-white py-16 sm:py-20">
+          <Container className="max-w-3xl">
+            <PaljuPriceBoard />
+          </Container>
+        </section>
+      ) : null}
 
       <section className="scroll-mt-24 bg-[#F9FAFB] py-16 sm:py-20" id="varaa">
         <Container>

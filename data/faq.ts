@@ -17,12 +17,12 @@ export const faqItems: FaqItem[] = [
     id: "pickup",
     question: "Milloin voin noutaa ja palauttaa laitteen?",
     answer:
-      "Nouto arkisin klo 9–18 ja lauantaisin klo 10–15, ellei toisin sovita. Palautus yleensä sunnuntai-iltaan mennessä klo 18. Joustavat ajat ovat mahdollisia sesongin ulkopuolella — kysy rohkeasti.",
+      "Paljuvaunun tavanomainen vuokrausaika alkaa klo 14:00 ja päättyy palautuspäivänä klo 12:00, ellei toisin sovita. Asuntovaunun nouto arkisin klo 9–18 ja lauantaisin klo 10–15. Joustavat ajat ovat mahdollisia — kysy rohkeasti.",
   },
   {
     id: "cleaning",
     question: "Pitääkö laitteen siivota palautuksen yhteydessä?",
     answer:
-      "Asuntovaunu palautetaan siistissä kunnossa: roskat tyhjennetty, astiat pestyt ja lattiat imuroitu. Paljuvaunulle voit tilata loppusiivouksen (+30 €) tai tyhjentää ja huuhtele itse ohjeidemme mukaan.",
+      "Asuntovaunu palautetaan siistissä kunnossa: roskat tyhjennetty, astiat pestyt ja lattiat imuroitu. Paljuvaunulle voit tilata loppupesun ja desinfioinnin (+35 €). Jokainen palju desinfioidaan ja pestään huolellisesti ennen seuraavaa luovutusta.",
   },
 ];

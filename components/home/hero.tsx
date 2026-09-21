@@ -51,6 +51,10 @@ export function Hero() {
               </span>
               <span className="text-sm text-zinc-400">/ vrk · alkaen</span>
             </p>
+            <p className="mt-2 text-sm text-zinc-500">
+              Viikonloppu (pe–su){" "}
+              <span className="font-semibold text-accent">{formatEuro(featured.weekendRate)}</span>
+            </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href={`/tuotteet/${featured.slug}#varaa`}

@@ -7,6 +7,7 @@ export interface RentalExtra {
   label: string;
   price: number;
   description?: string;
+  priceFrom?: boolean;
 }
 
 export interface RentalSpec {

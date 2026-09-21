@@ -6,11 +6,41 @@ export const caravanPricingTable: PricingRow[] = [
   { label: "Viikko", season: "420 €", offSeason: "350 €" },
 ];
 
-export const hotTubPricingTable: PricingRow[] = [
-  { label: "Vuorokausi", season: "59 €", offSeason: "49 €" },
-  { label: "Viikonloppu (pe–su)", season: "150 €", offSeason: "120 €" },
-  { label: "Viikko", season: "350 €", offSeason: "290 €" },
-];
+export const hotTubRates = {
+  weekdayNight: 59,
+  weekdayStretch: 120,
+  weekendPackage: 140,
+} as const;
+
+export const hotTubPricingRows = [
+  {
+    label: "Arki (ma–to)",
+    value: "59 € / vrk",
+    note: "Yksittäiset arkivuorokaudet.",
+  },
+  {
+    label: "Ma–to koko pätkä",
+    value: "120 €",
+    note: "Koko arkipaketti maanantaista torstaihin.",
+  },
+  {
+    label: "Viikonloppu (pe–su)",
+    value: "140 €",
+    note: "Koko viikonloppupaketti.",
+  },
+  {
+    label: "Juhlapyhät",
+    value: "Kysy tarjous",
+    note: "Juhannus, uusivuosi ja vappu — erikoishinnoittelu.",
+  },
+] as const;
+
+export const hotTubTrust = {
+  cleanliness:
+    "Puhtaustakuu: Jokainen palju desinfioidaan ja pestään huolellisesti ennen luovutusta.",
+  hours:
+    "Tavanomainen vuokrausaika alkaa klo 14:00 ja päättyy palautuspäivänä klo 12:00 (tai sopimuksen mukaan).",
+} as const;
 
 export const rentalTerms = [
   {
@@ -24,6 +54,10 @@ export const rentalTerms = [
   {
     title: "Omavastuu",
     body: "Omavastuu 800 € / vahinko. Vakuutus ei kata tahallista vahingoittamista tai huolimattomuutta ohjeiden vastaisesti.",
+  },
+  {
+    title: "Paljun vuokra-aika",
+    body: hotTubTrust.hours,
   },
 ] as const;
 

@@ -18,7 +18,10 @@ import {
   calculateRentalSubtotal,
   countNights,
   formatEuro,
+  formatExtraPrice,
+  hotTubNeedsQuote,
 } from "@/lib/pricing";
+import { hotTubTrust } from "@/data/pricing";
 import { trackBookingRequest, trackCustomRentalInquiry } from "@/lib/analytics";
 import { submitBookingRequest } from "@/lib/booking-client";
 import { BookingCalendar } from "@/components/booking/booking-calendar";
@@ -61,7 +64,11 @@ export function BookingForm({ product, extras }: BookingFormProps) {
   const errorRef = useRef<HTMLParagraphElement>(null);
 
   const nights = countNights(dateFrom, dateTo);
-  const subtotal = dateFrom && dateTo ? calculateRentalSubtotal(product, nights) : 0;
+  const subtotal = dateFrom && dateTo ? calculateRentalSubtotal(product, nights, dateFrom, dateTo) : 0;
+  const quoteRequired =
+    product.category === "hot-tub" && dateFrom && dateTo
+      ? hotTubNeedsQuote(dateFrom, dateTo)
+      : false;
   const chosenExtras = extras.filter((extra) => selectedExtras[extra.id]);
   const extrasTotal = chosenExtras.reduce((sum, extra) => sum + extra.price, 0);
   const total = subtotal + extrasTotal;
@@ -71,13 +78,18 @@ export function BookingForm({ product, extras }: BookingFormProps) {
   const selectedWeek = matchingWeek(dateFrom, dateTo) ?? null;
   const priceSummary = useMemo(() => {
     if (!dateFrom && !dateTo) {
-      return `Valitse päivät — hinta alkaen ${formatEuro(product.nightlyRate)}/vrk`;
+      return product.category === "hot-tub"
+        ? `Valitse päivät — arki ${formatEuro(product.nightlyRate)}/vrk, viikonloppu ${formatEuro(product.weekendRate)}`
+        : `Valitse päivät — hinta alkaen ${formatEuro(product.nightlyRate)}/vrk`;
     }
     if (dateFrom && !dateTo) {
       return `Alkaa ${formatFiDate(dateFrom)} — valitse vielä päättymispäivä.`;
     }
+    if (quoteRequired) {
+      return `${formatFiDate(dateFrom)} – ${formatFiDate(dateTo)} · juhlapyhä, kysy tarjous`;
+    }
     return `${formatFiDate(dateFrom)} – ${formatFiDate(dateTo)} · ${nights} ${nights === 1 ? "yö" : "yötä"} · vuokra ${formatEuro(subtotal)} + lisät ${formatEuro(extrasTotal)}`;
-  }, [dateFrom, dateTo, nights, subtotal, extrasTotal, product.nightlyRate]);
+  }, [dateFrom, dateTo, nights, subtotal, extrasTotal, product.nightlyRate, product.weekendRate, product.category, quoteRequired]);
 
   function selectWeek(week: IsoWeekOption) {
     if (rangeHasBooked(product.slug, week.start, week.end)) {
@@ -311,7 +323,9 @@ export function BookingForm({ product, extras }: BookingFormProps) {
             Kysy mukautettua vuokrausaikaa
           </a>
           <p className="mt-2 text-xs text-muted-foreground">
-            Lyhyet illat, arkipäivät tai pidemmät jaksot — avaa WhatsApp ja kerro toiveesi.
+            {product.category === "hot-tub"
+              ? "Arki 59 €/vrk, ma–to pätkä 120 €, viikonloppu 140 €. Juhlapyhät kysy tarjous. Nouto klo 14, palautus klo 12."
+              : "Lyhyet illat, arkipäivät tai pidemmät jaksot — avaa WhatsApp ja kerro toiveesi."}
           </p>
         </div>
 
@@ -341,7 +355,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
                     />
                     <span className="flex-1 text-sm">
                       <span className="font-medium text-foreground">
-                        {extra.label} (+{formatEuro(extra.price)})
+                        {extra.label} ({formatExtraPrice(extra)})
                       </span>
                       {extra.description ? (
                         <span className="mt-0.5 block text-muted-foreground">
@@ -361,8 +375,18 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           >
             <p className="text-sm text-primary-foreground/80">{priceSummary}</p>
             <p className="mt-1 text-3xl font-semibold tracking-tight">
-              {dateFrom && dateTo ? formatEuro(total) : `alkaen ${formatEuro(displayTotal)}`}
+              {quoteRequired
+                ? "Kysy tarjous"
+                : dateFrom && dateTo
+                  ? formatEuro(total)
+                  : `alkaen ${formatEuro(displayTotal)}`}
             </p>
+            {product.category === "hot-tub" ? (
+              <div className="mt-3 space-y-2 text-xs text-primary-foreground/80">
+                <p>{hotTubTrust.cleanliness}</p>
+                <p>{hotTubTrust.hours}</p>
+              </div>
+            ) : null}
             <p className="mt-2 text-xs text-primary-foreground/75">
               Vakuus 200 € peritään vahvistuksen yhteydessä.{" "}
               <Link href="/hinnasto" className="underline underline-offset-2 hover:text-primary-foreground">
@@ -464,10 +488,18 @@ export function BookingForm({ product, extras }: BookingFormProps) {
         <div className="mx-auto flex max-w-7xl items-center gap-3">
           <div className="min-w-0 flex-1">
             <p className="truncate text-xs text-muted-foreground">
-              {dateFrom && dateTo ? `${nights} ${nights === 1 ? "yö" : "yötä"}` : "Hinta alkaen"}
+              {quoteRequired
+                ? "Juhlapyhä"
+                : dateFrom && dateTo
+                  ? `${nights} ${nights === 1 ? "yö" : "yötä"}`
+                  : "Hinta alkaen"}
             </p>
             <p className="text-lg font-semibold leading-tight text-foreground">
-              {dateFrom && dateTo ? formatEuro(total) : formatEuro(product.priceFrom.amount)}
+              {quoteRequired
+                ? "Kysy tarjous"
+                : dateFrom && dateTo
+                  ? formatEuro(total)
+                  : formatEuro(product.priceFrom.amount)}
             </p>
           </div>
           <Button

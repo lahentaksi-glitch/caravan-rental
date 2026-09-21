@@ -50,7 +50,12 @@ export async function POST(request: Request) {
 
   const allowed = getExtrasForProduct(product);
   const extras = allowed.filter((extra) => parsed.extraIds.includes(extra.id));
-  const subtotal = calculateRentalSubtotal(product, nights);
+  const subtotal = calculateRentalSubtotal(
+    product,
+    nights,
+    parsed.dateFrom,
+    parsed.dateTo
+  );
   const extrasTotal = extras.reduce((sum, extra) => sum + extra.price, 0);
 
   const booking: ResolvedBooking = {

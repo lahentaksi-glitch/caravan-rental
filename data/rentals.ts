@@ -2,28 +2,29 @@ import type { RentalExtra, RentalProduct } from "@/types/rental";
 
 export const rentalExtras: RentalExtra[] = [
   {
-    id: "palju-siivous",
-    label: "Paljun loppusiivous",
-    price: 30,
-    description: "Ammattimainen tyhjennys ja huuhtelu palautuksen jälkeen.",
+    id: "polttopuut",
+    label: "Polttopuut (kuiva koivu)",
+    price: 15,
+    description: "Kuiva koivusäkki paljun lämmitykseen.",
   },
   {
-    id: "polttopuut",
-    label: "Polttopuut",
-    price: 20,
-    description: "Kuivaa polttopuuta paljun lämmitykseen (n. 1 säkki).",
+    id: "palju-siivous",
+    label: "Loppupesu ja desinfiointi",
+    price: 35,
+    description: "Palju pestään ja desinfioidaan palautuksen jälkeen.",
+  },
+  {
+    id: "toimitus",
+    label: "Kuljetus ja nouto (Lahti lähialue)",
+    price: 30,
+    priceFrom: true,
+    description: "Toimitus ja nouto Lahden lähialueella. Lopullinen hinta vahvistetaan matkan mukaan.",
   },
   {
     id: "kaasupullo",
     label: "Asuntovaunun kaasupullo",
     price: 25,
     description: "Täysi 11 kg kaasupullo keittiöön ja lämmitykseen.",
-  },
-  {
-    id: "toimitus",
-    label: "Toimitus lähialueelle",
-    price: 50,
-    description: "Toimitus ja nouto Lahden ja Hollolan alueella (max 30 km).",
   },
 ];
 
@@ -100,7 +101,7 @@ export const rentalProducts: RentalProduct[] = [
       "6–8 hengelle kerrallaan",
       "Tehokas puuliesi ja puukansi",
       "Helppo vetää henkilöautolla (B-kortti)",
-      "Nopea käyttöönotto ja tyhjennys",
+      "Puhtaustakuu: desinfiointi ennen jokaista luovutusta",
     ],
     specs: [
       { icon: "weight", label: "Omamassa", value: "850 kg" },
@@ -118,9 +119,9 @@ export const rentalProducts: RentalProduct[] = [
       label: "alkaen",
     },
     nightlyRate: 59,
-    weekendRate: 150,
-    weeklyRate: 350,
-    applicableExtras: ["palju-siivous", "polttopuut", "toimitus"],
+    weekendRate: 140,
+    weeklyRate: 260,
+    applicableExtras: ["polttopuut", "palju-siivous", "toimitus"],
   },
 ];
 
