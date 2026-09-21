@@ -14,7 +14,7 @@ npm install
 npm run dev
 ```
 
-Sovellus käynnistyy osoitteessa [http://127.0.0.1:4317](http://127.0.0.1:4317).
+Sovellus kuuntelee osoitetta [http://127.0.0.1:4317](http://127.0.0.1:4317) (kaikki verkko-osoitteet, portti 4317).
 
 ## Tuotantoversio
 

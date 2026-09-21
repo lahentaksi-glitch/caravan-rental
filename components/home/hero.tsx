@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <section className="relative min-h-[70vh] overflow-hidden bg-primary text-primary-foreground">
       <Image
-        src="https://images.unsplash.com/photo-1478131143081-80d7ac84c4c7?auto=format&fit=crop&w=2000&q=80"
+        src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=2000&q=80"
         alt="Matkailuvaunu järven rannalla ilta-auringossa"
         fill
         priority
