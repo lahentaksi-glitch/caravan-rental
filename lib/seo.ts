@@ -42,7 +42,7 @@ export function pageMetadata({
       title,
       description,
       url: noIndex ? siteUrl : url,
-      siteName: `${site.name} · ${site.partnerName}`,
+      siteName: site.name,
       locale: "fi_FI",
       type: "website",
       images: [image],

@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { site } from "@/data/site";
+import { ArrowRight } from "lucide-react";
 import { faqItems } from "@/data/faq";
-import { reviewsForProduct } from "@/data/reviews";
 import { FAQAccordion } from "@/components/faq/faq-accordion";
-import { ReviewQuote } from "@/components/ui/review-quote";
 import { getExtrasForProduct, getProductBySlug, rentalProducts } from "@/data/rentals";
 import { ProductEquipment } from "@/components/products/product-equipment";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductSpecs } from "@/components/products/product-specs";
 import { BookingForm } from "@/components/booking/booking-form";
 import { Container } from "@/components/ui/container";
-import { buttonVariants } from "@/components/ui/button";
 import { formatEuro } from "@/lib/pricing";
 import { bookNowClassName, bookNowOutlineClassName } from "@/lib/cta";
 import { pageMetadata, productMetadata } from "@/lib/seo";
@@ -51,82 +48,69 @@ export default async function ProductPage({
 
   const extras = getExtrasForProduct(product);
   const other = rentalProducts.filter((p) => p.slug !== product.slug);
-  const productReviews = reviewsForProduct(product.name);
-  const quote = productReviews[0];
-  const categoryLabel = product.category === "caravan" ? "Matkailuvaunu" : "Paljuvaunu";
+  const categoryLabel = product.category === "caravan" ? "Asuntovaunu" : "Paljuvaunu";
+  const index = rentalProducts.findIndex((item) => item.slug === product.slug);
+  const caption = `${String(index + 1).padStart(2, "0")} / ${product.name}`;
+  const chips = product.highlights.slice(0, 3);
 
   return (
     <div className="pb-24 lg:pb-0">
-      <section className="bg-white py-10 sm:py-14">
+      <section className="bg-[#F9FAFB] py-8 sm:py-12">
         <Container>
-          <nav className="mb-8 text-sm text-muted-foreground" aria-label="Murupolku">
-            <Link href="/" className="hover:text-foreground">
+          <nav className="mb-6 text-sm text-zinc-400" aria-label="Murupolku">
+            <Link href="/" className="hover:text-zinc-700">
               Etusivu
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-foreground">{product.name}</span>
+            <span className="text-zinc-700">{product.name}</span>
           </nav>
 
-          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-            <ProductGallery images={product.gallery} alt={product.name} />
-            <div>
-              <span className="inline-flex rounded-full bg-[#F9FAFB] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary ring-1 ring-gray-100">
+          <div className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-8">
+            <ProductGallery images={product.gallery} alt={product.name} caption={caption} />
+            <div className="flex flex-col justify-center rounded-2xl bg-white p-6 sm:p-8 lg:p-10">
+              <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+                <span className="size-1.5 rounded-full bg-accent" aria-hidden />
                 {categoryLabel}
-              </span>
-              <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-primary sm:text-5xl">
+              </p>
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
                 {product.name}
               </h1>
-              <p className="mt-4 text-lg leading-relaxed text-slate-600">
+              <p className="mt-4 text-base leading-relaxed text-zinc-500 sm:text-lg">
                 {product.shortDescription}
               </p>
-              <div className="mt-8 rounded-2xl border border-gray-100 bg-[#F9FAFB] p-5">
-                <p className="text-sm font-medium text-muted-foreground">Hinta</p>
-                <p className="mt-1 text-3xl font-extrabold tracking-tight text-foreground">
-                  alkaen{" "}
-                  <span className="text-accent">{formatEuro(product.nightlyRate)}</span>
-                  <span className="text-lg font-normal text-muted-foreground"> / vrk</span>
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Viikonloppu {formatEuro(product.weekendRate)} · viikko {formatEuro(product.weeklyRate)}
-                </p>
-                <Link
-                  href="/hinnasto"
-                  className="mt-2 inline-block text-sm font-medium text-primary underline-offset-2 hover:underline"
-                >
-                  Katso hinnasto ja ehdot
-                </Link>
-              </div>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#varaa" className={bookNowClassName("justify-center")}>
-                  Varaa nyt
+              <p className="mt-8 flex flex-wrap items-baseline gap-x-2">
+                <span className="text-4xl font-semibold tracking-tight text-zinc-900">
+                  {formatEuro(product.nightlyRate)}
+                </span>
+                <span className="text-sm text-zinc-400">/ vrk · alkaen</span>
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a href="#varaa" className={bookNowClassName("justify-center gap-2")}>
+                  Varaamaan
+                  <ArrowRight className="size-4" aria-hidden />
                 </a>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className={bookNowOutlineClassName(
-                    "justify-center border-2 border-primary bg-white text-primary hover:bg-primary hover:text-primary-foreground"
-                  )}
-                >
-                  Soita {site.phone}
+                <a href="#tekniset" className={bookNowOutlineClassName("justify-center")}>
+                  Katso tekniset tiedot
                 </a>
               </div>
-              {quote ? <ReviewQuote review={quote} className="mt-8" /> : null}
+              <p className="mt-6 text-sm text-zinc-400">{chips.join("  ·  ")}</p>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-[#F9FAFB] py-16 sm:py-20">
+      <section id="tekniset" className="scroll-mt-24 bg-white py-16 sm:py-20">
         <Container>
-          <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
             Tekniset tiedot
           </h2>
-          <p className="mt-3 max-w-2xl text-base text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-zinc-500">
             Keskeiset mitat ja varusteet — kaikki mitä tarvitset valintaan.
           </p>
           <div className="mt-8">
             <ProductSpecs specs={product.specs} />
           </div>
-          <h2 className="mt-14 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="mt-14 text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
             Varustelu
           </h2>
           <div className="mt-8">
@@ -144,27 +128,25 @@ export default async function ProductPage({
       <section className="bg-white py-16 sm:py-20">
         <Container>
           <div className="max-w-4xl">
-            <h2 className="mb-8 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+            <h2 className="mb-8 text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
               Usein kysyttyä
             </h2>
             <FAQAccordion items={faqItems.slice(0, 3)} />
           </div>
           {other.length > 0 ? (
-            <aside className="mt-12 rounded-2xl border border-gray-100 bg-[#F9FAFB] p-6 shadow-md sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-                {other[0].category === "caravan" ? "Matkailuvaunu" : "Paljuvaunu"}
+            <aside className="mt-12 rounded-2xl bg-[#F9FAFB] p-6 sm:p-8">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-400">
+                {other[0].category === "caravan" ? "Asuntovaunu" : "Paljuvaunu"}
               </p>
-              <h2 className="mt-2 text-2xl font-extrabold text-foreground">
-                Kiinnostuitko myös tästä?
+              <h2 className="mt-2 text-2xl font-semibold text-zinc-900">
+                {other[0].name}
               </h2>
-              <p className="mt-2 max-w-2xl text-muted-foreground">{other[0].shortDescription}</p>
+              <p className="mt-2 max-w-2xl text-zinc-500">{other[0].shortDescription}</p>
               <Link
-                href={`/tuotteet/${other[0].slug}#varaa`}
-                className={buttonVariants({
-                  className: "mt-5 h-12 rounded-xl bg-accent px-6 text-accent-foreground hover:bg-accent/90",
-                })}
+                href={`/tuotteet/${other[0].slug}`}
+                className={bookNowOutlineClassName("mt-5")}
               >
-                Katso saatavuus: {other[0].name}
+                Katso tekniset tiedot
               </Link>
             </aside>
           ) : null}

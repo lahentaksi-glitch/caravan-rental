@@ -13,7 +13,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     logo: `${siteUrl}${site.logos.caravan}`,
     telephone: site.phone,
     email: site.email,
-    priceRange: "€45–€590",
+    priceRange: "€59–€69",
     currenciesAccepted: "EUR",
     paymentAccepted: "Bank transfer, cash",
     address: {

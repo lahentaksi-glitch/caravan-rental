@@ -6,7 +6,7 @@ import { Menu } from "lucide-react";
 import { site } from "@/data/site";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { BookingCta } from "@/components/layout/booking-cta";
-import { bookNowClassName } from "@/lib/cta";
+import { charcoalClassName } from "@/lib/cta";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -19,42 +19,42 @@ import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", label: "Etusivu" },
-  { href: "/tuotteet/knaus-sport-500-kd", label: "Asuntovaunu" },
-  { href: "/tuotteet/paljuvaunu", label: "Paljuvaunu" },
+  { href: "/#valikoima", label: "Valikoima" },
+  { href: "/#varaa", label: "Varaus" },
   { href: "/hinnasto", label: "Hinnasto" },
-  { href: "/yhteystiedot", label: "Yhteystiedot" },
+  { href: "/yhteystiedot", label: "Yhteys" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md">
-      <Container className="flex h-[4.25rem] items-center justify-between gap-3">
+    <header className="sticky top-0 z-50 bg-[#F9FAFB]/90 backdrop-blur-md">
+      <Container className="flex h-[4.5rem] items-center justify-between gap-3">
         <BrandMark compact />
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Päävalikko">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "rounded-xl px-3 py-2 text-sm font-medium transition-colors",
-                pathname === link.href
-                  ? "bg-[#F9FAFB] text-primary"
-                  : "text-muted-foreground hover:bg-[#F9FAFB] hover:text-primary"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Päävalikko">
+          {links.map((link) => {
+            const active = link.href === pathname;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors",
+                  active ? "text-zinc-900" : "text-zinc-500 hover:text-zinc-900"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
           <BookingCta
-            label="Varaa"
-            className={bookNowClassName("h-11 min-h-11 px-4 text-sm sm:px-5")}
+            label="Varaa aika"
+            className={charcoalClassName("hidden sm:inline-flex")}
           />
 
           <Sheet>
@@ -66,29 +66,21 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[min(100vw-2rem,20rem)]">
               <SheetHeader>
-                <SheetTitle>
-                  {site.name}
-                  <span className="mt-1 block text-sm font-normal text-muted-foreground">
-                    {site.partnerName}
-                  </span>
-                </SheetTitle>
+                <SheetTitle>{site.name}</SheetTitle>
               </SheetHeader>
               <nav className="mt-6 flex flex-col gap-1" aria-label="Mobiilivalikko">
                 {links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={cn(
-                      "rounded-xl px-3 py-3 text-base font-medium hover:bg-muted",
-                      pathname === link.href ? "text-primary" : "text-foreground"
-                    )}
+                    className="rounded-xl px-3 py-3 text-base font-medium hover:bg-muted"
                   >
                     {link.label}
                   </Link>
                 ))}
                 <BookingCta
-                  label="Varaa nyt"
-                  className={bookNowClassName("mt-4 w-full")}
+                  label="Varaa aika"
+                  className={charcoalClassName("mt-4 w-full justify-center rounded-xl")}
                 />
               </nav>
             </SheetContent>

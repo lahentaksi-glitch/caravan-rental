@@ -1,15 +1,15 @@
 import type { PricingRow } from "@/types/rental";
 
 export const caravanPricingTable: PricingRow[] = [
-  { label: "Viikonloppu (pe–su)", season: "220 €", offSeason: "180 €" },
-  { label: "Viikko", season: "590 €", offSeason: "490 €" },
-  { label: "Päivä", season: "95 €", offSeason: "75 €" },
+  { label: "Vuorokausi", season: "69 €", offSeason: "59 €" },
+  { label: "Viikonloppu (pe–su)", season: "180 €", offSeason: "150 €" },
+  { label: "Viikko", season: "420 €", offSeason: "350 €" },
 ];
 
 export const hotTubPricingTable: PricingRow[] = [
+  { label: "Vuorokausi", season: "59 €", offSeason: "49 €" },
   { label: "Viikonloppu (pe–su)", season: "150 €", offSeason: "120 €" },
-  { label: "Viikko", season: "380 €", offSeason: "320 €" },
-  { label: "Päivä", season: "55 €", offSeason: "45 €" },
+  { label: "Viikko", season: "350 €", offSeason: "290 €" },
 ];
 
 export const rentalTerms = [

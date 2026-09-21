@@ -53,7 +53,7 @@ export const rentalProducts: RentalProduct[] = [
   {
     slug: "knaus-sport-500-kd",
     category: "caravan",
-    name: "Matkailuvaunu Knaus Sport 500 KD",
+    name: "Knaus Sport 500 KD -asuntovaunu",
     shortDescription:
       "Tilava perhevaunu 5–6 hengelle — kerrosvuoteet, ilmastointi ja täysi keittiö.",
     description:
@@ -77,21 +77,21 @@ export const rentalProducts: RentalProduct[] = [
       { icon: "users", label: "Suositeltu", value: "Perheet & pariskunnat" },
     ],
     priceFrom: {
-      amount: 590,
-      unit: "viikko",
+      amount: 69,
+      unit: "vrk",
       label: "alkaen",
     },
-    nightlyRate: 95,
-    weekendRate: 220,
-    weeklyRate: 590,
+    nightlyRate: 69,
+    weekendRate: 180,
+    weeklyRate: 420,
     applicableExtras: ["kaasupullo", "toimitus"],
   },
   {
     slug: "paljuvaunu",
     category: "hot-tub",
-    name: "Paljuvaunu / paljukärry",
+    name: "Paljuvaunu",
     shortDescription:
-      "Lahden Paljuvuokraus — 6–8 hengelle, tehokas puuliesi ja helppo veto B-kortilla.",
+      "Lämpimät löylyt sinne, missä sinäkin olet. Puulämmitteinen paljuvaunu kulkee helposti mukana ja on valmis viikonlopun elämyksiin.",
     description:
       "Vie lämpö ja rentous mukaan minne ikinä menetkin. Paljuvaunumme on helppo vetää B-ajokortilla ja valmis käyttöön nopeasti. Tehokas puuliesi lämmittää veden tehokkaasti. Sopii mökkireissuille, juhliin ja rentoutumishetkiin luonnon keskellä — järven rannalla tai pihamaalla.",
     heroImage: "/images/palju/lakeside-wide.jpg",
@@ -113,13 +113,13 @@ export const rentalProducts: RentalProduct[] = [
       { icon: "droplets", label: "Vesimäärä", value: "n. 1 800 l" },
     ],
     priceFrom: {
-      amount: 150,
-      unit: "viikonloppu",
+      amount: 59,
+      unit: "vrk",
       label: "alkaen",
     },
-    nightlyRate: 55,
+    nightlyRate: 59,
     weekendRate: 150,
-    weeklyRate: 380,
+    weeklyRate: 350,
     applicableExtras: ["palju-siivous", "polttopuut", "toimitus"],
   },
 ];

@@ -15,6 +15,7 @@ export const siteKeywords = [
   "paljuvaunu vuokraus Lahti",
   "knaus sport 500 kd vuokraus",
   "paljukärry Lahti",
+  "Paljuvuokraus Lahti",
 ] as const;
 
 const pickupQuery = "Vuokraamontie 12, 15100 Lahti, Suomi";
@@ -26,11 +27,11 @@ export function googleMapsEmbedUrl(): string {
 }
 
 export const site = {
-  name: "Caravan Rent Lahti",
-  partnerName: "Lahden Paljuvuokraus",
-  tagline: "Asuntovaunu ja paljuvaunu Lahden seudulla",
+  name: "Paljuvuokraus Lahti",
+  partnerName: "Paljuvuokraus Lahti",
+  tagline: "Asuntovaunu ja paljuvaunu",
   description:
-    "Vuokraa Knaus Sport -asuntovaunu tai elämyksellinen paljuvaunu — helppo nouto Lahdelta, täysi varustelu ja joustavat ajat.",
+    "Vuokraa Knaus Sport 500 KD -asuntovaunu tai paljuvaunu Lahdesta — selkeä hinta, huolletut laitteet ja nouto sovitusti.",
   metaTitle:
     "Laadukas asuntovaunu ja paljuvaunu vuokralle - Paljuvuokraus Lahti",
   metaDescription:

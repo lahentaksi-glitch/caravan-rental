@@ -22,7 +22,7 @@ function PricingTable({
   rows: { label: string; season: string; offSeason: string }[];
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/50 bg-white/70 shadow-[0_18px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">
+    <div className="overflow-hidden rounded-2xl border border-zinc-100 bg-white">
       <div className="border-b border-border bg-muted/40 px-4 py-3 sm:px-6">
         <h3 className="font-semibold text-foreground">{title}</h3>
       </div>
@@ -74,7 +74,7 @@ export default function HinnastoPage() {
             {rentalTerms.map((term) => (
               <article
                 key={term.title}
-                className="rounded-2xl border border-white/50 bg-white/70 p-5 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl"
+                className="rounded-2xl bg-[#F9FAFB] p-5"
               >
                 <h3 className="font-semibold text-foreground">{term.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{term.body}</p>

@@ -76,3 +76,55 @@ export function monthGrid(year: number, monthIndex: number): (string | null)[] {
   }
   return cells;
 }
+
+export type IsoWeekOption = {
+  year: number;
+  week: number;
+  start: string;
+  end: string;
+};
+
+export function getIsoWeekParts(date: Date): { year: number; week: number } {
+  const tmp = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = tmp.getUTCDay() || 7;
+  tmp.setUTCDate(tmp.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(tmp.getUTCFullYear(), 0, 1));
+  const week = Math.ceil(((tmp.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+  return { year: tmp.getUTCFullYear(), week };
+}
+
+export function isoWeekRange(year: number, week: number): { start: string; end: string } {
+  const jan4 = new Date(year, 0, 4);
+  const day = jan4.getDay() || 7;
+  const monday = new Date(jan4);
+  monday.setDate(jan4.getDate() - (day - 1) + (week - 1) * 7);
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  return { start: toISODate(monday), end: toISODate(sunday) };
+}
+
+export function weeksInIsoYear(year: number): number {
+  return getIsoWeekParts(new Date(year, 11, 28)).week;
+}
+
+export function upcomingWeeks(count = 4): IsoWeekOption[] {
+  const now = new Date();
+  const current = getIsoWeekParts(now);
+  const result: IsoWeekOption[] = [];
+  let year = current.year;
+  let week = current.week;
+  for (let i = 0; i < count; i += 1) {
+    const max = weeksInIsoYear(year);
+    if (week > max) {
+      week = 1;
+      year += 1;
+    }
+    result.push({ year, week, ...isoWeekRange(year, week) });
+    week += 1;
+  }
+  return result;
+}
+
+export function matchingWeek(from: string, to: string): IsoWeekOption | undefined {
+  return upcomingWeeks(12).find((option) => option.start === from && option.end === to);
+}

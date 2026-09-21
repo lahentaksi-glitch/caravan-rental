@@ -13,9 +13,11 @@ import { cn } from "@/lib/utils";
 export function ProductGallery({
   images,
   alt,
+  caption,
 }: {
   images: string[];
   alt: string;
+  caption?: string;
 }) {
   const [active, setActive] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -50,7 +52,7 @@ export function ProductGallery({
         onClick={() => setLightboxOpen(true)}
         aria-label="Avaa kuva suurena"
       >
-        <div className="relative aspect-[4/3] w-full bg-[#F9FAFB] lg:min-h-[22rem]">
+        <div className="relative aspect-[4/3] w-full bg-[#F9FAFB] lg:min-h-[26rem]">
           <SafeImage
             src={activeSrc}
             alt={alt}
@@ -64,7 +66,16 @@ export function ProductGallery({
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
-        <span className="absolute bottom-4 right-4 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-primary shadow-md ring-1 ring-black/5 transition-transform duration-200 group-hover:scale-105">
+        <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-zinc-800 shadow-sm">
+          <span className="size-1.5 rounded-full bg-emerald-500" aria-hidden />
+          Saatavilla heti
+        </span>
+        {caption ? (
+          <span className="absolute bottom-4 left-4 rounded-lg bg-zinc-900/90 px-3 py-1.5 text-xs font-semibold text-white">
+            {caption}
+          </span>
+        ) : null}
+        <span className="absolute bottom-4 right-4 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-zinc-800 shadow-sm transition-transform duration-200 group-hover:scale-105">
           <Expand className="size-3.5" aria-hidden />
           Suurenna
         </span>

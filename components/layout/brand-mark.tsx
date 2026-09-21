@@ -13,28 +13,31 @@ export function BrandMark({
   return (
     <Link
       href="/"
-      className={cn("flex min-w-0 items-center gap-2 sm:gap-3", className)}
-      aria-label={`${site.name} ja ${site.partnerName}`}
+      className={cn("flex min-w-0 items-center gap-3", className)}
+      aria-label={site.name}
     >
       <SafeImage
-        src={site.logos.caravan}
-        alt={site.name}
-        width={48}
-        height={48}
-        className="size-10 shrink-0 rounded-lg object-cover shadow-sm sm:size-11"
+        src={site.logos.icon}
+        alt=""
+        width={40}
+        height={40}
+        className="size-9 shrink-0 rounded-lg object-cover sm:size-10"
         priority
       />
-      <SafeImage
-        src={site.logos.palju}
-        alt={site.partnerName}
-        width={220}
-        height={48}
-        className={cn(
-          "h-8 w-auto object-contain sm:h-9",
-          compact && "max-w-[8rem] sm:max-w-none"
+      <span className="min-w-0">
+        <span className="block truncate text-[15px] font-semibold tracking-tight text-zinc-900">
+          {site.name}
+        </span>
+        {compact ? null : (
+          <span className="hidden truncate text-xs text-zinc-500 sm:block">{site.tagline}</span>
         )}
-        priority
-      />
+      </span>
+      {compact ? (
+        <span className="hidden h-4 w-px bg-zinc-200 sm:block" aria-hidden />
+      ) : null}
+      {compact ? (
+        <span className="hidden text-sm text-zinc-500 lg:block">{site.tagline}</span>
+      ) : null}
     </Link>
   );
 }

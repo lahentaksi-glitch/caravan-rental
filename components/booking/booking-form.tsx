@@ -4,15 +4,16 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { TrustStrip } from "@/components/trust/trust-strip";
+import { WeekPicker } from "@/components/booking/week-picker";
 import type { RentalExtra, RentalProduct } from "@/types/rental";
-import { getBookedDates } from "@/data/availability";
+import { getBookedDates, rangeHasBooked } from "@/data/availability";
 import {
   buildBookingMessage,
   customRentalWhatsAppUrl,
   mailtoBookingUrl,
   whatsappBookingUrl,
 } from "@/lib/booking-message";
-import { formatFiDate } from "@/lib/dates";
+import { formatFiDate, matchingWeek, upcomingWeeks, type IsoWeekOption } from "@/lib/dates";
 import {
   calculateRentalSubtotal,
   countNights,
@@ -42,6 +43,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
     () => getBookedDates(product.slug),
     [product.slug]
   );
+  const weeks = useMemo(() => upcomingWeeks(8), []);
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [selectedExtras, setSelectedExtras] = useState<Record<string, boolean>>(
@@ -64,17 +66,29 @@ export function BookingForm({ product, extras }: BookingFormProps) {
   const extrasTotal = chosenExtras.reduce((sum, extra) => sum + extra.price, 0);
   const total = subtotal + extrasTotal;
 
-  const displayTotal = dateFrom && dateTo ? total : product.priceFrom.amount;
+  const displayTotal = dateFrom && dateTo ? total : product.nightlyRate;
   const activeStep = !dateFrom || !dateTo ? 1 : !name.trim() && !email.trim() && !phone.trim() ? 2 : 3;
+  const selectedWeek = matchingWeek(dateFrom, dateTo) ?? null;
   const priceSummary = useMemo(() => {
     if (!dateFrom && !dateTo) {
-      return `Valitse päivät — hinta alkaen ${formatEuro(product.priceFrom.amount)}/${product.priceFrom.unit}`;
+      return `Valitse päivät — hinta alkaen ${formatEuro(product.nightlyRate)}/vrk`;
     }
     if (dateFrom && !dateTo) {
       return `Alkaa ${formatFiDate(dateFrom)} — valitse vielä päättymispäivä.`;
     }
     return `${formatFiDate(dateFrom)} – ${formatFiDate(dateTo)} · ${nights} ${nights === 1 ? "yö" : "yötä"} · vuokra ${formatEuro(subtotal)} + lisät ${formatEuro(extrasTotal)}`;
-  }, [dateFrom, dateTo, nights, subtotal, extrasTotal, product.priceFrom]);
+  }, [dateFrom, dateTo, nights, subtotal, extrasTotal, product.nightlyRate]);
+
+  function selectWeek(week: IsoWeekOption) {
+    if (rangeHasBooked(product.slug, week.start, week.end)) {
+      setCalendarHint("Valittu viikko sisältää varattuja päiviä. Valitse toinen viikko tai merkitse vapaat päivät kalenterista.");
+      return;
+    }
+    setDateFrom(week.start);
+    setDateTo(week.end);
+    setCalendarHint("");
+    setStatus("idle");
+  }
 
   function toggleExtra(id: string, checked: boolean) {
     setSelectedExtras((prev) => ({ ...prev, [id]: checked }));
@@ -212,7 +226,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
         e.preventDefault();
         void send("whatsapp");
       }}
-      className="relative rounded-2xl border border-gray-100 bg-white p-5 shadow-xl sm:p-8 lg:p-10"
+      className="relative rounded-2xl bg-white p-5 sm:p-8 lg:p-10"
       noValidate
     >
       <div className="max-w-2xl">
@@ -249,6 +263,15 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           Punaiset päivät ovat jo varattuja. Vihreät päivät ovat vapaana — valitse
           ensin noutopäivä ja sitten palautus.
         </p>
+      </div>
+
+      <div className="mt-6 rounded-2xl bg-[#F9FAFB] p-4 sm:p-5">
+        <WeekPicker
+          weeks={weeks}
+          selected={selectedWeek}
+          onSelect={selectWeek}
+          label="Viikkonumero"
+        />
       </div>
 
       <div className="mt-5">
