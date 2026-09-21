@@ -116,13 +116,13 @@ export function BookingCalendar({
   }
 
   return (
-    <div className="rounded-2xl border border-white/50 bg-white/70 p-4 shadow-[0_18px_40px_-24px_rgba(20,40,80,0.45)] backdrop-blur-xl sm:p-5">
-      <div className="mb-4 flex items-center justify-between gap-2">
+    <div className="rounded-2xl border border-white/50 bg-white/70 p-3 shadow-[0_18px_40px_-24px_rgba(20,40,80,0.45)] backdrop-blur-xl sm:p-5">
+      <div className="mb-3 flex items-center justify-between gap-2 sm:mb-4">
         <Button
           type="button"
           variant="outline"
           size="icon"
-          className="rounded-xl"
+          className="size-11 rounded-xl sm:size-9"
           disabled={!canGoPrev}
           onClick={() => shiftMonth(-1)}
           aria-label="Edellinen kuukausi"
@@ -136,7 +136,7 @@ export function BookingCalendar({
           type="button"
           variant="outline"
           size="icon"
-          className="rounded-xl"
+          className="size-11 rounded-xl sm:size-9"
           onClick={() => shiftMonth(1)}
           aria-label="Seuraava kuukausi"
         >
@@ -144,7 +144,7 @@ export function BookingCalendar({
         </Button>
       </div>
 
-      <div className="grid grid-cols-7 gap-1 text-center text-[11px] font-medium uppercase tracking-wide text-muted-foreground sm:text-xs">
+      <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-medium uppercase tracking-wide text-muted-foreground sm:gap-1.5 sm:text-xs">
         {WEEKDAYS_FI.map((day) => (
           <div key={day} className="py-1">
             {day}
@@ -152,7 +152,7 @@ export function BookingCalendar({
         ))}
       </div>
 
-      <div className="mt-1 grid grid-cols-7 gap-1">
+      <div className="mt-1 grid grid-cols-7 gap-1 sm:gap-1.5">
         {cells.map((iso, index) => {
           if (!iso) {
             return <div key={`empty-${index}`} />;
@@ -176,27 +176,30 @@ export function BookingCalendar({
               }
               aria-pressed={state.isStart || state.isEnd || state.inSelected}
               className={cn(
-                "relative flex aspect-square min-h-11 items-center justify-center rounded-xl text-sm font-medium transition-all duration-200 touch-manipulation sm:min-h-10",
+                "relative flex h-12 w-full items-center justify-center rounded-lg text-sm font-medium transition-colors duration-200 touch-manipulation select-none",
+                "sm:aspect-square sm:h-auto sm:min-h-11 sm:rounded-xl",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70",
                 state.isPast &&
                   !state.isBooked &&
-                  "cursor-not-allowed bg-muted/60 text-muted-foreground/60",
+                  "cursor-not-allowed bg-muted/50 text-muted-foreground/50",
                 state.isBooked &&
-                  "cursor-not-allowed bg-red-500 text-white shadow-sm line-through decoration-white/80",
+                  "cursor-not-allowed bg-rose-50 text-rose-400 ring-1 ring-inset ring-rose-200/90 line-through decoration-rose-300 decoration-1",
                 !disabled &&
                   !state.inSelected &&
                   !state.isStart &&
-                  "bg-emerald-50 text-emerald-900 hover:-translate-y-0.5 hover:bg-emerald-100 hover:shadow-md",
+                  "bg-emerald-100 text-emerald-800 ring-1 ring-inset ring-emerald-200/90 [@media(hover:hover)]:hover:-translate-y-0.5 [@media(hover:hover)]:hover:bg-emerald-200 [@media(hover:hover)]:hover:shadow-sm [@media(hover:hover)]:hover:ring-emerald-300",
                 state.inPreview &&
                   !state.inSelected &&
                   !state.isBooked &&
                   (state.previewBlocked
-                    ? "bg-red-100 text-red-800"
-                    : "bg-accent/20 text-foreground"),
+                    ? "bg-rose-100 text-rose-700 ring-rose-200"
+                    : "bg-accent/20 text-foreground ring-accent/30"),
                 (state.inSelected || state.isStart || state.isEnd) &&
-                  "bg-primary text-primary-foreground shadow-md",
-                (state.isStart || state.isEnd) && "ring-2 ring-accent scale-[1.04]",
-                state.isToday && !state.isBooked && "after:absolute after:bottom-1 after:left-1/2 after:size-1 after:-translate-x-1/2 after:rounded-full after:bg-accent"
+                  "bg-primary text-primary-foreground shadow-sm ring-0",
+                (state.isStart || state.isEnd) && "ring-2 ring-accent sm:scale-[1.04]",
+                state.isToday &&
+                  !state.isBooked &&
+                  "after:absolute after:bottom-1 after:left-1/2 after:size-1 after:-translate-x-1/2 after:rounded-full after:bg-accent"
               )}
             >
               {parseISODateSafe(iso)}
@@ -205,13 +208,13 @@ export function BookingCalendar({
         })}
       </div>
 
-      <ul className="mt-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+      <ul className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
         <li className="flex items-center gap-1.5">
           <span className="size-3 rounded-sm bg-emerald-100 ring-1 ring-emerald-300" />
           Vapaa
         </li>
         <li className="flex items-center gap-1.5">
-          <span className="size-3 rounded-sm bg-red-500" />
+          <span className="size-3 rounded-sm bg-rose-50 ring-1 ring-rose-200" />
           Varattu
         </li>
         <li className="flex items-center gap-1.5">
@@ -219,14 +222,14 @@ export function BookingCalendar({
           Valittu
         </li>
         {dateFrom ? (
-          <li className="ml-auto">
+          <li className="w-full sm:ml-auto sm:w-auto">
             <button
               type="button"
               onClick={() => {
                 onChange("", "");
                 onHint?.("");
               }}
-              className="rounded-lg px-2 py-1 font-medium text-foreground underline-offset-2 hover:underline"
+              className="min-h-10 rounded-lg px-3 py-2 font-medium text-foreground underline-offset-2 hover:underline"
             >
               Tyhjennä valinta
             </button>
