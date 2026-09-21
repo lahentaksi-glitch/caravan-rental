@@ -116,7 +116,7 @@ export function BookingCalendar({
   }
 
   return (
-    <div className="rounded-2xl border border-white/50 bg-white/70 p-3 shadow-[0_18px_40px_-24px_rgba(20,40,80,0.45)] backdrop-blur-xl sm:p-5">
+    <div className="rounded-2xl border border-gray-100 bg-[#F9FAFB] p-3 shadow-sm sm:p-5">
       <div className="mb-3 flex items-center justify-between gap-2 sm:mb-4">
         <Button
           type="button"

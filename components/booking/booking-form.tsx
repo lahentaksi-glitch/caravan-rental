@@ -164,7 +164,8 @@ export function BookingForm({ product, extras }: BookingFormProps) {
   if (status === "success") {
     return (
       <div
-        className="rounded-2xl border border-white/50 bg-white/75 p-8 text-center shadow-[0_24px_60px_-28px_rgba(20,40,80,0.45)] backdrop-blur-xl"
+        className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-md"
+
         role="status"
       >
         <p className="text-lg font-semibold text-foreground">Varauspyyntö lähetetty</p>
@@ -211,7 +212,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
         e.preventDefault();
         void send("whatsapp");
       }}
-      className="relative rounded-2xl border border-white/50 bg-white/70 p-5 shadow-[0_24px_60px_-28px_rgba(20,40,80,0.45)] backdrop-blur-xl sm:p-8"
+      className="relative rounded-2xl border border-gray-100 bg-white p-5 shadow-xl sm:p-8 lg:p-10"
       noValidate
     >
       <div className="max-w-2xl">
@@ -306,7 +307,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
                       "flex cursor-pointer items-start gap-3 rounded-2xl border p-3 transition-all duration-200",
                       checked
                         ? "border-accent/60 bg-accent/10 shadow-md"
-                        : "border-border/70 bg-white/50 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
+                        : "border-gray-100 bg-[#F9FAFB] hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md"
                     )}
                   >
                     <Checkbox
@@ -419,7 +420,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           variant="outline"
           onClick={() => void send("email")}
           disabled={status === "submitting"}
-          className="h-auto min-h-12 whitespace-normal rounded-xl border-primary/20 bg-white/70 px-5 py-3 hover:bg-white"
+          className="h-auto min-h-12 whitespace-normal rounded-xl border-gray-200 bg-white px-5 py-3 hover:bg-[#F9FAFB]"
         >
           <Mail className="size-4" />
           {status === "submitting" ? "Lähetetään…" : "Lähetä sähköpostilla"}
@@ -437,7 +438,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
       </div>
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border/80 bg-background/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-12px_40px_-20px_rgba(20,40,80,0.45)] backdrop-blur-xl lg:hidden">
-        <div className="mx-auto flex max-w-6xl items-center gap-3">
+        <div className="mx-auto flex max-w-7xl items-center gap-3">
           <div className="min-w-0 flex-1">
             <p className="truncate text-xs text-muted-foreground">
               {dateFrom && dateTo ? `${nights} ${nights === 1 ? "yö" : "yötä"}` : "Hinta alkaen"}
