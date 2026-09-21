@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToHash } from "@/components/layout/scroll-to-hash";
 import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { site, siteKeywords, siteUrl } from "@/data/site";
 import { localBusinessJsonLd } from "@/lib/schema";
 import { ogImageMetadata } from "@/lib/seo";
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
         <Footer />
         <AnalyticsScripts />
+        <SpeedInsights />
       </body>
     </html>
   );
