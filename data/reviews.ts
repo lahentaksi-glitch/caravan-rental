@@ -38,3 +38,11 @@ export const reviews: Review[] = [
       "Selkeät ohjeet, hyvä varustelu ja joustavat palautusajat. Suosittelemme lämpimästi Lahden seudun perheille.",
   },
 ];
+
+export function reviewsForProduct(productName: string): Review[] {
+  const key = productName.toLowerCase();
+  return reviews.filter((review) => {
+    const label = review.product.toLowerCase();
+    return label.includes(key) || key.includes(label);
+  });
+}

@@ -48,7 +48,7 @@ export function Hero() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <BookingCta
-              label="Varaa nyt"
+              label="Varaa asuntovaunu"
               target="caravan"
               className={cn(
                 buttonVariants({ size: "lg" }),
@@ -56,7 +56,7 @@ export function Hero() {
               )}
             />
             <BookingCta
-              label="Katso saatavuus"
+              label="Varaa paljuvaunu"
               target="hottub"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),

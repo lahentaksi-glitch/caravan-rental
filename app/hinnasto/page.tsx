@@ -4,6 +4,8 @@ import {
   hotTubPricingTable,
   rentalTerms,
 } from "@/data/pricing";
+import { ConversionCta } from "@/components/layout/conversion-cta";
+import { TrustStrip } from "@/components/trust/trust-strip";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -58,6 +60,9 @@ export default function HinnastoPage() {
           title="Hinnasto"
           subtitle="Läpinäkyvät hinnat kausi- ja sesonkiajoille. Kausi = kesäkuu–elokuu; sesongin ulkopuoli = muut kuukaudet."
         />
+        <div className="mb-10">
+          <TrustStrip />
+        </div>
         <div className="grid gap-8 lg:grid-cols-2">
           <PricingTable title="Matkailuvaunu Knaus Sport 500 KD" rows={caravanPricingTable} />
           <PricingTable title="Paljuvaunu" rows={hotTubPricingTable} />
@@ -84,6 +89,13 @@ export default function HinnastoPage() {
             .
           </p>
         </section>
+
+        <div className="mt-12">
+          <ConversionCta
+            title="Valmis varaamaan?"
+            subtitle="Valitse vapaat päivät kalenterista — näet hinnan heti ja lähetät pyynnön WhatsAppilla tai sähköpostilla."
+          />
+        </div>
       </Container>
     </div>
   );

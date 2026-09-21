@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { ContactForm } from "@/components/contact/contact-form";
+import { ConversionCta } from "@/components/layout/conversion-cta";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Yhteystiedot | Caravan Rent Lahti",
@@ -20,6 +23,13 @@ export default function YhteystiedotPage() {
           title="Yhteystiedot"
           subtitle="Autamme varauksissa ja kysymyksissä — soita, lähetä sähköpostia tai täytä lomake."
         />
+
+        <div className="mb-10">
+          <ConversionCta
+            title="Nopeimmin varaat kalenterista"
+            subtitle="Katso saatavuus, valitse lisät ja lähetä valmis varauspyyntö. Tällä sivulla voit myös soittaa tai jättää viestin."
+          />
+        </div>
 
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
           <div className="space-y-6">
@@ -58,6 +68,27 @@ export default function YhteystiedotPage() {
                   </a>
                 </li>
               </ul>
+              <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+                <a
+                  href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    buttonVariants({ size: "lg" }),
+                    "h-11 rounded-xl bg-[#25D366] text-white hover:bg-[#1EBE57]"
+                  )}
+                >
+                  <MessageCircle className="size-4" />
+                  Avaa WhatsApp
+                </a>
+                <a
+                  href={`tel:${site.phone.replace(/\s/g, "")}`}
+                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 rounded-xl")}
+                >
+                  <Phone className="size-4" />
+                  Soita
+                </a>
+              </div>
             </div>
 
             <div className="rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">

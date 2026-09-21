@@ -9,12 +9,18 @@ import { ProductCard } from "@/components/products/product-card";
 import { FAQAccordion } from "@/components/faq/faq-accordion";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { TrustStrip } from "@/components/trust/trust-strip";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <section className="border-b border-white/40 bg-white/40 py-6 backdrop-blur-md">
+        <Container>
+          <TrustStrip />
+        </Container>
+      </section>
       <section id="varaa" className="scroll-mt-24 py-16 sm:py-20">
         <Container>
           <SectionHeading

@@ -31,7 +31,7 @@ export function BrandMark({
         height={48}
         className={cn(
           "h-8 w-auto object-contain sm:h-9",
-          compact && "max-w-[9.5rem] sm:max-w-none"
+          compact && "max-w-[8rem] sm:max-w-none"
         )}
         priority
       />

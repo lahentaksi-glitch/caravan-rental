@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Mail, MessageCircle } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
+import { Mail, MessageCircle, Phone } from "lucide-react";
+import { TrustStrip } from "@/components/trust/trust-strip";
 import type { RentalExtra, RentalProduct } from "@/types/rental";
 import { getBookedDates } from "@/data/availability";
 import {
@@ -16,11 +18,12 @@ import {
   formatEuro,
 } from "@/lib/pricing";
 import { BookingCalendar } from "@/components/booking/booking-calendar";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 type FormStatus = "idle" | "success" | "error";
@@ -49,6 +52,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const [calendarHint, setCalendarHint] = useState("");
   const [sentVia, setSentVia] = useState<SendChannel | null>(null);
+  const errorRef = useRef<HTMLParagraphElement>(null);
 
   const nights = countNights(dateFrom, dateTo);
   const subtotal = dateFrom && dateTo ? calculateRentalSubtotal(product, nights) : 0;
@@ -56,15 +60,17 @@ export function BookingForm({ product, extras }: BookingFormProps) {
   const extrasTotal = chosenExtras.reduce((sum, extra) => sum + extra.price, 0);
   const total = subtotal + extrasTotal;
 
+  const displayTotal = dateFrom && dateTo ? total : product.priceFrom.amount;
+  const activeStep = !dateFrom || !dateTo ? 1 : !name.trim() && !email.trim() && !phone.trim() ? 2 : 3;
   const priceSummary = useMemo(() => {
     if (!dateFrom && !dateTo) {
-      return "Valitse kalenterista nouto- ja palautuspäivä.";
+      return `Valitse päivät — hinta alkaen ${formatEuro(product.priceFrom.amount)}/${product.priceFrom.unit}`;
     }
     if (dateFrom && !dateTo) {
       return `Alkaa ${formatFiDate(dateFrom)} — valitse vielä päättymispäivä.`;
     }
     return `${formatFiDate(dateFrom)} – ${formatFiDate(dateTo)} · ${nights} ${nights === 1 ? "yö" : "yötä"} · vuokra ${formatEuro(subtotal)} + lisät ${formatEuro(extrasTotal)}`;
-  }, [dateFrom, dateTo, nights, subtotal, extrasTotal]);
+  }, [dateFrom, dateTo, nights, subtotal, extrasTotal, product.priceFrom]);
 
   function toggleExtra(id: string, checked: boolean) {
     setSelectedExtras((prev) => ({ ...prev, [id]: checked }));
@@ -121,6 +127,12 @@ export function BookingForm({ product, extras }: BookingFormProps) {
     setErrorMessage("");
   }
 
+  useEffect(() => {
+    if (status === "error") {
+      errorRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [status, errorMessage]);
+
   if (status === "success") {
     return (
       <div
@@ -166,7 +178,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
         e.preventDefault();
         send("whatsapp");
       }}
-      className="rounded-2xl border border-white/50 bg-white/70 p-5 shadow-[0_24px_60px_-28px_rgba(20,40,80,0.45)] backdrop-blur-xl sm:p-8"
+      className="relative rounded-2xl border border-white/50 bg-white/70 p-5 shadow-[0_24px_60px_-28px_rgba(20,40,80,0.45)] backdrop-blur-xl sm:p-8"
       noValidate
     >
       <div className="max-w-2xl">
@@ -176,14 +188,41 @@ export function BookingForm({ product, extras }: BookingFormProps) {
         <h2 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
           Valitse vapaat päivät
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <ol className="mt-3 flex flex-wrap gap-2 text-xs font-medium sm:text-sm">
+          {[
+            { n: 1, label: "1. Päivät", href: "#varaa-paivat" },
+            { n: 2, label: "2. Lisät", href: "#varaa-lisat" },
+            { n: 3, label: "3. Lähetä", href: "#varaa-laheta" },
+          ].map((step) => (
+            <li key={step.n}>
+              <a
+                href={step.href}
+                className={cn(
+                  "rounded-full px-3 py-1 transition-colors",
+                  activeStep === step.n
+                    ? "bg-primary/10 text-primary"
+                    : activeStep > step.n
+                      ? "bg-emerald-50 text-emerald-800"
+                      : "bg-muted text-muted-foreground"
+                )}
+              >
+                {step.label}
+              </a>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-3 text-sm text-muted-foreground">
           Punaiset päivät ovat jo varattuja. Vihreät päivät ovat vapaana — valitse
           ensin noutopäivä ja sitten palautus.
         </p>
       </div>
 
+      <div className="mt-5">
+        <TrustStrip compact />
+      </div>
+
       <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-        <div>
+        <div id="varaa-paivat" className="scroll-mt-28">
           <BookingCalendar
             slug={product.slug}
             bookedDates={bookedDates}
@@ -203,7 +242,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           ) : null}
         </div>
 
-        <div>
+        <div id="varaa-lisat" className="scroll-mt-28">
           {extras.length > 0 ? (
             <fieldset className="space-y-3">
               <legend className="text-sm font-medium text-foreground">
@@ -249,13 +288,19 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           >
             <p className="text-sm text-primary-foreground/80">{priceSummary}</p>
             <p className="mt-1 text-3xl font-semibold tracking-tight">
-              {formatEuro(total)}
+              {dateFrom && dateTo ? formatEuro(total) : `alkaen ${formatEuro(displayTotal)}`}
+            </p>
+            <p className="mt-2 text-xs text-primary-foreground/75">
+              Vakuus 200 € peritään vahvistuksen yhteydessä.{" "}
+              <Link href="/hinnasto" className="underline underline-offset-2 hover:text-primary-foreground">
+                Vuokrausehdot
+              </Link>
             </p>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <div id="varaa-laheta" className="mt-8 grid scroll-mt-28 gap-4 sm:grid-cols-2">
         <div className="space-y-2 sm:col-span-2">
           <Label htmlFor="name">Nimi</Label>
           <Input
@@ -305,16 +350,16 @@ export function BookingForm({ product, extras }: BookingFormProps) {
       </div>
 
       {status === "error" && errorMessage ? (
-        <p className="mt-4 text-sm text-destructive" role="alert">
+        <p ref={errorRef} className="mt-4 text-sm text-destructive" role="alert">
           {errorMessage}
         </p>
       ) : null}
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <div className="mt-6 flex flex-col gap-3 pb-20 sm:flex-row sm:flex-wrap lg:pb-0">
         <Button
           type="button"
           onClick={() => send("whatsapp")}
-          className="h-12 rounded-xl bg-[#25D366] px-5 text-white hover:bg-[#1EBE57]"
+          className="h-auto min-h-12 whitespace-normal rounded-xl bg-[#25D366] px-5 py-3 text-white hover:bg-[#1EBE57]"
         >
           <MessageCircle className="size-4" />
           Lähetä varauspyyntö WhatsAppilla
@@ -323,11 +368,42 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           type="button"
           variant="outline"
           onClick={() => send("email")}
-          className="h-12 rounded-xl border-primary/20 bg-white/70 px-5 hover:bg-white"
+          className="h-auto min-h-12 whitespace-normal rounded-xl border-primary/20 bg-white/70 px-5 py-3 hover:bg-white"
         >
           <Mail className="size-4" />
           Lähetä sähköpostilla
         </Button>
+        <a
+          href={`tel:${site.phone.replace(/\s/g, "")}`}
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            "h-12 rounded-xl"
+          )}
+        >
+          <Phone className="size-4" />
+          Soita {site.phone}
+        </a>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border/80 bg-background/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-12px_40px_-20px_rgba(20,40,80,0.45)] backdrop-blur-xl lg:hidden">
+        <div className="mx-auto flex max-w-6xl items-center gap-3">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-xs text-muted-foreground">
+              {dateFrom && dateTo ? `${nights} ${nights === 1 ? "yö" : "yötä"}` : "Hinta alkaen"}
+            </p>
+            <p className="text-lg font-semibold leading-tight text-foreground">
+              {dateFrom && dateTo ? formatEuro(total) : formatEuro(product.priceFrom.amount)}
+            </p>
+          </div>
+          <Button
+            type="button"
+            onClick={() => send("whatsapp")}
+            className="h-11 shrink-0 rounded-xl bg-[#25D366] px-4 text-white hover:bg-[#1EBE57]"
+          >
+            <MessageCircle className="size-4" />
+            Varaa
+          </Button>
+        </div>
       </div>
     </form>
   );

@@ -64,13 +64,13 @@ export function ProductCard({ product }: { product: RentalProduct }) {
           Varaa nyt
         </Link>
         <Link
-          href={`/tuotteet/${product.slug}#varaa`}
+          href={`/tuotteet/${product.slug}`}
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
             "h-11 w-full rounded-xl"
           )}
         >
-          Katso saatavuus
+          Katso tiedot
         </Link>
       </CardFooter>
     </Card>

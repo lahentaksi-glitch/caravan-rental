@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { site } from "@/data/site";
+import { faqItems } from "@/data/faq";
+import { reviewsForProduct } from "@/data/reviews";
+import { FAQAccordion } from "@/components/faq/faq-accordion";
+import { Star } from "lucide-react";
 import { getExtrasForProduct, getProductBySlug, rentalProducts } from "@/data/rentals";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductSpecs } from "@/components/products/product-specs";
@@ -48,9 +52,11 @@ export default async function ProductPage({
 
   const extras = getExtrasForProduct(product);
   const other = rentalProducts.filter((p) => p.slug !== product.slug);
+  const productReviews = reviewsForProduct(product.name);
+  const quote = productReviews[0];
 
   return (
-    <div className="py-10 sm:py-14">
+    <div className="py-10 pb-24 sm:py-14 lg:pb-14">
       <Container>
         <nav className="mb-6 text-sm text-muted-foreground" aria-label="Murupolku">
           <Link href="/" className="hover:text-foreground">Etusivu</Link>
@@ -75,6 +81,12 @@ export default async function ProductPage({
                 /{product.priceFrom.unit}
               </span>
             </p>
+            <Link
+              href="/hinnasto"
+              className="mt-2 inline-block text-sm font-medium text-muted-foreground underline-offset-2 hover:text-foreground hover:underline"
+            >
+              Katso hinnasto ja ehdot
+            </Link>
             <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
               {product.highlights.map((h) => (
                 <li key={h}>✓ {h}</li>
@@ -91,15 +103,28 @@ export default async function ProductPage({
                 Varaa nyt
               </a>
               <a
-                href="#varaa"
+                href={`tel:${site.phone.replace(/\s/g, "")}`}
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
                   "h-12 rounded-xl px-6 transition-transform hover:-translate-y-0.5"
                 )}
               >
-                Katso saatavuus
+                Soita {site.phone}
               </a>
             </div>
+            {quote ? (
+              <blockquote className="mt-8 rounded-2xl border border-white/50 bg-white/60 p-4 text-sm shadow-sm backdrop-blur-md">
+                <div className="mb-2 flex gap-0.5 text-accent" aria-hidden>
+                  {Array.from({ length: quote.rating }).map((_, i) => (
+                    <Star key={i} className="size-3.5 fill-current" />
+                  ))}
+                </div>
+                <p className="leading-relaxed text-foreground">&ldquo;{quote.text}&rdquo;</p>
+                <footer className="mt-2 text-xs text-muted-foreground">
+                  {quote.name}, {quote.location}
+                </footer>
+              </blockquote>
+            ) : null}
           </div>
         </div>
 
@@ -110,6 +135,13 @@ export default async function ProductPage({
 
         <section className="mt-16 scroll-mt-24" id="varaa">
           <BookingForm product={product} extras={extras} />
+        </section>
+
+        <section className="mt-16 max-w-3xl">
+          <h2 className="mb-4 text-2xl font-semibold tracking-tight text-foreground">
+            Usein kysyttyä
+          </h2>
+          <FAQAccordion items={faqItems.slice(0, 3)} />
         </section>
 
         {other.length > 0 ? (

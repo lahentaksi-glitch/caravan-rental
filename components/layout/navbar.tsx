@@ -50,10 +50,10 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <BookingCta
-            label="Varaa nyt"
+            label="Varaa"
             className={cn(
               buttonVariants({ size: "default" }),
-              "hidden h-10 rounded-xl bg-accent px-4 text-accent-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-accent/90 sm:inline-flex"
+              "inline-flex h-10 rounded-xl bg-accent px-3 text-accent-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-accent/90 sm:px-4"
             )}
           />
 
@@ -87,7 +87,7 @@ export function Navbar() {
                   </Link>
                 ))}
                 <BookingCta
-                  label="Katso saatavuus"
+                  label="Varaa nyt"
                   className={cn(
                     buttonVariants({ size: "default" }),
                     "mt-4 h-11 rounded-xl bg-accent text-accent-foreground hover:bg-accent/90"

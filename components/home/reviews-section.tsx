@@ -48,8 +48,11 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex" />
-            <CarouselNext className="hidden sm:flex" />
+            <CarouselPrevious className="-left-2 sm:-left-12" />
+            <CarouselNext className="-right-2 sm:-right-12" />
+            <p className="mt-4 text-center text-xs text-muted-foreground sm:hidden">
+              Pyyhkäise nähdäksesi lisää palautteita
+            </p>
           </Carousel>
         )}
       </Container>

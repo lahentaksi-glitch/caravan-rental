@@ -2,8 +2,11 @@ import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { BrandMark } from "@/components/layout/brand-mark";
+import { BookingCta } from "@/components/layout/booking-cta";
 import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export function Footer() {
   return (
@@ -15,6 +18,13 @@ export function Footer() {
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
               {site.description}
             </p>
+            <BookingCta
+              label="Varaa nyt"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "mt-5 h-11 rounded-xl bg-accent px-5 text-accent-foreground hover:bg-accent/90"
+              )}
+            />
           </div>
           <div>
             <p className="font-medium text-foreground">Sivut</p>

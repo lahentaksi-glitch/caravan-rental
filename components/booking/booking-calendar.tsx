@@ -7,6 +7,7 @@ import { rangeHasBooked } from "@/data/availability";
 import {
   MONTHS_FI,
   WEEKDAYS_FI,
+  formatFiDate,
   isPastDate,
   monthGrid,
   todayISO,
@@ -166,10 +167,16 @@ export function BookingCalendar({
               onClick={() => selectDay(iso)}
               onMouseEnter={() => setHoverDate(iso)}
               onMouseLeave={() => setHoverDate(null)}
-              aria-label={iso}
+              aria-label={
+                state.isBooked
+                  ? `${formatFiDate(iso)}, varattu`
+                  : state.isPast
+                    ? `${formatFiDate(iso)}, mennyt`
+                    : formatFiDate(iso)
+              }
               aria-pressed={state.isStart || state.isEnd || state.inSelected}
               className={cn(
-                "relative flex aspect-square min-h-10 items-center justify-center rounded-xl text-sm font-medium transition-all duration-200 touch-manipulation",
+                "relative flex aspect-square min-h-11 items-center justify-center rounded-xl text-sm font-medium transition-all duration-200 touch-manipulation sm:min-h-10",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70",
                 state.isPast &&
                   !state.isBooked &&
@@ -198,7 +205,7 @@ export function BookingCalendar({
         })}
       </div>
 
-      <ul className="mt-4 flex flex-wrap gap-3 text-xs text-muted-foreground">
+      <ul className="mt-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
         <li className="flex items-center gap-1.5">
           <span className="size-3 rounded-sm bg-emerald-100 ring-1 ring-emerald-300" />
           Vapaa
@@ -211,6 +218,20 @@ export function BookingCalendar({
           <span className="size-3 rounded-sm bg-primary" />
           Valittu
         </li>
+        {dateFrom ? (
+          <li className="ml-auto">
+            <button
+              type="button"
+              onClick={() => {
+                onChange("", "");
+                onHint?.("");
+              }}
+              className="rounded-lg px-2 py-1 font-medium text-foreground underline-offset-2 hover:underline"
+            >
+              Tyhjennä valinta
+            </button>
+          </li>
+        ) : null}
       </ul>
     </div>
   );

@@ -55,7 +55,14 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">
       <div className="space-y-2">
         <Label htmlFor="contact-name">Nimi</Label>
-        <Input id="contact-name" value={name} onChange={(e) => setName(e.target.value)} required />
+        <Input
+          id="contact-name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          autoComplete="name"
+          className="h-11 rounded-xl"
+          required
+        />
       </div>
       <div className="space-y-2">
         <Label htmlFor="contact-email">Sähköposti</Label>
@@ -64,6 +71,8 @@ export function ContactForm() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="email"
+          className="h-11 rounded-xl"
           required
         />
       </div>
@@ -74,6 +83,7 @@ export function ContactForm() {
           rows={5}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          className="rounded-xl"
           required
         />
       </div>
@@ -83,7 +93,7 @@ export function ContactForm() {
       <Button
         type="submit"
         disabled={status === "submitting"}
-        className="bg-accent text-accent-foreground hover:bg-accent/90"
+        className="h-12 rounded-xl bg-accent text-accent-foreground hover:bg-accent/90"
       >
         {status === "submitting" ? "Lähetetään…" : "Lähetä viesti"}
       </Button>
