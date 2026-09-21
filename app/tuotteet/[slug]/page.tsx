@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 import { faqItems } from "@/data/faq";
 import { reviewsForProduct } from "@/data/reviews";
 import { FAQAccordion } from "@/components/faq/faq-accordion";
-import { Star } from "lucide-react";
+import { ReviewQuote } from "@/components/ui/review-quote";
 import { getExtrasForProduct, getProductBySlug, rentalProducts } from "@/data/rentals";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductSpecs } from "@/components/products/product-specs";
@@ -13,8 +13,8 @@ import { BookingForm } from "@/components/booking/booking-form";
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
 import { formatEuro } from "@/lib/pricing";
+import { bookNowClassName, bookNowOutlineClassName } from "@/lib/cta";
 import { productMetadata } from "@/lib/seo";
-import { cn } from "@/lib/utils";
 import type { RentalSlug } from "@/types/rental";
 
 const slugs: RentalSlug[] = ["knaus-sport-500-kd", "paljuvaunu"];
@@ -68,10 +68,10 @@ export default async function ProductPage({
             <p className="text-sm font-medium uppercase tracking-wide text-accent">
               {product.category === "caravan" ? "Asuntovaunu" : "Paljuvaunu"}
             </p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
               {product.name}
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">{product.description}</p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{product.description}</p>
             <p className="mt-6 text-2xl font-semibold text-foreground">
               {product.priceFrom.label}{" "}
               <span className="text-accent">{formatEuro(product.priceFrom.amount)}</span>
@@ -91,43 +91,24 @@ export default async function ProductPage({
               ))}
             </ul>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#varaa"
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "h-12 rounded-xl bg-accent px-6 text-accent-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-accent/90"
-                )}
-              >
+              <a href="#varaa" className={bookNowClassName()}>
                 Varaa nyt
               </a>
               <a
                 href={`tel:${site.phone.replace(/\s/g, "")}`}
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-12 rounded-xl px-6 transition-transform hover:-translate-y-0.5"
-                )}
+                className={bookNowOutlineClassName()}
               >
                 Soita {site.phone}
               </a>
             </div>
             {quote ? (
-              <blockquote className="mt-8 rounded-2xl border border-white/50 bg-white/60 p-4 text-sm shadow-sm backdrop-blur-md">
-                <div className="mb-2 flex gap-0.5 text-accent" aria-hidden>
-                  {Array.from({ length: quote.rating }).map((_, i) => (
-                    <Star key={i} className="size-3.5 fill-current" />
-                  ))}
-                </div>
-                <p className="leading-relaxed text-foreground">&ldquo;{quote.text}&rdquo;</p>
-                <footer className="mt-2 text-xs text-muted-foreground">
-                  {quote.name}, {quote.location}
-                </footer>
-              </blockquote>
+              <ReviewQuote review={quote} className="mt-8" />
             ) : null}
           </div>
         </div>
 
         <section className="mt-16">
-          <h2 className="mb-6 text-2xl font-semibold text-foreground">Tekniset tiedot</h2>
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-foreground">Tekniset tiedot</h2>
           <ProductSpecs specs={product.specs} />
         </section>
 
@@ -136,7 +117,7 @@ export default async function ProductPage({
         </section>
 
         <section className="mt-16 max-w-3xl">
-          <h2 className="mb-4 text-2xl font-semibold tracking-tight text-foreground">
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-foreground">
             Usein kysyttyä
           </h2>
           <FAQAccordion items={faqItems.slice(0, 3)} />

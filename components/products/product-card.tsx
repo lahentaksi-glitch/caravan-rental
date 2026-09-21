@@ -1,7 +1,6 @@
 import { SafeImage } from "@/components/ui/safe-image";
 import Link from "next/link";
 import type { RentalProduct } from "@/types/rental";
-import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -11,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { formatEuro } from "@/lib/pricing";
+import { bookNowClassName, bookNowOutlineClassName } from "@/lib/cta";
 
 export function ProductCard({ product }: { product: RentalProduct }) {
   const categoryLabel =
@@ -33,8 +32,8 @@ export function ProductCard({ product }: { product: RentalProduct }) {
         </Badge>
       </div>
       <CardHeader>
-        <CardTitle className="text-xl">{product.name}</CardTitle>
-        <CardDescription className="text-base">{product.shortDescription}</CardDescription>
+        <CardTitle className="text-2xl font-extrabold tracking-tight">{product.name}</CardTitle>
+        <CardDescription className="text-base leading-relaxed">{product.shortDescription}</CardDescription>
       </CardHeader>
       <CardContent>
         <ul className="space-y-2 text-sm text-muted-foreground">
@@ -56,19 +55,13 @@ export function ProductCard({ product }: { product: RentalProduct }) {
       <CardFooter className="flex flex-col gap-2 sm:flex-row">
         <Link
           href={`/tuotteet/${product.slug}#varaa`}
-          className={cn(
-            buttonVariants({ size: "lg" }),
-            "h-11 w-full rounded-xl bg-accent text-accent-foreground hover:bg-accent/90"
-          )}
+          className={bookNowClassName("w-full")}
         >
           Varaa nyt
         </Link>
         <Link
           href={`/tuotteet/${product.slug}`}
-          className={cn(
-            buttonVariants({ variant: "outline", size: "lg" }),
-            "h-11 w-full rounded-xl"
-          )}
+          className={bookNowOutlineClassName("w-full")}
         >
           Katso tiedot
         </Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import { SafeImage } from "@/components/ui/safe-image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Expand } from "lucide-react";
 import {
   Dialog,
@@ -18,7 +18,19 @@ export function ProductGallery({
   alt: string;
 }) {
   const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const firstPaint = useRef(true);
+
+  useEffect(() => {
+    if (firstPaint.current) {
+      firstPaint.current = false;
+      return;
+    }
+    setVisible(false);
+    const timer = window.setTimeout(() => setVisible(true), 40);
+    return () => window.clearTimeout(timer);
+  }, [active]);
 
   if (images.length === 0) {
     return (
@@ -34,22 +46,25 @@ export function ProductGallery({
     <div className="space-y-3">
       <button
         type="button"
-        className="group relative block w-full overflow-hidden rounded-3xl shadow-[0_20px_50px_-24px_rgba(20,40,80,0.5)] transition-transform duration-300 hover:-translate-y-0.5"
+        className="group relative block w-full overflow-hidden rounded-3xl shadow-[0_20px_50px_-24px_rgba(20,40,80,0.5)]"
         onClick={() => setLightboxOpen(true)}
         aria-label="Avaa kuva suurena"
       >
-        <div className="relative aspect-[4/3] w-full">
+        <div className="relative aspect-[4/3] w-full bg-muted">
           <SafeImage
             src={activeSrc}
             alt={alt}
             fill
             priority
             quality={90}
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            className={cn(
+              "object-cover transition-opacity duration-500 ease-out",
+              visible ? "opacity-100" : "opacity-0"
+            )}
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
-        <span className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground shadow">
+        <span className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-md transition-transform duration-200 hover:scale-105 group-hover:scale-105">
           <Expand className="size-3.5" aria-hidden />
           Suurenna
         </span>
@@ -62,8 +77,10 @@ export function ProductGallery({
             type="button"
             onClick={() => setActive(index)}
             className={cn(
-              "relative aspect-[4/3] overflow-hidden rounded-xl border-2 transition-all duration-200 hover:scale-[1.03]",
-              index === active ? "border-accent ring-2 ring-accent/30" : "border-transparent opacity-80 hover:opacity-100"
+              "relative aspect-[4/3] overflow-hidden rounded-xl border-2 transition-all duration-200 hover:scale-105",
+              index === active
+                ? "border-accent ring-2 ring-accent/30"
+                : "border-transparent opacity-80 hover:opacity-100"
             )}
             aria-label={`Näytä kuva ${index + 1}`}
             aria-current={index === active}

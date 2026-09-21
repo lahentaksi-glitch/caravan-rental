@@ -19,11 +19,11 @@ export function SectionHeading({
         className
       )}
     >
-      <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+      <h2 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
         {title}
       </h2>
       {subtitle ? (
-        <p className="mt-3 text-base text-muted-foreground sm:text-lg">{subtitle}</p>
+        <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">{subtitle}</p>
       ) : null}
     </div>
   );

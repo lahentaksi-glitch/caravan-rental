@@ -6,6 +6,7 @@ import { Menu } from "lucide-react";
 import { site } from "@/data/site";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { BookingCta } from "@/components/layout/booking-cta";
+import { bookNowClassName } from "@/lib/cta";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -51,10 +52,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <BookingCta
             label="Varaa"
-            className={cn(
-              buttonVariants({ size: "default" }),
-              "inline-flex h-10 rounded-xl bg-accent px-3 text-accent-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-accent/90 sm:px-4"
-            )}
+            className={bookNowClassName("h-11 min-h-11 px-4 text-sm sm:px-5")}
           />
 
           <Sheet>
@@ -88,10 +86,7 @@ export function Navbar() {
                 ))}
                 <BookingCta
                   label="Varaa nyt"
-                  className={cn(
-                    buttonVariants({ size: "default" }),
-                    "mt-4 h-11 rounded-xl bg-accent text-accent-foreground hover:bg-accent/90"
-                  )}
+                  className={bookNowClassName("mt-4 w-full")}
                 />
               </nav>
             </SheetContent>

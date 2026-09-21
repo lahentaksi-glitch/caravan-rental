@@ -6,8 +6,7 @@ import { BrandMark } from "@/components/layout/brand-mark";
 import { BookingCta } from "@/components/layout/booking-cta";
 import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { bookNowClassName } from "@/lib/cta";
 
 export function Footer() {
   return (
@@ -21,10 +20,7 @@ export function Footer() {
             </p>
             <BookingCta
               label="Varaa nyt"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "mt-5 h-11 rounded-xl bg-accent px-5 text-accent-foreground hover:bg-accent/90"
-              )}
+              className={bookNowClassName("mt-5")}
             />
           </div>
           <div>

@@ -1,6 +1,5 @@
 import { BookingCta } from "@/components/layout/booking-cta";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { bookNowClassName, bookNowOutlineClassName } from "@/lib/cta";
 
 export function ConversionCta({
   title,
@@ -17,18 +16,12 @@ export function ConversionCta({
         <BookingCta
           label="Varaa asuntovaunu"
           target="caravan"
-          className={cn(
-            buttonVariants({ size: "lg" }),
-            "h-12 rounded-xl bg-accent px-6 text-accent-foreground shadow-md transition-transform hover:-translate-y-0.5 hover:bg-accent/90"
-          )}
+          className={bookNowClassName()}
         />
         <BookingCta
           label="Varaa paljuvaunu"
           target="hottub"
-          className={cn(
-            buttonVariants({ variant: "outline", size: "lg" }),
-            "h-12 rounded-xl px-6 transition-transform hover:-translate-y-0.5"
-          )}
+          className={bookNowOutlineClassName()}
         />
       </div>
     </div>
