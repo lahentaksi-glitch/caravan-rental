@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/data/site";
+import { footerTermsSummary } from "@/data/pricing";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { BookingCta } from "@/components/layout/booking-cta";
 import { Container } from "@/components/ui/container";
@@ -85,6 +86,16 @@ export function Footer() {
               </li>
             </ul>
           </div>
+        </div>
+        <div className="mt-10 rounded-2xl border border-white/50 bg-white/70 p-5 text-sm text-muted-foreground shadow-sm backdrop-blur-xl">
+          <p className="font-medium text-foreground">Vuokrausehdot lyhyesti</p>
+          <p className="mt-2">{footerTermsSummary.deductible}</p>
+          <p className="mt-1">{footerTermsSummary.cancellation}</p>
+          <p className="mt-2">
+            <Link href="/hinnasto" className="font-medium text-foreground underline-offset-2 hover:underline">
+              Lue hinnasto ja täydet ehdot
+            </Link>
+          </p>
         </div>
         <Separator className="my-8" />
         <p className="text-center text-xs text-muted-foreground">

@@ -13,6 +13,7 @@ import { BookingForm } from "@/components/booking/booking-form";
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
 import { formatEuro } from "@/lib/pricing";
+import { productMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import type { RentalSlug } from "@/types/rental";
 
@@ -32,10 +33,7 @@ export async function generateMetadata({
   if (!product) {
     return { title: "Tuotetta ei löytynyt" };
   }
-  return {
-    title: `${product.name} | ${site.name}`,
-    description: product.shortDescription,
-  };
+  return productMetadata(product);
 }
 
 export default async function ProductPage({

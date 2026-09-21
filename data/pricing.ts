@@ -26,3 +26,9 @@ export const rentalTerms = [
     body: "Omavastuu 800 € / vahinko. Vakuutus ei kata tahallista vahingoittamista tai huolimattomuutta ohjeiden vastaisesti.",
   },
 ] as const;
+
+export const footerTermsSummary = {
+  deductible: "Omavastuu 800 € / vahinko.",
+  cancellation:
+    "Peruutus: yli 14 vrk täysi hyvitys, 7–14 vrk 50 % hyvitys, alle 7 vrk ei hyvitystä.",
+} as const;

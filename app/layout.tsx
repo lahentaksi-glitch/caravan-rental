@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToHash } from "@/components/layout/scroll-to-hash";
-import { site } from "@/data/site";
+import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
+import { site, siteKeywords, siteUrl } from "@/data/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,13 +18,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${site.name} · ${site.partnerName}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  keywords: [...siteKeywords],
+  applicationName: site.name,
+  authors: [{ name: site.name }],
+  creator: site.name,
   icons: {
     icon: site.logos.icon,
+  },
+  openGraph: {
+    type: "website",
+    locale: "fi_FI",
+    siteName: `${site.name} · ${site.partnerName}`,
+    images: [
+      {
+        url: site.ogImage,
+        width: 1200,
+        height: 800,
+        alt: site.tagline,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -38,6 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <AnalyticsScripts />
       </body>
     </html>
   );

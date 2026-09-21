@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/safe-image";
 import Link from "next/link";
 import type { RentalProduct } from "@/types/rental";
 import { buttonVariants } from "@/components/ui/button";
@@ -21,7 +21,7 @@ export function ProductCard({ product }: { product: RentalProduct }) {
   return (
     <Card className="group overflow-hidden rounded-3xl border-white/60 bg-white/75 shadow-[0_20px_50px_-28px_rgba(20,40,80,0.45)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_-24px_rgba(20,40,80,0.5)]">
       <div className="relative aspect-[4/3] overflow-hidden">
-        <Image
+        <SafeImage
           src={product.heroImage}
           alt={product.name}
           fill

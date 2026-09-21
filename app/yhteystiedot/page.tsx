@@ -7,11 +7,14 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Yhteystiedot | Caravan Rent Lahti",
-  description: "Ota yhteyttä, aukioloajat ja sijainti Lahdessa.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Yhteystiedot",
+  description:
+    "Ota yhteyttä: asuntovaunun vuokraus ja paljuvaunu vuokraus Lahti. Puhelin, WhatsApp, sähköposti ja varauskalenteri.",
+  path: "/yhteystiedot",
+});
 
 export default function YhteystiedotPage() {
   return (

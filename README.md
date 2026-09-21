@@ -20,6 +20,18 @@ Sovellus kuuntelee [http://127.0.0.1:4317](http://127.0.0.1:4317).
 | `/tuotteet/paljuvaunu` | Paljuvaunu + varauskalenteri |
 | `/hinnasto` | Hinnasto ja ehdot |
 | `/yhteystiedot` | Yhteystiedot |
+| `/sitemap.xml` | Automaattinen sivukartta |
+| `/robots.txt` | Hakukoneohjeet |
+
+## Analytiikka
+
+Kopioi `.env.example` tiedostoksi `.env.local` ja täytä tarvittaessa:
+
+- `NEXT_PUBLIC_SITE_URL` — kanoninen osoite (Open Graph, sitemap, robots)
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — GA4, muoto `G-XXXXXXXX`
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — Plausible-sivuston domain
+
+Ilman tunnuksia sivusto toimii normaalisti. Varauspyyntö (WhatsApp/sähköposti) ja “Kysy mukautettua vuokrausaikaa” lähettävät eventin, kun analytiikka on kytketty.
 
 ## Kuvat ja logot
 

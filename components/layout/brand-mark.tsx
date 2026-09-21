@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/safe-image";
 import Link from "next/link";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -16,7 +16,7 @@ export function BrandMark({
       className={cn("flex min-w-0 items-center gap-2 sm:gap-3", className)}
       aria-label={`${site.name} ja ${site.partnerName}`}
     >
-      <Image
+      <SafeImage
         src={site.logos.caravan}
         alt={site.name}
         width={48}
@@ -24,7 +24,7 @@ export function BrandMark({
         className="size-10 shrink-0 rounded-lg object-cover shadow-sm sm:size-11"
         priority
       />
-      <Image
+      <SafeImage
         src={site.logos.palju}
         alt={site.partnerName}
         width={220}

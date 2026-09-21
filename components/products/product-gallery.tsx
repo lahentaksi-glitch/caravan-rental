@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/safe-image";
 import { useState } from "react";
 import { Expand } from "lucide-react";
 import {
@@ -39,13 +39,14 @@ export function ProductGallery({
         aria-label="Avaa kuva suurena"
       >
         <div className="relative aspect-[4/3] w-full">
-          <Image
+          <SafeImage
             src={activeSrc}
             alt={alt}
             fill
+            priority
+            quality={90}
             className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             sizes="(max-width: 1024px) 100vw, 50vw"
-            priority
           />
         </div>
         <span className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground shadow">
@@ -67,7 +68,7 @@ export function ProductGallery({
             aria-label={`Näytä kuva ${index + 1}`}
             aria-current={index === active}
           >
-            <Image src={src} alt="" fill className="object-cover" sizes="120px" />
+            <SafeImage src={src} alt="" fill className="object-cover" sizes="80px" />
           </button>
         ))}
       </div>
@@ -76,7 +77,7 @@ export function ProductGallery({
         <DialogContent className="max-w-4xl border-none bg-transparent p-2 shadow-none sm:p-4">
           <DialogTitle className="sr-only">{alt}</DialogTitle>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl">
-            <Image src={activeSrc} alt={alt} fill className="object-contain" sizes="90vw" />
+            <SafeImage src={activeSrc} alt={alt} fill className="object-contain" sizes="90vw" quality={90} />
           </div>
         </DialogContent>
       </Dialog>

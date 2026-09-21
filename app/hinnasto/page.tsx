@@ -8,11 +8,14 @@ import { ConversionCta } from "@/components/layout/conversion-cta";
 import { TrustStrip } from "@/components/trust/trust-strip";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Hinnasto | Caravan Rent Lahti",
-  description: "Kausi- ja sesonkihinnat asuntovaunulle ja paljuvaunulle sekä vuokrausehdot.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Hinnasto",
+  description:
+    "Hinnasto asuntovaunun vuokraukseen Lahdessa ja paljuvaunu / paljukärry -vuokraukseen. Kausi- ja sesonkihinnat sekä vuokrausehdot.",
+  path: "/hinnasto",
+});
 
 function PricingTable({
   title,

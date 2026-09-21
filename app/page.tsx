@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { rentalProducts } from "@/data/rentals";
 import { faqItems } from "@/data/faq";
 import { reviews } from "@/data/reviews";
+import { site } from "@/data/site";
+import { pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/hero";
 import { WhyUs } from "@/components/home/why-us";
 import { ReviewsSection } from "@/components/home/reviews-section";
@@ -11,6 +14,15 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TrustStrip } from "@/components/trust/trust-strip";
 import { buttonVariants } from "@/components/ui/button";
+
+export const metadata: Metadata = pageMetadata({
+  title: `${site.name} · ${site.partnerName}`,
+  description:
+    "Asuntovaunun vuokraus Lahti: Knaus Sport 500 KD ja paljuvaunu / paljukärry. Helppo nouto Lahdelta, selkeät hinnat ja WhatsApp-varaus.",
+  path: "/",
+  image: "/images/caravan/exterior-side.jpg",
+  absoluteTitle: true,
+});
 
 export default function HomePage() {
   return (

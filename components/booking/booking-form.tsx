@@ -8,6 +8,7 @@ import type { RentalExtra, RentalProduct } from "@/types/rental";
 import { getBookedDates } from "@/data/availability";
 import {
   buildBookingMessage,
+  customRentalWhatsAppUrl,
   mailtoBookingUrl,
   whatsappBookingUrl,
 } from "@/lib/booking-message";
@@ -17,6 +18,7 @@ import {
   countNights,
   formatEuro,
 } from "@/lib/pricing";
+import { trackBookingRequest, trackCustomRentalInquiry } from "@/lib/analytics";
 import { BookingCalendar } from "@/components/booking/booking-calendar";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -113,6 +115,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
     }
 
     const text = buildMessage();
+    trackBookingRequest(channel, product.slug);
     if (channel === "email") {
       window.location.href = mailtoBookingUrl(text, product.name);
     } else {
@@ -240,6 +243,22 @@ export function BookingForm({ product, extras }: BookingFormProps) {
               {calendarHint}
             </p>
           ) : null}
+          <a
+            href={customRentalWhatsAppUrl(product.name, dateFrom || undefined, dateTo || undefined)}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackCustomRentalInquiry(product.slug)}
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              "mt-4 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm sm:w-auto"
+            )}
+          >
+            <MessageCircle className="size-4" />
+            Kysy mukautettua vuokrausaikaa
+          </a>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Lyhyet illat, arkipäivät tai pidemmät jaksot — avaa WhatsApp ja kerro toiveesi.
+          </p>
         </div>
 
         <div id="varaa-lisat" className="scroll-mt-28">

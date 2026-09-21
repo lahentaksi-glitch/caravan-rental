@@ -1,9 +1,29 @@
+export function getSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return "https://caravanrentlahti.fi";
+  try {
+    return new URL(raw).origin;
+  } catch {
+    return "https://caravanrentlahti.fi";
+  }
+}
+
+export const siteUrl = getSiteUrl();
+
+export const siteKeywords = [
+  "asuntovaunun vuokraus Lahti",
+  "paljuvaunu vuokraus Lahti",
+  "knaus sport 500 kd vuokraus",
+  "paljukärry Lahti",
+] as const;
+
 export const site = {
   name: "Caravan Rent Lahti",
   partnerName: "Lahden Paljuvuokraus",
   tagline: "Asuntovaunu ja paljuvaunu Lahden seudulla",
   description:
     "Vuokraa Knaus Sport -asuntovaunu tai elämyksellinen paljuvaunu — helppo nouto Lahdelta, täysi varustelu ja joustavat ajat.",
+  ogImage: "/images/caravan/exterior-side.jpg",
   phone: "+358 40 123 4567",
   whatsapp: "+358401234567",
   email: "varaus@caravanrentlahti.fi",

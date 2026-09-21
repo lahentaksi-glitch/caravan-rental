@@ -62,3 +62,19 @@ export function mailtoBookingUrl(text: string, productName: string): string {
   const body = encodeURIComponent(text);
   return `mailto:${site.email}?subject=${subject}&body=${body}`;
 }
+
+export function customRentalWhatsAppUrl(
+  productName: string,
+  dateFrom?: string,
+  dateTo?: string
+): string {
+  const dateLine = dateFrom
+    ? `\nToiveajankohta: ${formatFiDate(dateFrom)}${dateTo ? ` – ${formatFiDate(dateTo)}` : ""}`
+    : "";
+  const text = `Hei! Haluaisin kysyä mukautettua tai erikoispituista vuokrausaikaa.
+
+Tuote: ${productName}${dateLine}
+
+Kyseessä on lyhyt, pidempi tai muuten räätälöity jakso kalenterin vakiojaksojen sijaan.`;
+  return whatsappBookingUrl(text);
+}

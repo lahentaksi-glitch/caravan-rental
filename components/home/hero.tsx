@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/safe-image";
 import { BookingCta } from "@/components/layout/booking-cta";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -8,11 +8,12 @@ import { cn } from "@/lib/utils";
 export function Hero() {
   return (
     <section className="relative min-h-[78vh] overflow-hidden bg-primary text-primary-foreground">
-      <Image
+      <SafeImage
         src="/images/caravan/exterior-side.jpg"
         alt="Knaus Sport 500 KD -asuntovaunu Lahdessa"
         fill
         priority
+        quality={90}
         className="object-cover object-center"
         sizes="100vw"
       />
@@ -20,14 +21,14 @@ export function Hero() {
       <Container className="relative flex min-h-[78vh] items-center py-16">
         <div className="max-w-2xl rounded-3xl border border-white/20 bg-white/10 p-6 shadow-[0_30px_80px_-32px_rgba(0,0,0,0.6)] backdrop-blur-xl sm:p-10">
           <div className="mb-4 flex flex-wrap items-center gap-3">
-            <Image
+            <SafeImage
               src={site.logos.caravan}
               alt={site.name}
               width={56}
               height={56}
               className="size-12 rounded-xl object-cover shadow-md"
             />
-            <Image
+            <SafeImage
               src={site.logos.palju}
               alt={site.partnerName}
               width={200}
