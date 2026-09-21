@@ -33,6 +33,10 @@ Kopioi `.env.example` tiedostoksi `.env.local` ja täytä tarvittaessa:
 
 Ilman tunnuksia sivusto toimii normaalisti. Varauspyyntö (WhatsApp/sähköposti) ja “Kysy mukautettua vuokrausaikaa” lähettävät eventin, kun analytiikka on kytketty.
 
+## Julkaisu
+
+Katso [docs/deployment-guide.md](docs/deployment-guide.md) (Vercel / Netlify, custom domain, Resend).
+
 ## Kuvat ja logot
 
 Oikeat kuvat: `public/images/caravan/`, `public/images/palju/`. Brändi: `public/brand/`.

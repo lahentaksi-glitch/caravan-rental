@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { ScrollToHash } from "@/components/layout/scroll-to-hash";
 import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
 import { site, siteKeywords, siteUrl } from "@/data/site";
+import { localBusinessJsonLd } from "@/lib/schema";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -54,12 +55,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const jsonLd = localBusinessJsonLd();
+
   return (
     <html
       lang="fi"
       className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ScrollToHash />
         <Navbar />
         <main className="flex-1">{children}</main>

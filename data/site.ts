@@ -17,6 +17,14 @@ export const siteKeywords = [
   "paljukärry Lahti",
 ] as const;
 
+const pickupQuery = "Vuokraamontie 12, 15100 Lahti, Suomi";
+
+export function googleMapsEmbedUrl(): string {
+  const override = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL?.trim();
+  if (override) return override;
+  return `https://maps.google.com/maps?q=${encodeURIComponent(pickupQuery)}&z=15&hl=fi&output=embed`;
+}
+
 export const site = {
   name: "Caravan Rent Lahti",
   partnerName: "Lahden Paljuvuokraus",
@@ -35,15 +43,20 @@ export const site = {
   address: {
     street: "Vuokraamontie 12",
     city: "15100 Lahti",
+    region: "Päijät-Häme",
     country: "Suomi",
+  },
+  geo: {
+    latitude: 60.98267,
+    longitude: 25.66151,
   },
   hours: {
     weekdays: "Ma–Pe 9:00–18:00",
     weekend: "La 10:00–15:00 (nouto sopimuksen mukaan)",
     note: "Palautus sunnuntaisin klo 18:00 mennessä, ellei toisin sovita.",
   },
-  mapEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19475.5!2d25.65!3d60.98!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46850daee8bf7b3b%3A0x7a1b3c!2sLahti!5e0!3m2!1sfi!2sfi!4v1",
+  mapEmbedUrl: googleMapsEmbedUrl(),
+  mapDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent("Vuokraamontie 12, 15100 Lahti")}`,
   social: {
     instagram: "https://instagram.com",
     facebook: "https://facebook.com",

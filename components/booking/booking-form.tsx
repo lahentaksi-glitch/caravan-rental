@@ -19,6 +19,7 @@ import {
   formatEuro,
 } from "@/lib/pricing";
 import { trackBookingRequest, trackCustomRentalInquiry } from "@/lib/analytics";
+import { submitBookingRequest } from "@/lib/booking-client";
 import { BookingCalendar } from "@/components/booking/booking-calendar";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -28,7 +29,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
-type FormStatus = "idle" | "success" | "error";
+type FormStatus = "idle" | "submitting" | "success" | "error";
 type SendChannel = "whatsapp" | "email";
 
 interface BookingFormProps {
@@ -54,6 +55,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const [calendarHint, setCalendarHint] = useState("");
   const [sentVia, setSentVia] = useState<SendChannel | null>(null);
+  const [emailed, setEmailed] = useState(false);
   const errorRef = useRef<HTMLParagraphElement>(null);
 
   const nights = countNights(dateFrom, dateTo);
@@ -106,7 +108,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
     });
   }
 
-  function send(channel: SendChannel) {
+  async function send(channel: SendChannel) {
     const validationError = validate();
     if (validationError) {
       setErrorMessage(validationError);
@@ -114,20 +116,43 @@ export function BookingForm({ product, extras }: BookingFormProps) {
       return;
     }
 
+    setStatus("submitting");
+    setErrorMessage("");
+
+    let confirmationEmailed = false;
+    try {
+      const result = await submitBookingRequest({
+        productSlug: product.slug,
+        dateFrom,
+        dateTo,
+        extraIds: chosenExtras.map((extra) => extra.id),
+        name,
+        email,
+        phone,
+        message,
+        channel,
+      });
+      confirmationEmailed = result.emailed;
+    } catch {
+      confirmationEmailed = false;
+    }
+
     const text = buildMessage();
     trackBookingRequest(channel, product.slug);
-    if (channel === "email") {
-      window.location.href = mailtoBookingUrl(text, product.name);
-    } else {
+
+    if (channel === "whatsapp") {
       const url = whatsappBookingUrl(text);
       const popup = window.open(url, "_blank", "noopener,noreferrer");
       if (!popup) {
         window.location.href = url;
       }
+    } else if (!confirmationEmailed) {
+      window.location.href = mailtoBookingUrl(text, product.name);
     }
+
+    setEmailed(confirmationEmailed);
     setSentVia(channel);
     setStatus("success");
-    setErrorMessage("");
   }
 
   useEffect(() => {
@@ -142,11 +167,15 @@ export function BookingForm({ product, extras }: BookingFormProps) {
         className="rounded-2xl border border-white/50 bg-white/75 p-8 text-center shadow-[0_24px_60px_-28px_rgba(20,40,80,0.45)] backdrop-blur-xl"
         role="status"
       >
-        <p className="text-lg font-semibold text-foreground">Varauspyyntö avattu</p>
+        <p className="text-lg font-semibold text-foreground">Varauspyyntö lähetetty</p>
         <p className="mt-2 text-muted-foreground">
           {sentVia === "whatsapp"
-            ? "WhatsApp avasi valmiin viestin. Lähetä se vahvistaaksesi pyynnön."
-            : "Sähköpostiohjelmasi avasi valmiin varausviestin. Lähetä se vahvistaaksesi pyynnön."}
+            ? emailed
+              ? "WhatsApp avasi valmiin viestin. Lähetimme myös vahvistuksen sähköpostiisi."
+              : "WhatsApp avasi valmiin viestin. Lähetä se vahvistaaksesi pyynnön."
+            : emailed
+              ? "Vahvistus on lähetetty sähköpostiisi. Palaamme sinulle pian."
+              : "Sähköpostiohjelmasi avasi valmiin varausviestin. Lähetä se vahvistaaksesi pyynnön."}
         </p>
         <p className="mt-4 text-sm text-muted-foreground">
           Arvioitu summa:{" "}
@@ -159,6 +188,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           onClick={() => {
             setStatus("idle");
             setSentVia(null);
+            setEmailed(false);
             setDateFrom("");
             setDateTo("");
             setSelectedExtras({});
@@ -179,7 +209,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        send("whatsapp");
+        void send("whatsapp");
       }}
       className="relative rounded-2xl border border-white/50 bg-white/70 p-5 shadow-[0_24px_60px_-28px_rgba(20,40,80,0.45)] backdrop-blur-xl sm:p-8"
       noValidate
@@ -377,20 +407,22 @@ export function BookingForm({ product, extras }: BookingFormProps) {
       <div className="mt-6 flex flex-col gap-3 pb-20 sm:flex-row sm:flex-wrap lg:pb-0">
         <Button
           type="button"
-          onClick={() => send("whatsapp")}
+          onClick={() => void send("whatsapp")}
+          disabled={status === "submitting"}
           className="h-auto min-h-12 whitespace-normal rounded-xl bg-[#25D366] px-5 py-3 text-white hover:bg-[#1EBE57]"
         >
           <MessageCircle className="size-4" />
-          Lähetä varauspyyntö WhatsAppilla
+          {status === "submitting" ? "Lähetetään…" : "Lähetä varauspyyntö WhatsAppilla"}
         </Button>
         <Button
           type="button"
           variant="outline"
-          onClick={() => send("email")}
+          onClick={() => void send("email")}
+          disabled={status === "submitting"}
           className="h-auto min-h-12 whitespace-normal rounded-xl border-primary/20 bg-white/70 px-5 py-3 hover:bg-white"
         >
           <Mail className="size-4" />
-          Lähetä sähköpostilla
+          {status === "submitting" ? "Lähetetään…" : "Lähetä sähköpostilla"}
         </Button>
         <a
           href={`tel:${site.phone.replace(/\s/g, "")}`}
@@ -416,7 +448,8 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           </div>
           <Button
             type="button"
-            onClick={() => send("whatsapp")}
+            onClick={() => void send("whatsapp")}
+            disabled={status === "submitting"}
             className="h-11 shrink-0 rounded-xl bg-[#25D366] px-4 text-white hover:bg-[#1EBE57]"
           >
             <MessageCircle className="size-4" />

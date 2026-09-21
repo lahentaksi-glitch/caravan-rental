@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { ContactForm } from "@/components/contact/contact-form";
 import { ConversionCta } from "@/components/layout/conversion-cta";
+import { PickupMap } from "@/components/contact/pickup-map";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { buttonVariants } from "@/components/ui/button";
@@ -104,19 +105,7 @@ export default function YhteystiedotPage() {
               <p className="mt-3 text-xs text-muted-foreground">{site.hours.note}</p>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border border-white/50 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)]">
-              <iframe
-                title="Kartta — Lahti"
-                src={site.mapEmbedUrl}
-                className="h-64 w-full border-0 bg-muted sm:h-72"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-              <p className="px-4 py-2 text-center text-xs text-muted-foreground">
-                Kartta on esimerkki — tarkka osoite vahvistetaan varauksessa.
-              </p>
-            </div>
+            <PickupMap />
           </div>
 
           <div>
