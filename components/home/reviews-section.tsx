@@ -23,10 +23,7 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
         {reviews.length === 0 ? (
           <p className="text-center text-zinc-500">Arvosteluja tulossa pian.</p>
         ) : (
-          <Carousel
-            opts={{ align: "start", loop: false }}
-            className="relative px-0 sm:px-12"
-          >
+          <Carousel opts={{ align: "start", loop: false }} className="relative">
             <CarouselContent className="-ml-4">
               {reviews.map((review) => (
                 <CarouselItem
@@ -38,11 +35,11 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
               ))}
             </CarouselContent>
             <CarouselPrevious
-              className="hidden size-10 border-zinc-200 bg-white text-zinc-700 shadow-sm hover:bg-white sm:flex"
+              className="left-2 hidden size-10 border-zinc-200 bg-white text-zinc-700 shadow-sm hover:bg-white sm:inline-flex"
               aria-label="Edellinen arvostelu"
             />
             <CarouselNext
-              className="hidden size-10 border-zinc-200 bg-white text-zinc-700 shadow-sm hover:bg-white sm:flex"
+              className="right-2 hidden size-10 border-zinc-200 bg-white text-zinc-700 shadow-sm hover:bg-white sm:inline-flex"
               aria-label="Seuraava arvostelu"
             />
           </Carousel>
