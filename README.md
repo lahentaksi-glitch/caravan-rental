@@ -1,11 +1,6 @@
-# Lahden Vaunu & Palju
+# Caravan Rent Lahti · Lahden Paljuvuokraus
 
-Suomenkielinen markkinointi- ja varaussivusto asuntovaunun ja paljuvaunun vuokraukseen (Next.js App Router).
-
-## Vaatimukset
-
-- Node.js 20+
-- npm
+Suomenkielinen markkinointi- ja varaussivusto Knaus Sport -asuntovaunulle ja paljuvaunulle (Next.js App Router).
 
 ## Käynnistys
 
@@ -14,30 +9,20 @@ npm install
 npm run dev
 ```
 
-Sovellus kuuntelee osoitetta [http://127.0.0.1:4317](http://127.0.0.1:4317) (kaikki verkko-osoitteet, portti 4317).
-
-## Tuotantoversio
-
-```bash
-npm run build
-npm start
-```
+Sovellus kuuntelee [http://127.0.0.1:4317](http://127.0.0.1:4317).
 
 ## Sivut
 
 | Polku | Kuvaus |
 |-------|--------|
 | `/` | Etusivu |
-| `/tuotteet/knaus-sport-500-kd` | Asuntovaunu |
-| `/tuotteet/paljuvaunu` | Paljuvaunu |
+| `/tuotteet/knaus-sport-500-kd` | Asuntovaunu + varauskalenteri |
+| `/tuotteet/paljuvaunu` | Paljuvaunu + varauskalenteri |
 | `/hinnasto` | Hinnasto ja ehdot |
 | `/yhteystiedot` | Yhteystiedot |
 
-## Sisällön muokkaus
+## Kuvat ja logot
 
-Tuotteet, lisäpalvelut, FAQ ja varatut päivät: `data/rentals.ts`, `data/faq.ts`, `data/pricing.ts`, `data/site.ts`, `data/availability.ts`.
+Oikeat kuvat: `public/images/caravan/`, `public/images/palju/`. Brändi: `public/brand/`.
 
-## Teknologiat
-
-- Next.js (App Router), TypeScript, Tailwind CSS v4
-- shadcn/ui, lucide-react
+Sisältö: `data/rentals.ts`, `data/availability.ts`, `data/site.ts`.

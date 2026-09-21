@@ -1,11 +1,17 @@
 export const site = {
-  name: "Lahden Vaunu & Palju",
-  tagline: "Laadukasta vuokrausta Lahden seudulla",
+  name: "Caravan Rent Lahti",
+  partnerName: "Lahden Paljuvuokraus",
+  tagline: "Asuntovaunu ja paljuvaunu Lahden seudulla",
   description:
-    "Vuokraa huollettu asuntovaunu tai elämyksellinen paljuvaunu — helppo nouto, täysi varustelu ja joustavat ajat.",
+    "Vuokraa Knaus Sport -asuntovaunu tai elämyksellinen paljuvaunu — helppo nouto Lahdelta, täysi varustelu ja joustavat ajat.",
   phone: "+358 40 123 4567",
   whatsapp: "+358401234567",
-  email: "varaus@lahdenvaunupalju.fi",
+  email: "varaus@caravanrentlahti.fi",
+  logos: {
+    caravan: "/brand/caravan-rent-lahti.jpg",
+    palju: "/brand/lahden-paljuvuokraus.png",
+    icon: "/brand/palju-icon.png",
+  },
   address: {
     street: "Vuokraamontie 12",
     city: "15100 Lahti",

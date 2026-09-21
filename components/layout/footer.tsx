@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { site } from "@/data/site";
+import { BrandMark } from "@/components/layout/brand-mark";
 import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
 
@@ -10,8 +11,8 @@ export function Footer() {
       <Container className="py-12">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <p className="text-lg font-semibold text-foreground">{site.name}</p>
-            <p className="mt-2 max-w-md text-sm text-muted-foreground">
+            <BrandMark />
+            <p className="mt-4 max-w-md text-sm text-muted-foreground">
               {site.description}
             </p>
           </div>
@@ -77,7 +78,8 @@ export function Footer() {
         </div>
         <Separator className="my-8" />
         <p className="text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {site.name}. Kaikki oikeudet pidätetään.
+          © {new Date().getFullYear()} {site.name} & {site.partnerName}. Kaikki oikeudet
+          pidätetään.
         </p>
       </Container>
     </footer>

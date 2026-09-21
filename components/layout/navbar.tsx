@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Mountain } from "lucide-react";
+import { Menu } from "lucide-react";
 import { site } from "@/data/site";
+import { BrandMark } from "@/components/layout/brand-mark";
 import { BookingCta } from "@/components/layout/booking-cta";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -29,18 +30,8 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/40 bg-background/65 shadow-sm backdrop-blur-xl">
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
-          <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md transition-transform hover:scale-105">
-            <Mountain className="size-5" aria-hidden />
-          </span>
-          <span className="hidden leading-tight sm:block">
-            <span className="block text-sm">{site.name}</span>
-            <span className="block text-xs font-normal text-muted-foreground">
-              {site.tagline}
-            </span>
-          </span>
-        </Link>
+      <Container className="flex h-[4.25rem] items-center justify-between gap-3">
+        <BrandMark compact />
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Päävalikko">
           {links.map((link) => (
@@ -75,7 +66,12 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[min(100vw-2rem,20rem)]">
               <SheetHeader>
-                <SheetTitle>{site.name}</SheetTitle>
+                <SheetTitle>
+                  {site.name}
+                  <span className="mt-1 block text-sm font-normal text-muted-foreground">
+                    {site.partnerName}
+                  </span>
+                </SheetTitle>
               </SheetHeader>
               <nav className="mt-6 flex flex-col gap-1" aria-label="Mobiilivalikko">
                 {links.map((link) => (

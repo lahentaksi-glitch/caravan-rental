@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export const metadata: Metadata = {
-  title: "Yhteystiedot | Lahden Vaunu & Palju",
+  title: "Yhteystiedot | Caravan Rent Lahti",
   description: "Ota yhteyttä, aukioloajat ja sijainti Lahdessa.",
 };
 

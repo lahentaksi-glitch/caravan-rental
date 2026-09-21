@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { site } from "@/data/site";
 import { getExtrasForProduct, getProductBySlug, rentalProducts } from "@/data/rentals";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductSpecs } from "@/components/products/product-specs";
@@ -28,7 +29,7 @@ export async function generateMetadata({
     return { title: "Tuotetta ei löytynyt" };
   }
   return {
-    title: `${product.name} | Lahden Vaunu & Palju`,
+    title: `${product.name} | ${site.name}`,
     description: product.shortDescription,
   };
 }

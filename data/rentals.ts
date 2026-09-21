@@ -27,6 +27,28 @@ export const rentalExtras: RentalExtra[] = [
   },
 ];
 
+const caravanGallery = [
+  "/images/caravan/exterior-side.jpg",
+  "/images/caravan/exterior-rear.jpg",
+  "/images/caravan/08-dining.jpg",
+  "/images/caravan/10-kitchen-aisle.jpg",
+  "/images/caravan/02-kitchen-fridge.jpg",
+  "/images/caravan/09-bed.jpg",
+  "/images/caravan/05-bunks.jpg",
+  "/images/caravan/03-bunks-aisle.jpg",
+  "/images/caravan/04-bathroom.jpg",
+  "/images/caravan/06-stove.jpg",
+  "/images/caravan/07-kitchen-door.jpg",
+  "/images/caravan/01-dining-kitchen.jpg",
+];
+
+const paljuGallery = [
+  "/images/palju/lakeside-wide.jpg",
+  "/images/palju/trailers.jpg",
+  "/images/palju/yard.jpg",
+  "/images/palju/lakeside.jpg",
+];
+
 export const rentalProducts: RentalProduct[] = [
   {
     slug: "knaus-sport-500-kd",
@@ -36,14 +58,8 @@ export const rentalProducts: RentalProduct[] = [
       "Tilava perhevaunu 5–6 hengelle — kerrosvuoteet, ilmastointi ja täysi keittiö.",
     description:
       "Knaus Sport 500 KD on luotettava kumppani kesäreissuille Suomen järvimaisemiin. Vaunussa on mukavat kerrosvuoteet, tehokas lämmitys ja ilmastointi sekä täysin varusteltu keittiö. WC ja suihku takaavat mukavuuden myös sateisella säällä. Vuokraan sisältyvät vetopeilit, vakauspyörät ja perusvarusteet — noudat vain ja lähdet.",
-    heroImage:
-      "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=1600&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1566004100631-35d015d6a491?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80",
-    ],
+    heroImage: "/images/caravan/exterior-side.jpg",
+    gallery: caravanGallery,
     highlights: [
       "5–6 makuupaikkaa kerrosvuoteilla",
       "Ilmastointi ja kaasulämmitys",
@@ -75,20 +91,14 @@ export const rentalProducts: RentalProduct[] = [
     category: "hot-tub",
     name: "Paljuvaunu / paljukärry",
     shortDescription:
-      "Upouusi paljuelämys 6–8 hengelle — tehokas liesi, LED-valot ja poreet.",
+      "Lahden Paljuvuokraus — 6–8 hengelle, tehokas puuliesi ja helppo veto B-kortilla.",
     description:
-      "Vie lämpö ja rentous mukaan minne ikinä menetkin. Paljuvaunumme on helppo vetää B-ajokortilla ja valmis käyttöön nopeasti. Tehokas puuliesi lämmittää veden tehokkaasti, LED-valot ja poreet luovat tunnelmaa iltahämärässä. Sopii mökkireissuille, juhliin ja rentoutumishetkiin luonnon keskellä.",
-    heroImage:
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80",
-    ],
+      "Vie lämpö ja rentous mukaan minne ikinä menetkin. Paljuvaunumme on helppo vetää B-ajokortilla ja valmis käyttöön nopeasti. Tehokas puuliesi lämmittää veden tehokkaasti. Sopii mökkireissuille, juhliin ja rentoutumishetkiin luonnon keskellä — järven rannalla tai pihamaalla.",
+    heroImage: "/images/palju/lakeside-wide.jpg",
+    gallery: paljuGallery,
     highlights: [
       "6–8 hengelle kerrallaan",
-      "Tehokas puuliesi ja LED-poreet",
+      "Tehokas puuliesi ja puukansi",
       "Helppo vetää henkilöautolla (B-kortti)",
       "Nopea käyttöönotto ja tyhjennys",
     ],
@@ -97,7 +107,7 @@ export const rentalProducts: RentalProduct[] = [
       { icon: "plate", label: "Rekisterinumero", value: "PAL-456" },
       { icon: "users", label: "Kapasiteetti", value: "6–8 hlö" },
       { icon: "flame", label: "Lämmitys", value: "Puuliesi" },
-      { icon: "sparkles", label: "Valaistus", value: "LED + poreet" },
+      { icon: "sparkles", label: "Runko", value: "Puinen tynnyripalju" },
       { icon: "car", label: "Vetokoukku", value: "13-napainen" },
       { icon: "clock", label: "Lämpenemisaika", value: "n. 2–3 h" },
       { icon: "droplets", label: "Vesimäärä", value: "n. 1 800 l" },
