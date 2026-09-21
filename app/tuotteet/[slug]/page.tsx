@@ -14,7 +14,7 @@ import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
 import { formatEuro } from "@/lib/pricing";
 import { bookNowClassName, bookNowOutlineClassName } from "@/lib/cta";
-import { productMetadata } from "@/lib/seo";
+import { pageMetadata, productMetadata } from "@/lib/seo";
 import type { RentalSlug } from "@/types/rental";
 
 const slugs: RentalSlug[] = ["knaus-sport-500-kd", "paljuvaunu"];
@@ -31,7 +31,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) {
-    return { title: "Tuotetta ei löytynyt" };
+    return pageMetadata({ path: "/", noIndex: true });
   }
   return productMetadata(product);
 }

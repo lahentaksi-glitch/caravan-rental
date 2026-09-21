@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Sivua ei löytynyt",
-  robots: { index: false, follow: false },
-};
+export const metadata: Metadata = pageMetadata({
+  path: "/",
+  noIndex: true,
+});
 
 export default function NotFound() {
   return (

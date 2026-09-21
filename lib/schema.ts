@@ -7,7 +7,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     "@type": ["AutomotiveBusiness", "LocalBusiness"],
     name: site.name,
     alternateName: site.partnerName,
-    description: site.description,
+    description: site.metaDescription,
     url: siteUrl,
     image: `${siteUrl}${site.ogImage}`,
     logo: `${siteUrl}${site.logos.caravan}`,

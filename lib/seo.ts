@@ -3,12 +3,9 @@ import { site, siteKeywords, siteUrl } from "@/data/site";
 import type { RentalProduct } from "@/types/rental";
 
 type PageMetadataInput = {
-  title: string;
-  description: string;
   path: string;
-  image?: string;
   keywords?: readonly string[];
-  absoluteTitle?: boolean;
+  noIndex?: boolean;
 };
 
 function absoluteUrl(path: string): string {
@@ -16,45 +13,47 @@ function absoluteUrl(path: string): string {
   return `${siteUrl}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+export function ogImageMetadata() {
+  return {
+    url: absoluteUrl(site.ogImage),
+    width: 1200,
+    height: 630,
+    alt: site.metaTitle,
+  };
+}
+
 export function pageMetadata({
-  title,
-  description,
   path,
-  image,
   keywords = siteKeywords,
-  absoluteTitle = false,
+  noIndex = false,
 }: PageMetadataInput): Metadata {
   const url = absoluteUrl(path);
-  const ogImage = absoluteUrl(image ?? site.ogImage);
+  const title = site.metaTitle;
+  const description = site.metaDescription;
+  const image = ogImageMetadata();
   const keywordList = [...keywords];
 
   return {
-    title: absoluteTitle ? { absolute: title } : title,
+    title: { absolute: title },
     description,
     keywords: keywordList,
-    alternates: { canonical: url },
+    alternates: noIndex ? undefined : { canonical: url },
     openGraph: {
       title,
       description,
-      url,
+      url: noIndex ? siteUrl : url,
       siteName: `${site.name} · ${site.partnerName}`,
       locale: "fi_FI",
       type: "website",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 800,
-          alt: title,
-        },
-      ],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [ogImage],
+      images: [image.url],
     },
+    ...(noIndex ? { robots: { index: false, follow: false } } : {}),
   };
 }
 
@@ -64,19 +63,8 @@ export function productMetadata(product: RentalProduct): Metadata {
     ? (["knaus sport 500 kd vuokraus", "asuntovaunun vuokraus Lahti", ...siteKeywords] as const)
     : (["paljuvaunu vuokraus Lahti", "paljukärry Lahti", ...siteKeywords] as const);
 
-  const title = isCaravan
-    ? "Knaus Sport 500 KD vuokraus"
-    : "Paljuvaunu ja paljukärry vuokraus Lahti";
-
-  const description = isCaravan
-    ? `${product.shortDescription} Knaus Sport 500 KD vuokraus Lahdessa — katso saatavuus ja lähetä varauspyyntö.`
-    : `${product.shortDescription} Paljuvaunu vuokraus ja paljukärry Lahti — katso vapaat päivät kalenterista.`;
-
   return pageMetadata({
-    title,
-    description,
     path: `/tuotteet/${product.slug}`,
-    image: product.heroImage,
     keywords,
   });
 }

@@ -31,7 +31,11 @@ export const site = {
   tagline: "Asuntovaunu ja paljuvaunu Lahden seudulla",
   description:
     "Vuokraa Knaus Sport -asuntovaunu tai elämyksellinen paljuvaunu — helppo nouto Lahdelta, täysi varustelu ja joustavat ajat.",
-  ogImage: "/images/caravan/exterior-side.jpg",
+  metaTitle:
+    "Laadukas asuntovaunu ja paljuvaunu vuokralle - Paljuvuokraus Lahti",
+  metaDescription:
+    "Vuokraa premium-asuntovaunu Knaus Sport tai elämyksellinen paljuvaunu helposti Lahden alueelta. Varaa heti lomaasi tai juhliisi!",
+  ogImage: "/og.jpg",
   phone: "+358 40 123 4567",
   whatsapp: "+358401234567",
   email: "varaus@caravanrentlahti.fi",

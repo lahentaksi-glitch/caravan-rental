@@ -11,9 +11,6 @@ import { cn } from "@/lib/utils";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Yhteystiedot",
-  description:
-    "Ota yhteyttä: asuntovaunun vuokraus ja paljuvaunu vuokraus Lahti. Puhelin, WhatsApp, sähköposti ja varauskalenteri.",
   path: "/yhteystiedot",
 });
 

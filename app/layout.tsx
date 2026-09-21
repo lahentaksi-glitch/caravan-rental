@@ -6,6 +6,7 @@ import { ScrollToHash } from "@/components/layout/scroll-to-hash";
 import { AnalyticsScripts } from "@/components/analytics/analytics-scripts";
 import { site, siteKeywords, siteUrl } from "@/data/site";
 import { localBusinessJsonLd } from "@/lib/schema";
+import { ogImageMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,13 +19,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const ogImage = ogImageMetadata();
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: `${site.name} · ${site.partnerName}`,
-    template: `%s | ${site.name}`,
-  },
-  description: site.description,
+  title: site.metaTitle,
+  description: site.metaDescription,
   keywords: [...siteKeywords],
   applicationName: site.name,
   authors: [{ name: site.name }],
@@ -35,18 +35,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fi_FI",
+    url: siteUrl,
     siteName: `${site.name} · ${site.partnerName}`,
-    images: [
-      {
-        url: site.ogImage,
-        width: 1200,
-        height: 800,
-        alt: site.tagline,
-      },
-    ],
+    title: site.metaTitle,
+    description: site.metaDescription,
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
+    title: site.metaTitle,
+    description: site.metaDescription,
+    images: [ogImage.url],
   },
   robots: {
     index: true,

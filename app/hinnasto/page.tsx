@@ -11,9 +11,6 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Hinnasto",
-  description:
-    "Hinnasto asuntovaunun vuokraukseen Lahdessa ja paljuvaunu / paljukärry -vuokraukseen. Kausi- ja sesonkihinnat sekä vuokrausehdot.",
   path: "/hinnasto",
 });
 
