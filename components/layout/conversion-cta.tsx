@@ -1,4 +1,5 @@
-import { BookingCta } from "@/components/layout/booking-cta";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { bookNowClassName, bookNowOutlineClassName } from "@/lib/cta";
 
 export function ConversionCta({
@@ -13,16 +14,19 @@ export function ConversionCta({
       <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">{title}</h2>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-500">{subtitle}</p>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-        <BookingCta
-          label="Varaamaan"
-          target="hottub"
-          className={bookNowClassName("gap-2")}
-        />
-        <BookingCta
-          label="Katso tekniset tiedot"
-          target="caravan"
-          className={bookNowOutlineClassName()}
-        />
+        <Link
+          href="/tuotteet/paljuvaunu#varaa"
+          className={bookNowClassName("justify-center gap-2")}
+        >
+          Varaamaan
+          <ArrowRight className="size-4" aria-hidden />
+        </Link>
+        <Link
+          href="/tuotteet/knaus-sport-500-kd#tekniset"
+          className={bookNowOutlineClassName("justify-center")}
+        >
+          Katso tekniset tiedot
+        </Link>
       </div>
     </div>
   );
