@@ -21,7 +21,7 @@ export function WeekPicker({
           {label}
         </p>
       ) : null}
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-3 grid grid-cols-4 gap-2">
         {weeks.map((week) => {
           const isActive = selected?.week === week.week && selected.year === week.year;
           return (
@@ -30,7 +30,7 @@ export function WeekPicker({
               type="button"
               onClick={() => onSelect?.(week)}
               className={cn(
-                "min-h-11 rounded-xl px-3.5 text-sm font-semibold transition-colors",
+                "flex min-h-11 items-center justify-center rounded-xl px-2 text-sm font-semibold transition-colors",
                 isActive
                   ? "bg-zinc-900 text-white"
                   : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200"

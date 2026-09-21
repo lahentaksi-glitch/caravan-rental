@@ -43,7 +43,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
     () => getBookedDates(product.slug),
     [product.slug]
   );
-  const weeks = useMemo(() => upcomingWeeks(8), []);
+  const weeks = useMemo(() => upcomingWeeks(4), []);
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [selectedExtras, setSelectedExtras] = useState<Record<string, boolean>>(
