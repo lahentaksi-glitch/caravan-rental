@@ -30,14 +30,30 @@ export default function KayttoehdotPage() {
           ))}
 
           <article className="rounded-2xl bg-[#F9FAFB] p-5 sm:p-6">
-            <h2 className="text-lg font-semibold text-zinc-900">Yhteystiedot</h2>
+            <h2 className="text-lg font-semibold text-zinc-900">Vuokraaja (YTJ)</h2>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">
-              Vuokraaja: {site.ownerName} / {site.name}. Osoite: {site.address.street},{" "}
-              {site.address.city}. Palvelualue: {site.address.areaLabel}. Sähköposti:{" "}
+              Toiminimi: {site.legalName}
+              <br />
+              Y-tunnus: {site.businessId}
+              <br />
+              Osoite: {site.address.street}, {site.address.city}
+              <br />
+              Kotipaikka: {site.domicile}
+              <br />
+              Markkinointinimi: {site.name}
+              <br />
+              Sähköposti:{" "}
               <a href={`mailto:${site.email}`} className="text-accent underline-offset-2 hover:underline">
                 {site.email}
               </a>
-              .
+              <br />
+              Puhelin:{" "}
+              <a
+                href={`tel:${site.phone.replace(/\s/g, "")}`}
+                className="text-accent underline-offset-2 hover:underline"
+              >
+                {site.phone}
+              </a>
             </p>
           </article>
         </div>

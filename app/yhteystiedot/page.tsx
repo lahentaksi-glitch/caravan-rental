@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, MessageCircle, Phone, User } from "lucide-react";
+import { Building2, Clock, Mail, MapPin, MessageCircle, Phone, Truck, User } from "lucide-react";
 import { site } from "@/data/site";
 import { ContactForm } from "@/components/contact/contact-form";
 import { ConversionCta } from "@/components/layout/conversion-cta";
@@ -40,8 +40,16 @@ export default function YhteystiedotPage() {
                 <li className="flex items-start gap-3">
                   <User className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
                   <span>
-                    <span className="block font-medium text-foreground">{site.ownerName}</span>
+                    <span className="block font-medium text-foreground">{site.legalName}</span>
                     {site.name}
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Building2 className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
+                  <span>
+                    Y-tunnus {site.businessId}
+                    <br />
+                    Kotipaikka {site.domicile}
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -101,6 +109,15 @@ export default function YhteystiedotPage() {
                   Lähetä sähköpostia
                 </a>
               </div>
+            </div>
+
+            <div className="rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">
+              <h2 className="flex items-center gap-2 font-semibold text-foreground">
+                <Truck className="size-4 text-accent" aria-hidden />
+                Nouto ja kuljetus
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{site.pickupNote}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{site.deliveryNote}</p>
             </div>
 
             <div className="rounded-2xl border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">

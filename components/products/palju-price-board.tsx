@@ -91,6 +91,8 @@ export function PaljuPriceBoard({
           <span>{hotTubTrust.cleanliness}</span>
         </p>
         <p className="text-sm leading-relaxed text-zinc-500">{hotTubTrust.hours}</p>
+        <p className="text-sm leading-relaxed text-zinc-500">{hotTubTrust.pickup}</p>
+        <p className="text-sm leading-relaxed text-zinc-500">{hotTubTrust.delivery}</p>
       </div>
     </div>
   );

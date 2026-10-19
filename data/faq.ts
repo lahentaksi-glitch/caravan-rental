@@ -17,7 +17,7 @@ export const faqItems: FaqItem[] = [
     id: "pickup",
     question: "Milloin voin noutaa ja palauttaa laitteen?",
     answer:
-      "Paljuvaunun tavanomainen vuokrausaika alkaa klo 14:00 ja päättyy palautuspäivänä klo 12:00, ellei toisin sovita. Asuntovaunun nouto arkisin klo 9–18 ja lauantaisin klo 10–15. Joustavat ajat ovat mahdollisia — kysy rohkeasti.",
+      "Noutomahdollisuus sopimuksen mukaan sekä Lahdesta että Pertunmaalta (Penttilänpolku 161, 19430 Pertunmaa). Kuljetuspalvelu alkaen 30 € (Lahti & Päijät-Häme sekä lähialueet). Paljuvaunun tavanomainen vuokrausaika alkaa klo 14:00 ja päättyy palautuspäivänä klo 12:00, ellei toisin sovita.",
   },
   {
     id: "cleaning",

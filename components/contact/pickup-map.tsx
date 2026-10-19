@@ -46,9 +46,9 @@ export function PickupMap() {
           </div>
         </div>
       </div>
-      <p className="px-4 py-2 text-center text-xs text-muted-foreground">
-        Nouto sopimuksen mukaan. Tarkka aika vahvistetaan varauksessa.{" "}
-        <Link href="/hinnasto" className="underline-offset-2 hover:underline">
+      <p className="px-4 py-3 text-center text-xs leading-relaxed text-muted-foreground">
+        {site.pickupNote} {site.deliveryNote}{" "}
+        <Link href="/kayttoehdot" className="underline-offset-2 hover:underline">
           Ehdot
         </Link>
       </p>

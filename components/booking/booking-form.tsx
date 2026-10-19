@@ -324,7 +324,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           </a>
           <p className="mt-2 text-xs text-muted-foreground">
             {product.category === "hot-tub"
-              ? "Arki 59 €/vrk, ma–to pätkä 120 €, viikonloppu 140 €. Juhlapyhät kysy tarjous. Nouto klo 14, palautus klo 12."
+              ? "Arki 59 €/vrk, ma–to 120 €, viikonloppu 140 €. Juhlapyhät: erikoishinnoittelu. Nouto Lahti tai Pertunmaa · kuljetus alkaen 30 €."
               : "Lyhyet illat, arkipäivät tai pidemmät jaksot — avaa WhatsApp ja kerro toiveesi."}
           </p>
         </div>
@@ -385,6 +385,8 @@ export function BookingForm({ product, extras }: BookingFormProps) {
               <div className="mt-3 space-y-2 text-xs text-primary-foreground/80">
                 <p>{hotTubTrust.cleanliness}</p>
                 <p>{hotTubTrust.hours}</p>
+                <p>{hotTubTrust.pickup}</p>
+                <p>{hotTubTrust.delivery}</p>
               </div>
             ) : null}
             <p className="mt-2 text-xs text-primary-foreground/75">

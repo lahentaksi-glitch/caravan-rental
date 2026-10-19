@@ -1,4 +1,5 @@
 import { Clock, MapPin, ShieldCheck, Sparkles } from "lucide-react";
+import { site } from "@/data/site";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -11,21 +12,19 @@ const tiles = [
   },
   {
     icon: MapPin,
-    title: "Helppo nouto/toimitus Lahden alueella",
-    description:
-      "Nouto varastoltamme tai toimitus lähialueelle — sovitaan varauksen yhteydessä.",
+    title: "Nouto Lahti tai Pertunmaa",
+    description: site.pickupNote,
   },
   {
     icon: ShieldCheck,
-    title: "Täysi varustelu",
-    description:
-      "Mukana oleva perusvarustelu, selkeät ohjeet ja tuki puhelimella koko vuokrauksen ajan.",
+    title: "Kuljetus lähialueelle",
+    description: site.deliveryNote,
   },
   {
     icon: Clock,
     title: "Joustavat ajat",
     description:
-      "Sesongin ulkopuolella joustamme nouto- ja palautusaikoihin tarpeesi mukaan.",
+      "Tavanomainen vuokrausaika klo 14:00–12:00. Sesongin ulkopuolella joustamme tarpeesi mukaan.",
   },
 ];
 

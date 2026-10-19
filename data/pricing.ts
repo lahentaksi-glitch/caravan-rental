@@ -1,4 +1,5 @@
 import type { PricingRow } from "@/types/rental";
+import { site } from "@/data/site";
 
 export const caravanPricingTable: PricingRow[] = [
   { label: "Vuorokausi", season: "69 €", offSeason: "59 €" },
@@ -30,8 +31,8 @@ export const hotTubPricingRows = [
   },
   {
     label: "Juhlapyhät",
-    value: "Kysy tarjous",
-    note: "Juhannus, uusivuosi ja vappu — erikoishinnoittelu.",
+    value: "Erikoishinnoittelu",
+    note: "Juhannus, uusivuosi, vappu jne. — kysy tarjous.",
   },
 ] as const;
 
@@ -40,6 +41,8 @@ export const hotTubTrust = {
     "Puhtaustakuu: Jokainen palju desinfioidaan ja pestään huolellisesti ennen luovutusta.",
   hours:
     "Tavanomainen vuokrausaika alkaa klo 14:00 ja päättyy palautuspäivänä klo 12:00 (tai sopimuksen mukaan).",
+  pickup: site.pickupNote,
+  delivery: site.deliveryNote,
 } as const;
 
 export const rentalTerms = [
@@ -58,6 +61,10 @@ export const rentalTerms = [
   {
     title: "Paljun vuokra-aika",
     body: hotTubTrust.hours,
+  },
+  {
+    title: "Nouto ja kuljetus",
+    body: `${site.pickupNote} ${site.deliveryNote}`,
   },
 ] as const;
 

@@ -29,15 +29,18 @@ export function googleMapsEmbedUrl(): string {
 
 export const site = {
   name: "Paljuvuokraus Lahti",
+  legalName: "Kuitunen Tarja-Leena Tellervo",
   ownerName: "Tarja-Leena Kuitunen",
+  businessId: "3529040-7",
+  domicile: "Mäntyharju",
   partnerName: "Paljuvuokraus Lahti",
   tagline: "Asuntovaunu ja paljuvaunu",
   description:
-    "Vuokraa Knaus Sport 500 KD -asuntovaunu tai paljuvaunu Lahden ja Päijät-Hämeen alueella — selkeä hinta, huolletut laitteet ja nouto sovitusti.",
+    "Vuokraa Knaus Sport 500 KD -asuntovaunu tai paljuvaunu Lahden ja Päijät-Hämeen alueella — selkeä hinta, huolletut laitteet ja nouto sopimuksen mukaan Lahdesta tai Pertunmaalta.",
   metaTitle:
     "Laadukas asuntovaunu ja paljuvaunu vuokralle - Paljuvuokraus Lahti",
   metaDescription:
-    "Vuokraa premium-asuntovaunu Knaus Sport tai elämyksellinen paljuvaunu helposti Lahden ja Päijät-Hämeen alueelta. Yhteydenotot: info@paljuvuokrauslahti.fi",
+    "Vuokraa premium-asuntovaunu Knaus Sport tai elämyksellinen paljuvaunu Lahden ja Päijät-Hämeen alueelta. Nouto Lahdesta tai Pertunmaalta. Yhteydenotot: info@paljuvuokrauslahti.fi",
   ogImage: "/og.jpg",
   phone: "+358 50 047 4501",
   whatsapp: "+358500474501",
@@ -56,6 +59,10 @@ export const site = {
     country: "Suomi",
     areaLabel: "Lahti & Päijät-Häme",
   },
+  pickupNote:
+    "Noutomahdollisuus sopimuksen mukaan sekä Lahdesta että Pertunmaalta (Penttilänpolku 161, 19430 Pertunmaa).",
+  deliveryNote:
+    "Kuljetuspalvelu alkaen 30 € (Lahti & Päijät-Häme sekä lähialueet).",
   geo: {
     latitude: 61.5034,
     longitude: 26.4789,

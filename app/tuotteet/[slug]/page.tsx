@@ -10,6 +10,7 @@ import { ProductEquipment } from "@/components/products/product-equipment";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductSpecs } from "@/components/products/product-specs";
 import { hotTubRates, hotTubTrust } from "@/data/pricing";
+import { site } from "@/data/site";
 import { BookingForm } from "@/components/booking/booking-form";
 import { Container } from "@/components/ui/container";
 import { formatEuro } from "@/lib/pricing";
@@ -106,11 +107,11 @@ export default async function ProductPage({
                 </a>
               </div>
               <p className="mt-6 text-sm text-zinc-400">{chips.join("  ·  ")}</p>
-              {product.category === "hot-tub" ? (
-                <p className="mt-4 rounded-xl bg-orange-50 px-3 py-2 text-sm leading-relaxed text-zinc-700">
-                  {hotTubTrust.cleanliness}
-                </p>
-              ) : null}
+              <div className="mt-4 space-y-2 rounded-xl bg-orange-50 px-3 py-3 text-sm leading-relaxed text-zinc-700">
+                {product.category === "hot-tub" ? <p>{hotTubTrust.cleanliness}</p> : null}
+                <p>{site.pickupNote}</p>
+                <p>{site.deliveryNote}</p>
+              </div>
             </div>
           </div>
         </Container>

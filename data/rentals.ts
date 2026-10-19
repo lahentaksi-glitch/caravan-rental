@@ -15,10 +15,11 @@ export const rentalExtras: RentalExtra[] = [
   },
   {
     id: "toimitus",
-    label: "Kuljetus ja nouto (Lahti lähialue)",
+    label: "Kuljetuspalvelu",
     price: 30,
     priceFrom: true,
-    description: "Toimitus ja nouto Lahden lähialueella. Lopullinen hinta vahvistetaan matkan mukaan.",
+    description:
+      "Alkaen 30 € — Lahti & Päijät-Häme sekä lähialueet. Lopullinen hinta vahvistetaan matkan mukaan.",
   },
   {
     id: "kaasupullo",
@@ -65,7 +66,7 @@ export const rentalProducts: RentalProduct[] = [
       "5–6 makuupaikkaa kerrosvuoteilla",
       "Ilmastointi ja kaasulämmitys",
       "Täysi keittiö, jääkaappi ja WC/suihku",
-      "Vetopeilit ja vakauspyörät mukana",
+      "Nouto Lahdesta tai Pertunmaalta sopimuksen mukaan",
     ],
     specs: [
       { icon: "weight", label: "Omamassa", value: "1 420 kg" },
@@ -101,7 +102,7 @@ export const rentalProducts: RentalProduct[] = [
       "6–8 hengelle kerrallaan",
       "Tehokas puuliesi ja puukansi",
       "Helppo vetää henkilöautolla (B-kortti)",
-      "Puhtaustakuu: desinfiointi ennen jokaista luovutusta",
+      "Nouto Lahdesta tai Pertunmaalta · kuljetus alkaen 30 €",
     ],
     specs: [
       { icon: "weight", label: "Omamassa", value: "850 kg" },

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SafeImage } from "@/components/ui/safe-image";
 import type { RentalProduct } from "@/types/rental";
+import { site } from "@/data/site";
 import { formatEuro } from "@/lib/pricing";
 import { bookNowClassName } from "@/lib/cta";
 
@@ -35,6 +36,8 @@ export function ProductCard({ product }: { product: RentalProduct }) {
             </li>
           ))}
         </ul>
+        <p className="mt-4 text-xs leading-relaxed text-zinc-500">{site.pickupNote}</p>
+        <p className="mt-1 text-xs leading-relaxed text-zinc-500">{site.deliveryNote}</p>
         <div className="mt-auto pt-5">
           <p className="text-base font-medium text-zinc-900">
             alkaen <span className="font-semibold text-accent">{formatEuro(product.nightlyRate)}</span>
@@ -44,6 +47,8 @@ export function ProductCard({ product }: { product: RentalProduct }) {
             <p className="mt-1 text-sm text-zinc-500">
               Viikonloppu (pe–su){" "}
               <span className="font-semibold text-accent">{formatEuro(product.weekendRate)}</span>
+              {" · "}ma–to{" "}
+              <span className="font-semibold text-accent">120 €</span>
             </p>
           ) : null}
           <Link
