@@ -53,8 +53,8 @@ export function BookingTeaser() {
                 Nouto
               </p>
               <p className="mt-3 text-sm leading-relaxed text-zinc-600">
-                Nouda sovittuna aikana {site.address.street}, {site.address.city}. Saat tarkan
-                osoitteen varauksen vahvistuksessa.
+                Nouda sovittuna aikana {site.address.street}, {site.address.city}. Palvelualue{" "}
+                {site.address.areaLabel}. Saat tarkan ohjeen varauksen vahvistuksessa.
               </p>
             </div>
             <div className="rounded-2xl bg-white p-5">

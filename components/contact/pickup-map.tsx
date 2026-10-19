@@ -9,7 +9,7 @@ export function PickupMap() {
     <section className="overflow-hidden rounded-2xl border border-white/50 bg-white/70 shadow-[0_16px_40px_-24px_rgba(20,40,80,0.4)] backdrop-blur-xl">
       <div className="relative aspect-[4/3] min-h-[16rem] bg-muted sm:min-h-[18rem]">
         <iframe
-          title={`Kartta — noutopiste ${site.address.street}, Lahti`}
+          title={`Kartta — ${site.address.street}, ${site.address.locality}`}
           src={site.mapEmbedUrl}
           className="absolute inset-0 h-full w-full border-0"
           loading="lazy"
@@ -21,12 +21,14 @@ export function PickupMap() {
           <div className="rounded-2xl border border-white/60 bg-white/90 p-4 shadow-lg backdrop-blur-md">
             <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
               <MapPin className="size-4 text-accent" aria-hidden />
-              Noutopiste, Lahti
+              Noutopiste, {site.address.locality}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
               {site.address.street}
               <br />
               {site.address.city}
+              <br />
+              Palvelualue: {site.address.areaLabel}
             </p>
             <a
               href={site.mapDirectionsUrl}

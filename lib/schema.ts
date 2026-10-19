@@ -6,7 +6,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     "@context": "https://schema.org",
     "@type": ["AutomotiveBusiness", "LocalBusiness"],
     name: site.name,
-    alternateName: site.partnerName,
+    alternateName: [site.partnerName, site.ownerName],
     description: site.metaDescription,
     url: siteUrl,
     image: `${siteUrl}${site.ogImage}`,
@@ -19,8 +19,8 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.street,
-      postalCode: "15100",
-      addressLocality: "Lahti",
+      postalCode: site.address.postalCode,
+      addressLocality: site.address.locality,
       addressRegion: site.address.region,
       addressCountry: "FI",
     },
@@ -32,6 +32,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     hasMap: site.mapDirectionsUrl,
     areaServed: [
       { "@type": "City", name: "Lahti" },
+      { "@type": "City", name: "Pertunmaa" },
       { "@type": "AdministrativeArea", name: "Päijät-Häme" },
     ],
     openingHoursSpecification: [

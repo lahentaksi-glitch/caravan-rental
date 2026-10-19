@@ -23,7 +23,7 @@ export default function HomePage() {
       <BookingTeaser />
       <WhyUs />
       <ReviewsSection reviews={reviews} />
-      <section className="bg-white py-16 sm:py-20">
+      <section id="ukk" className="scroll-mt-24 bg-white py-16 sm:py-20">
         <Container className="max-w-3xl">
           <SectionHeading title="Usein kysyttyä" />
           <FAQAccordion items={faqItems} />

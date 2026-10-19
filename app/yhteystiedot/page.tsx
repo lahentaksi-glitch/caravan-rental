@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Phone, User } from "lucide-react";
 import { site } from "@/data/site";
 import { ContactForm } from "@/components/contact/contact-form";
 import { ConversionCta } from "@/components/layout/conversion-cta";
@@ -38,11 +38,22 @@ export default function YhteystiedotPage() {
               <h2 className="font-semibold text-foreground">Asiakaspalvelu</h2>
               <ul className="mt-4 space-y-4 text-sm text-muted-foreground">
                 <li className="flex items-start gap-3">
+                  <User className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
+                  <span>
+                    <span className="block font-medium text-foreground">{site.ownerName}</span>
+                    {site.name}
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
                   <span>
                     {site.address.street}
                     <br />
                     {site.address.city}, {site.address.country}
+                    <br />
+                    <span className="text-xs text-muted-foreground">
+                      Palvelualue: {site.address.areaLabel}
+                    </span>
                   </span>
                 </li>
                 <li className="flex items-center gap-3">
@@ -83,11 +94,11 @@ export default function YhteystiedotPage() {
                   Avaa WhatsApp
                 </a>
                 <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
+                  href={`mailto:${site.email}`}
                   className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 rounded-xl")}
                 >
-                  <Phone className="size-4" />
-                  Soita
+                  <Mail className="size-4" />
+                  Lähetä sähköpostia
                 </a>
               </div>
             </div>
@@ -107,6 +118,9 @@ export default function YhteystiedotPage() {
 
           <div>
             <h2 className="mb-4 text-lg font-semibold text-foreground">Lähetä viesti</h2>
+            <p className="mb-4 text-sm text-muted-foreground">
+              Lomakkeen viestit ohjataan osoitteeseen {site.email}.
+            </p>
             <ContactForm />
           </div>
         </div>

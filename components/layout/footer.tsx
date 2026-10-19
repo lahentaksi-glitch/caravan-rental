@@ -17,6 +17,9 @@ export function Footer() {
             <p className="mt-4 max-w-md text-sm leading-relaxed text-zinc-500">
               {site.description}
             </p>
+            <p className="mt-3 text-sm text-zinc-500">
+              {site.ownerName} · {site.name}
+            </p>
             <BookingCta label="Varaa nyt" className={bookNowClassName("mt-5")} />
           </div>
           <div>
@@ -38,8 +41,23 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/#ukk" className="hover:text-zinc-800">
+                  UKK
+                </Link>
+              </li>
+              <li>
                 <Link href="/yhteystiedot" className="hover:text-zinc-800">
-                  Yhteystiedot
+                  Ota yhteyttä
+                </Link>
+              </li>
+              <li>
+                <Link href="/kayttoehdot" className="hover:text-zinc-800">
+                  Käyttöehdot
+                </Link>
+              </li>
+              <li>
+                <Link href="/tietosuojaseloste" className="hover:text-zinc-800">
+                  Tietosuojaseloste
                 </Link>
               </li>
             </ul>
@@ -53,6 +71,8 @@ export function Footer() {
                   {site.address.street}
                   <br />
                   {site.address.city}
+                  <br />
+                  <span className="text-zinc-400">Palvelualue: {site.address.areaLabel}</span>
                 </span>
               </li>
               <li className="flex items-center gap-2">
@@ -86,15 +106,24 @@ export function Footer() {
           <p className="font-semibold text-zinc-900">Vuokrausehdot lyhyesti</p>
           <p className="mt-2">{footerTermsSummary.deductible}</p>
           <p className="mt-1">{footerTermsSummary.cancellation}</p>
-          <p className="mt-2">
+          <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+            <Link href="/kayttoehdot" className="font-medium text-zinc-800 underline-offset-2 hover:underline">
+              Käyttöehdot
+            </Link>
             <Link href="/hinnasto" className="font-medium text-zinc-800 underline-offset-2 hover:underline">
-              Lue hinnasto ja täydet ehdot
+              Hinnasto
+            </Link>
+            <Link
+              href="/tietosuojaseloste"
+              className="font-medium text-zinc-800 underline-offset-2 hover:underline"
+            >
+              Tietosuojaseloste
             </Link>
           </p>
         </div>
 
         <p className="mt-8 text-center text-xs text-zinc-400">
-          © {new Date().getFullYear()} {site.name}. Kaikki oikeudet pidätetään.
+          © {new Date().getFullYear()} {site.name} · {site.ownerName}. Kaikki oikeudet pidätetään.
         </p>
       </Container>
     </footer>
