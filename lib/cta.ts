@@ -17,6 +17,14 @@ export function bookNowOutlineClassName(className?: string) {
   );
 }
 
+export function quoteCtaClassName(className?: string) {
+  return cn(
+    buttonVariants({ variant: "outline", size: "lg" }),
+    "h-12 rounded-xl border-2 border-accent bg-white px-6 text-sm font-semibold text-accent shadow-none transition-all duration-200 hover:bg-orange-50 hover:text-accent active:scale-[0.98]",
+    className
+  );
+}
+
 export function charcoalClassName(className?: string) {
   return cn(
     buttonVariants({ size: "lg" }),

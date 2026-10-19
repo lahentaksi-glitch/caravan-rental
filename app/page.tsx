@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { faqItems } from "@/data/faq";
 import { reviews } from "@/data/reviews";
+import { siteKeywords } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/hero";
 import { CatalogSection } from "@/components/home/catalog-section";
 import { BookingTeaser } from "@/components/home/booking-teaser";
+import { CleanlinessGuarantee } from "@/components/home/cleanliness-guarantee";
 import { WhyUs } from "@/components/home/why-us";
 import { ReviewsSection } from "@/components/home/reviews-section";
 import { FAQAccordion } from "@/components/faq/faq-accordion";
@@ -13,6 +15,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
+  keywords: siteKeywords,
 });
 
 export default function HomePage() {
@@ -20,6 +23,7 @@ export default function HomePage() {
     <>
       <Hero />
       <CatalogSection />
+      <CleanlinessGuarantee />
       <BookingTeaser />
       <WhyUs />
       <ReviewsSection reviews={reviews} />

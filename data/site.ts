@@ -11,12 +11,14 @@ export function getSiteUrl(): string {
 export const siteUrl = getSiteUrl();
 
 export const siteKeywords = [
-  "asuntovaunun vuokraus Lahti",
+  "Paljun vuokraus Lahti",
+  "Paljuvuokraus Pertunmaa",
+  "Kärrypalju vuokraus Päijät-Häme",
   "paljuvaunu vuokraus Lahti",
+  "asuntovaunun vuokraus Lahti",
   "knaus sport 500 kd vuokraus",
   "paljukärry Lahti",
   "Paljuvuokraus Lahti",
-  "paljuvaunu Pertunmaa",
 ] as const;
 
 const pickupQuery = "Penttilänpolku 161, 19430 Pertunmaa, Suomi";
@@ -38,9 +40,9 @@ export const site = {
   description:
     "Vuokraa Knaus Sport 500 KD -asuntovaunu tai paljuvaunu Lahden ja Päijät-Hämeen alueella — selkeä hinta, huolletut laitteet ja nouto sopimuksen mukaan Lahdesta tai Pertunmaalta.",
   metaTitle:
-    "Laadukas asuntovaunu ja paljuvaunu vuokralle - Paljuvuokraus Lahti",
+    "Paljun vuokraus Lahti & Pertunmaa | Kärrypalju Päijät-Häme - Paljuvuokraus Lahti",
   metaDescription:
-    "Vuokraa premium-asuntovaunu Knaus Sport tai elämyksellinen paljuvaunu Lahden ja Päijät-Hämeen alueelta. Nouto Lahdesta tai Pertunmaalta. Yhteydenotot: info@paljuvuokrauslahti.fi",
+    "Paljun vuokraus Lahti ja Paljuvuokraus Pertunmaa — kärrypalju vuokraus Päijät-Hämeessä. Nouto Lahdesta tai Penttilänpolulta. Alkaen 59 €/vrk. Varaa: info@paljuvuokrauslahti.fi",
   ogImage: "/og.jpg",
   phone: "+358 50 047 4501",
   whatsapp: "+358500474501",

@@ -61,7 +61,13 @@ export function productMetadata(product: RentalProduct): Metadata {
   const isCaravan = product.category === "caravan";
   const keywords = isCaravan
     ? (["knaus sport 500 kd vuokraus", "asuntovaunun vuokraus Lahti", ...siteKeywords] as const)
-    : (["paljuvaunu vuokraus Lahti", "paljukärry Lahti", ...siteKeywords] as const);
+    : ([
+        "Paljun vuokraus Lahti",
+        "Paljuvuokraus Pertunmaa",
+        "Kärrypalju vuokraus Päijät-Häme",
+        "paljuvaunu vuokraus Lahti",
+        ...siteKeywords,
+      ] as const);
 
   return pageMetadata({
     path: `/tuotteet/${product.slug}`,

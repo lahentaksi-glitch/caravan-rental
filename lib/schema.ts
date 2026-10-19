@@ -4,18 +4,27 @@ import { site, siteUrl } from "@/data/site";
 export function localBusinessJsonLd(): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
-    "@type": ["AutomotiveBusiness", "LocalBusiness"],
+    "@type": ["LocalBusiness", "AutoRental"],
+    "@id": `${siteUrl}/#business`,
     name: site.name,
     legalName: site.legalName,
-    alternateName: [site.partnerName, site.ownerName, site.legalName],
+    alternateName: [
+      site.partnerName,
+      site.ownerName,
+      site.legalName,
+      "Paljun vuokraus Lahti",
+      "Paljuvuokraus Pertunmaa",
+      "Kärrypalju vuokraus Päijät-Häme",
+    ],
     taxID: site.businessId,
+    vatID: site.businessId,
     description: site.metaDescription,
     url: siteUrl,
     image: `${siteUrl}${site.ogImage}`,
     logo: `${siteUrl}${site.logos.caravan}`,
     telephone: site.phone,
     email: site.email,
-    priceRange: "€59–€69",
+    priceRange: "€59–€140",
     currenciesAccepted: "EUR",
     paymentAccepted: "Bank transfer, cash",
     address: {
@@ -35,7 +44,33 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     areaServed: [
       { "@type": "City", name: "Lahti" },
       { "@type": "City", name: "Pertunmaa" },
+      { "@type": "City", name: "Mäntyharju" },
       { "@type": "AdministrativeArea", name: "Päijät-Häme" },
+    ],
+    location: [
+      {
+        "@type": "Place",
+        name: "Noutopiste Pertunmaa",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Penttilänpolku 161",
+          postalCode: "19430",
+          addressLocality: "Pertunmaa",
+          addressRegion: "Päijät-Häme",
+          addressCountry: "FI",
+        },
+      },
+      {
+        "@type": "Place",
+        name: "Noutopiste Lahti",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Lahti",
+          addressRegion: "Päijät-Häme",
+          addressCountry: "FI",
+        },
+        description: "Nouto Lahdesta sopimuksen mukaan.",
+      },
     ],
     openingHoursSpecification: [
       {
@@ -67,12 +102,19 @@ export function localBusinessJsonLd(): Record<string, unknown> {
       },
       itemOffered: {
         "@type": "Service",
-        name: product.category === "caravan" ? "Asuntovaunun vuokraus Lahti" : "Paljuvaunu vuokraus Lahti",
+        name:
+          product.category === "caravan"
+            ? "Asuntovaunun vuokraus Lahti"
+            : "Paljun vuokraus Lahti",
         serviceType:
           product.category === "caravan"
             ? "Asuntovaunun vuokraus"
-            : "Paljuvaunu- ja paljukärryvuokraus",
-        areaServed: { "@type": "City", name: "Lahti" },
+            : "Paljuvaunu- ja kärrypaljun vuokraus",
+        areaServed: [
+          { "@type": "City", name: "Lahti" },
+          { "@type": "City", name: "Pertunmaa" },
+          { "@type": "AdministrativeArea", name: "Päijät-Häme" },
+        ],
       },
     })),
     sameAs: [site.social.instagram, site.social.facebook],

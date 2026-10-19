@@ -6,7 +6,7 @@ import { Menu } from "lucide-react";
 import { site } from "@/data/site";
 import { BrandMark } from "@/components/layout/brand-mark";
 import { BookingCta } from "@/components/layout/booking-cta";
-import { charcoalClassName } from "@/lib/cta";
+import { bookNowClassName } from "@/lib/cta";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -53,8 +53,9 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <BookingCta
-            label="Varaa aika"
-            className={charcoalClassName("hidden sm:inline-flex")}
+            label="Varaa palju"
+            target="hottub"
+            className={bookNowClassName("hidden h-11 rounded-full sm:inline-flex")}
           />
 
           <Sheet>
@@ -79,8 +80,9 @@ export function Navbar() {
                   </Link>
                 ))}
                 <BookingCta
-                  label="Varaa aika"
-                  className={charcoalClassName("mt-4 w-full justify-center rounded-xl")}
+                  label="Varaa palju"
+                  target="hottub"
+                  className={bookNowClassName("mt-4 w-full justify-center")}
                 />
               </nav>
             </SheetContent>
