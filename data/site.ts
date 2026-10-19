@@ -39,8 +39,8 @@ export const site = {
   metaDescription:
     "Vuokraa premium-asuntovaunu Knaus Sport tai elämyksellinen paljuvaunu helposti Lahden ja Päijät-Hämeen alueelta. Yhteydenotot: info@paljuvuokrauslahti.fi",
   ogImage: "/og.jpg",
-  phone: "+358 40 123 4567",
-  whatsapp: "+358401234567",
+  phone: "+358 50 047 4501",
+  whatsapp: "+358500474501",
   email: "info@paljuvuokrauslahti.fi",
   logos: {
     caravan: "/brand/caravan-rent-lahti.jpg",
