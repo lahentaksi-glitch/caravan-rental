@@ -50,13 +50,13 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     location: [
       {
         "@type": "Place",
-        name: "Noutopiste Pertunmaa",
+        name: `Noutopiste ${site.address.locality}`,
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Penttilänpolku 161",
-          postalCode: "19430",
-          addressLocality: "Pertunmaa",
-          addressRegion: "Päijät-Häme",
+          streetAddress: site.address.street,
+          postalCode: site.address.postalCode,
+          addressLocality: site.address.locality,
+          addressRegion: site.address.region,
           addressCountry: "FI",
         },
       },
@@ -66,10 +66,10 @@ export function localBusinessJsonLd(): Record<string, unknown> {
         address: {
           "@type": "PostalAddress",
           addressLocality: "Lahti",
-          addressRegion: "Päijät-Häme",
+          addressRegion: site.address.region,
           addressCountry: "FI",
         },
-        description: "Nouto Lahdesta sopimuksen mukaan.",
+        description: "Nouto Lahdesta sopimuksen mukaan. Palvelualue: Lahti ja Päijät-Häme.",
       },
     ],
     openingHoursSpecification: [

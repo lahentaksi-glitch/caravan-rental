@@ -19,7 +19,7 @@ export const rentalExtras: RentalExtra[] = [
     price: 30,
     priceFrom: true,
     description:
-      "Alkaen 30 € — Lahti & Päijät-Häme sekä lähialueet. Lopullinen hinta vahvistetaan matkan mukaan.",
+      "Alkaen 30 € — Lahti ja Päijät-Häme sekä lähialueet. Lopullinen hinta vahvistetaan matkan mukaan.",
   },
   {
     id: "kaasupullo",

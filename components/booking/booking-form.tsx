@@ -484,6 +484,18 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           <Phone className="size-4" />
           Soita {site.phone}
         </a>
+        <a
+          href={site.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            "h-12 rounded-xl"
+          )}
+        >
+          <MessageCircle className="size-4" />
+          WhatsApp
+        </a>
       </div>
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border/80 bg-background/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-12px_40px_-20px_rgba(20,40,80,0.45)] backdrop-blur-xl lg:hidden">

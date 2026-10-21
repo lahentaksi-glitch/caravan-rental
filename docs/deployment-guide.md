@@ -67,6 +67,6 @@ Aseta nämä hostin dashboardissa (Vercel → Settings → Environment Variables
 
 ## Julkaisun jälkeen
 
-- Päivitä `data/site.ts` puhelin, sähköposti ja noutosoite oikeiksi tiedoiksi.
+- Päivitä `data/site.ts`: toiminimi, Y-tunnus, puhelin (`044 340 2069` / `tel:+358443402069`), WhatsApp (`https://wa.me/358443402069`), palvelualue.
 - Vaihda demo-arviot ja rekisterinumerot tarvittaessa.
 - Tarkista WhatsApp-numero (`site.whatsappUrl` / `site.whatsapp`) — esim. `https://wa.me/358443402069`.

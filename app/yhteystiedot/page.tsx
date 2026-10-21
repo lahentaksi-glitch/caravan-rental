@@ -92,13 +92,22 @@ export default function YhteystiedotPage() {
                   </a>
                 </li>
               </ul>
-              <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+              <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
                 <a
                   href={`tel:${site.phoneTel}`}
                   className={cn(buttonVariants({ size: "lg" }), "h-11 rounded-xl")}
                 >
                   <Phone className="size-4" />
                   Soita {site.phone}
+                </a>
+                <a
+                  href={site.smsUrl}
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "h-11 rounded-xl"
+                  )}
+                >
+                  Lähetä SMS
                 </a>
                 <a
                   href={site.whatsappUrl}

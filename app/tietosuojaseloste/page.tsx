@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
 const sections = [
   {
     title: "Rekisterinpitäjä",
-    body: `${site.legalName} (Y-tunnus ${site.businessId}) / ${site.name}, ${site.address.street}, ${site.address.city}. Kotipaikka ${site.domicile}. Yhteydenotot: ${site.email}.`,
+    body: `${site.legalName} (Y-tunnus ${site.businessId}) / ${site.name}. Palvelualue: ${site.address.areaLabel}. Noutopiste: ${site.address.street}, ${site.address.city}. Kotipaikka ${site.domicile}. Yhteydenotot: ${site.phone} (${site.contactMethods}), ${site.email}.`,
   },
   {
     title: "Mitä tietoja keräämme",

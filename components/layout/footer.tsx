@@ -89,6 +89,10 @@ export function Footer() {
                   </a>
                   <br />
                   <span className="text-zinc-400">{site.contactMethods}</span>
+                  <br />
+                  <a href={site.smsUrl} className="text-zinc-400 hover:text-zinc-800">
+                    Lähetä tekstiviesti
+                  </a>
                 </span>
               </li>
               <li className="flex items-center gap-2">

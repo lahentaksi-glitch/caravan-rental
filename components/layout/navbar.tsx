@@ -84,6 +84,21 @@ export function Navbar() {
                   target="hottub"
                   className={bookNowClassName("mt-4 w-full justify-center")}
                 />
+                <a
+                  href={`tel:${site.phoneTel}`}
+                  className="mt-3 rounded-xl px-3 py-3 text-base font-medium text-zinc-700 hover:bg-muted"
+                >
+                  Soita {site.phone}
+                </a>
+                <a
+                  href={site.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-xl px-3 py-3 text-base font-medium text-zinc-700 hover:bg-muted"
+                >
+                  WhatsApp
+                </a>
+                <p className="px-3 pt-1 text-xs text-zinc-400">{site.contactMethods}</p>
               </nav>
             </SheetContent>
           </Sheet>

@@ -46,11 +46,12 @@ export const site = {
   ogImage: "/og.jpg",
   /** Display format */
   phone: "044 340 2069",
-  /** E.164 for tel: links */
+  /** E.164 for tel: / sms: links */
   phoneTel: "+358443402069",
   /** Digits for wa.me (no +) */
   whatsapp: "358443402069",
   whatsappUrl: "https://wa.me/358443402069",
+  smsUrl: "sms:+358443402069",
   contactMethods: "Puhelut, tekstiviestit ja WhatsApp",
   email: "info@paljuvuokrauslahti.fi",
   logos: {
