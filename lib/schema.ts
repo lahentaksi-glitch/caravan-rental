@@ -22,7 +22,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     url: siteUrl,
     image: `${siteUrl}${site.ogImage}`,
     logo: `${siteUrl}${site.logos.caravan}`,
-    telephone: site.phone,
+    telephone: site.phoneTel,
     email: site.email,
     priceRange: "€59–€140",
     currenciesAccepted: "EUR",
@@ -117,6 +117,6 @@ export function localBusinessJsonLd(): Record<string, unknown> {
         ],
       },
     })),
-    sameAs: [site.social.instagram, site.social.facebook],
+    sameAs: [site.social.instagram, site.social.facebook].filter(Boolean),
   };
 }

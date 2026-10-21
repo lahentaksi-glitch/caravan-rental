@@ -42,10 +42,16 @@ export const site = {
   metaTitle:
     "Paljun vuokraus Lahti & Pertunmaa | Kärrypalju Päijät-Häme - Paljuvuokraus Lahti",
   metaDescription:
-    "Paljun vuokraus Lahti ja Paljuvuokraus Pertunmaa — kärrypalju vuokraus Päijät-Hämeessä. Nouto Lahdesta tai Penttilänpolulta. Alkaen 59 €/vrk. Varaa: info@paljuvuokrauslahti.fi",
+    "Paljun vuokraus Lahti ja Paljuvuokraus Pertunmaa — kärrypalju vuokraus Päijät-Hämeessä. Nouto Lahdesta tai Penttilänpolulta. Alkaen 59 €/vrk. Soita 044 340 2069.",
   ogImage: "/og.jpg",
-  phone: "+358 50 047 4501",
-  whatsapp: "+358500474501",
+  /** Display format */
+  phone: "044 340 2069",
+  /** E.164 for tel: links */
+  phoneTel: "+358443402069",
+  /** Digits for wa.me (no +) */
+  whatsapp: "358443402069",
+  whatsappUrl: "https://wa.me/358443402069",
+  contactMethods: "Puhelut, tekstiviestit ja WhatsApp",
   email: "info@paljuvuokrauslahti.fi",
   logos: {
     caravan: "/brand/caravan-rent-lahti.jpg",
@@ -59,12 +65,12 @@ export const site = {
     locality: "Pertunmaa",
     region: "Päijät-Häme",
     country: "Suomi",
-    areaLabel: "Lahti & Päijät-Häme",
+    areaLabel: "Lahti ja Päijät-Häme",
   },
   pickupNote:
     "Noutomahdollisuus sopimuksen mukaan sekä Lahdesta että Pertunmaalta (Penttilänpolku 161, 19430 Pertunmaa).",
   deliveryNote:
-    "Kuljetuspalvelu alkaen 30 € (Lahti & Päijät-Häme sekä lähialueet).",
+    "Kuljetuspalvelu alkaen 30 € (Lahti ja Päijät-Häme sekä lähialueet).",
   geo: {
     latitude: 61.5034,
     longitude: 26.4789,
@@ -77,7 +83,7 @@ export const site = {
   mapEmbedUrl: googleMapsEmbedUrl(),
   mapDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(pickupQuery)}`,
   social: {
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com",
+    instagram: "",
+    facebook: "",
   },
 } as const;

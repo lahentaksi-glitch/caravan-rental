@@ -54,7 +54,8 @@ Puhelin: ${input.phone}${note}`;
 
 export function whatsappBookingUrl(text: string): string {
   const number = toWhatsAppNumber(site.whatsapp);
-  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+  const base = site.whatsappUrl || `https://wa.me/${number}`;
+  return `${base}?text=${encodeURIComponent(text)}`;
 }
 
 export function mailtoBookingUrl(text: string, productName: string): string {

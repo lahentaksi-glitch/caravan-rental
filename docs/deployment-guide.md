@@ -69,4 +69,4 @@ Aseta nämä hostin dashboardissa (Vercel → Settings → Environment Variables
 
 - Päivitä `data/site.ts` puhelin, sähköposti ja noutosoite oikeiksi tiedoiksi.
 - Vaihda demo-arviot ja rekisterinumerot tarvittaessa.
-- Tarkista WhatsApp-numero (`site.whatsapp`) kansainvälisessä muodossa ilman plus-merkkiä `wa.me`-linkissä.
+- Tarkista WhatsApp-numero (`site.whatsappUrl` / `site.whatsapp`) — esim. `https://wa.me/358443402069`.

@@ -70,25 +70,31 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden />
                 <span>
-                  {site.address.street}
+                  <span className="font-medium text-zinc-700">
+                    Palvelualue: {site.address.areaLabel}
+                  </span>
+                  <br />
+                  Nouto: {site.address.street}
                   <br />
                   {site.address.city}
                   <br />
                   <span className="text-zinc-400">Kotipaikka: {site.domicile}</span>
-                  <br />
-                  <span className="text-zinc-400">Palvelualue: {site.address.areaLabel}</span>
                 </span>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone className="size-4 shrink-0" aria-hidden />
-                <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:text-zinc-800">
-                  {site.phone}
-                </a>
+              <li className="flex items-start gap-2">
+                <Phone className="mt-0.5 size-4 shrink-0" aria-hidden />
+                <span>
+                  <a href={`tel:${site.phoneTel}`} className="hover:text-zinc-800">
+                    {site.phone}
+                  </a>
+                  <br />
+                  <span className="text-zinc-400">{site.contactMethods}</span>
+                </span>
               </li>
               <li className="flex items-center gap-2">
                 <MessageCircle className="size-4 shrink-0" aria-hidden />
                 <a
-                  href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}
+                  href={site.whatsappUrl}
                   className="hover:text-zinc-800"
                   target="_blank"
                   rel="noopener noreferrer"

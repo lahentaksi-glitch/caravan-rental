@@ -17,7 +17,7 @@ export const faqItems: FaqItem[] = [
     id: "pickup",
     question: "Milloin voin noutaa ja palauttaa laitteen?",
     answer:
-      "Noutomahdollisuus sopimuksen mukaan sekä Lahdesta että Pertunmaalta (Penttilänpolku 161, 19430 Pertunmaa). Kuljetuspalvelu alkaen 30 € (Lahti & Päijät-Häme sekä lähialueet). Paljuvaunun tavanomainen vuokrausaika alkaa klo 14:00 ja päättyy palautuspäivänä klo 12:00, ellei toisin sovita.",
+      "Noutomahdollisuus sopimuksen mukaan sekä Lahdesta että Pertunmaalta (Penttilänpolku 161, 19430 Pertunmaa). Kuljetuspalvelu alkaen 30 € (Lahti ja Päijät-Häme sekä lähialueet). Paljuvaunun tavanomainen vuokrausaika alkaa klo 14:00 ja päättyy palautuspäivänä klo 12:00, ellei toisin sovita. Yhteydenotot: puhelut, tekstiviestit ja WhatsApp (044 340 2069).",
   },
   {
     id: "cleaning",

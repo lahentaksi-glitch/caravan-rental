@@ -475,7 +475,7 @@ export function BookingForm({ product, extras }: BookingFormProps) {
           {status === "submitting" ? "Lähetetään…" : "Lähetä sähköpostilla"}
         </Button>
         <a
-          href={`tel:${site.phone.replace(/\s/g, "")}`}
+          href={`tel:${site.phoneTel}`}
           className={cn(
             buttonVariants({ variant: "ghost" }),
             "h-12 rounded-xl"

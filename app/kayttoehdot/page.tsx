@@ -49,11 +49,13 @@ export default function KayttoehdotPage() {
               <br />
               Puhelin:{" "}
               <a
-                href={`tel:${site.phone.replace(/\s/g, "")}`}
+                href={`tel:${site.phoneTel}`}
                 className="text-accent underline-offset-2 hover:underline"
               >
                 {site.phone}
               </a>
+              <br />
+              Yhteydenotot: {site.contactMethods}
             </p>
           </article>
         </div>

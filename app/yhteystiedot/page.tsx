@@ -22,7 +22,7 @@ export default function YhteystiedotPage() {
           align="left"
           className="max-w-2xl"
           title="Yhteystiedot"
-          subtitle="Autamme varauksissa ja kysymyksissä — soita, lähetä sähköpostia tai täytä lomake."
+          subtitle="Autamme varauksissa ja kysymyksissä — soita, lähetä tekstiviesti tai WhatsApp, tai täytä lomake."
         />
 
         <div className="mb-10">
@@ -55,20 +55,24 @@ export default function YhteystiedotPage() {
                 <li className="flex items-start gap-3">
                   <MapPin className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
                   <span>
-                    {site.address.street}
-                    <br />
-                    {site.address.city}, {site.address.country}
-                    <br />
-                    <span className="text-xs text-muted-foreground">
+                    <span className="font-medium text-foreground">
                       Palvelualue: {site.address.areaLabel}
                     </span>
+                    <br />
+                    Noutopiste: {site.address.street}
+                    <br />
+                    {site.address.city}, {site.address.country}
                   </span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <Phone className="size-4 shrink-0 text-accent" aria-hidden />
-                  <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="hover:text-foreground">
-                    {site.phone}
-                  </a>
+                <li className="flex items-start gap-3">
+                  <Phone className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
+                  <span>
+                    <a href={`tel:${site.phoneTel}`} className="hover:text-foreground">
+                      {site.phone}
+                    </a>
+                    <br />
+                    <span className="text-xs text-muted-foreground">{site.contactMethods}</span>
+                  </span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="size-4 shrink-0 text-accent" aria-hidden />
@@ -79,7 +83,7 @@ export default function YhteystiedotPage() {
                 <li className="flex items-center gap-3">
                   <MessageCircle className="size-4 shrink-0 text-accent" aria-hidden />
                   <a
-                    href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}
+                    href={site.whatsappUrl}
                     className="hover:text-foreground"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -90,7 +94,14 @@ export default function YhteystiedotPage() {
               </ul>
               <div className="mt-5 flex flex-col gap-2 sm:flex-row">
                 <a
-                  href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`}
+                  href={`tel:${site.phoneTel}`}
+                  className={cn(buttonVariants({ size: "lg" }), "h-11 rounded-xl")}
+                >
+                  <Phone className="size-4" />
+                  Soita {site.phone}
+                </a>
+                <a
+                  href={site.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
@@ -100,13 +111,6 @@ export default function YhteystiedotPage() {
                 >
                   <MessageCircle className="size-4" />
                   Avaa WhatsApp
-                </a>
-                <a
-                  href={`mailto:${site.email}`}
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 rounded-xl")}
-                >
-                  <Mail className="size-4" />
-                  Lähetä sähköpostia
                 </a>
               </div>
             </div>

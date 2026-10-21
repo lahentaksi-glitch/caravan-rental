@@ -28,7 +28,7 @@ export function customerConfirmationHtml(booking: ResolvedBooking): string {
         <p>Arvioitu summa: <strong>${formatEuro(booking.total)}</strong></p>
         <p style="font-size:13px;color:#5b6575;">Vakuus 200 € peritään vahvistuksen yhteydessä. Omavastuu 800 € / vahinko.</p>
         <p>Ystävällisin terveisin<br/>${escapeHtml(site.name)} · ${escapeHtml(site.partnerName)}<br/>
-        <a href="tel:${site.phone.replace(/\s/g, "")}">${escapeHtml(site.phone)}</a></p>
+        <a href="tel:${site.phoneTel}">${escapeHtml(site.phone)}</a></p>
       </td></tr>
     </table>
   </body>
