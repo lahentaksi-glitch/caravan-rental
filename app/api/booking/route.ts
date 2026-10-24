@@ -15,14 +15,16 @@ function getResend(): Resend | null {
 }
 
 function fromAddress(): string {
-  return (
-    process.env.RESEND_FROM?.trim() ||
-    `${site.name} <onboarding@resend.dev>`
-  );
+  return process.env.RESEND_FROM?.trim() || "onboarding@resend.dev";
 }
 
 function notifyAddress(): string {
-  return process.env.BOOKING_NOTIFY_EMAIL?.trim() || site.email;
+  return (
+    process.env.CONTACT_EMAIL?.trim() ||
+    process.env.BOOKING_NOTIFY_EMAIL?.trim() ||
+    site.email ||
+    "kuitunentarjaleena@gmail.com"
+  );
 }
 
 export async function POST(request: Request) {
@@ -83,15 +85,8 @@ export async function POST(request: Request) {
   try {
     const from = fromAddress();
     const owner = notifyAddress();
-    const { error: customerError } = await resend.emails.send({
-      from,
-      to: booking.email,
-      subject: `Varauspyyntö vastaanotettu — ${booking.product.name}`,
-      html: customerConfirmationHtml(booking),
-    });
-    if (customerError) {
-      throw new Error(customerError.message);
-    }
+
+    // 1. Lähetetään ilmoitus omistajalle
     const { error: ownerError } = await resend.emails.send({
       from,
       to: owner,
@@ -99,14 +94,28 @@ export async function POST(request: Request) {
       subject: `Uusi varauspyyntö: ${booking.product.name} (${booking.name})`,
       html: ownerNotificationHtml(booking),
     });
+
     if (ownerError) {
       throw new Error(ownerError.message);
     }
+
+    // 2. Lähetetään vahvistus asiakkaalle
+    const { error: customerError } = await resend.emails.send({
+      from,
+      to: booking.email,
+      subject: `Varauspyyntö vastaanotettu — ${booking.product.name}`,
+      html: customerConfirmationHtml(booking),
+    });
+
+    if (customerError) {
+      console.warn("[booking] Asiakkaan vahvistuksen lähetys epäonnistui", customerError);
+    }
+
     return NextResponse.json({ ok: true, emailed: true, mode: "resend" });
-  } catch (error) {
-    console.error("[booking] Resend-virhe", error);
+  } catch (error: any) {
+    console.error("[booking] Resend-virhe:", error?.message || error);
     return NextResponse.json(
-      { error: "Sähköpostin lähetys epäonnistui.", emailed: false },
+      { error: `Sähköpostin lähetys epäonnistui: ${error?.message || "Tuntematon virhe"}` },
       { status: 502 }
     );
   }
