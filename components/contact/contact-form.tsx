@@ -30,17 +30,34 @@ export function ContactForm() {
 
     setStatus("submitting");
     setError("");
-    await new Promise((r) => setTimeout(r, 600));
-    setStatus("success");
-    setName("");
-    setEmail("");
-    setMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Lähetys epäonnistui");
+      }
+
+      setStatus("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (err: any) {
+      setError(err.message || "Virhe lähetettäessä viestiä.");
+      setStatus("error");
+    }
   }
 
   if (status === "success") {
     return (
       <div className="rounded-2xl border border-border bg-card p-6 shadow-sm" role="status">
-        <p className="font-medium text-foreground">Viesti lähetetty (demo)</p>
+        <p className="font-medium text-foreground">Viesti lähetettynistön!</p>
         <p className="mt-2 text-sm text-muted-foreground">
           Otamme yhteyttä mahdollisimman pian arkipäivisin.
         </p>
